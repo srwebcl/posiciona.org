@@ -1,26 +1,87 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-navy-deep: #08355c;
+  --color-blue-inst: #0f60a0;
+  --color-amber-vial: #ffb000;
+  --color-white: #FFFFFF;
+  --color-blue-ice: #f0f6fa;
+  --color-gray-asphalt: #334155;
+  --color-dark-base: #020617;
+  /* New ultra-dark base */
+
+  --font-sans: var(--font-montserrat);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #020617;
+  /* Deep Dark Base */
+  --foreground: #FFFFFF;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* Utilities for filtering the logo to white */
+.filter-white {
+  filter: brightness(0) invert(1);
+}
+
+/* HUD / Hybrid-Tech Utilities */
+.bg-hybrid-gradient {
+  background: radial-gradient(circle at center, var(--color-navy-deep) 0%, var(--color-dark-base) 100%);
+}
+
+.text-gradient-corp {
+  background: linear-gradient(to right, var(--color-blue-inst), var(--color-white));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 1. Efecto de Luz Ámbar (Neon Glow) */
+.tech-glow {
+  box-shadow: 0 0 15px rgba(255, 176, 0, 0.6);
+  border-color: #ffb000;
+}
+
+/* 2. Glassmorphism (Cristal Tecnológico) */
+.glass-panel {
+  background: rgba(15, 96, 160, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 3. Grid Background */
+.grid-bg {
+  background-color: #08355c;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* 4. Texto Gradiente (Explosivo) */
+.text-explosive {
+  background: linear-gradient(90deg, #0f60a0 0%, #ffb000 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  /* Fallback */
+}
+
+/* 5. Animation Utilities */
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.animate-shine {
+  animation: shine 6s linear infinite;
 }
