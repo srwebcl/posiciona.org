@@ -29,25 +29,25 @@ export function Footer() {
                         </div>
                     </div>
 
-                    {/* Enlaces */}
+                    {/* Para Personas */}
                     <div>
-                        <h4 className="text-lg font-bold font-sans uppercase mb-6 text-amber-vial">Navegación</h4>
+                        <h4 className="text-lg font-bold font-sans uppercase mb-6 text-amber-vial">Para Personas</h4>
                         <ul className="space-y-4 text-sm text-gray-300 font-mono">
-                            <li><Link href="/personas" className="hover:text-white transition-colors">Personas</Link></li>
-                            <li><Link href="/empresas" className="hover:text-white transition-colors">Empresas</Link></li>
-                            <li><Link href="/nosotros" className="hover:text-white transition-colors">Historia</Link></li>
-                            <li><Link href="/contacto" className="hover:text-white transition-colors">Soporte</Link></li>
+                            <li><Link href="/personas#catalogo" className="hover:text-white transition-colors">Ver Cursos</Link></li>
+                            <li><Link href="/personas/escuela-conductores" className="hover:text-white transition-colors">Escuela Conductores</Link></li>
+                            <li><Link href="/personas" className="hover:text-white transition-colors">Gratuidad (SENCE)</Link></li>
+                            <li><Link href="/personas/contacto" className="hover:text-white transition-colors">Matrículas</Link></li>
                         </ul>
                     </div>
 
-                    {/* Programas */}
+                    {/* Para Empresas */}
                     <div>
-                        <h4 className="text-lg font-bold font-sans uppercase mb-6 text-amber-vial">Programas</h4>
+                        <h4 className="text-lg font-bold font-sans uppercase mb-6 text-amber-vial">Para Empresas</h4>
                         <ul className="space-y-4 text-sm text-gray-300 font-mono">
-                            <li>Escuela de Conductores A3</li>
-                            <li>Full Stack Developer</li>
-                            <li>Soldadura Industrial</li>
-                            <li>Electricidad SEC</li>
+                            <li><Link href="/empresas" className="hover:text-white transition-colors">Capacitación</Link></li>
+                            <li><Link href="/empresas" className="hover:text-white transition-colors">Certificación Wylar</Link></li>
+                            <li><Link href="/empresas" className="hover:text-white transition-colors">Franquicia Tributaria</Link></li>
+                            <li><Link href="/contacto" className="hover:text-white transition-colors">Cotizar Servicios</Link></li>
                         </ul>
                     </div>
 

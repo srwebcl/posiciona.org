@@ -1,6 +1,7 @@
 "use client";
 
 import { ParticleNetwork } from "@/app/components/ui/particle-network";
+import { TimelineHUD } from "@/app/components/home/TimelineHUD";
 import { TechButton } from "@/app/components/ui/tech-button";
 import { BadgeCheck, Building, GraduationCap, Users, Target, ShieldCheck } from "lucide-react";
 import Image from "next/image";
@@ -109,6 +110,10 @@ export default function NosotrosPage() {
                     </div>
                 </div>
             </section>
+            {/* Trayectoria Timeline */}
+            <div className="bg-white text-navy-deep relative z-10 border-t border-gray-100">
+                <TimelineHUD />
+            </div>
         </div>
     );
 }

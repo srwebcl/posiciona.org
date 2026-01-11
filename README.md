@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Posiciona.org - Ecosistema de Formación Técnica
 
-## Getting Started
+> **Desarrollado y mantenido por [srweb](https://srweb.cl)**
 
-First, run the development server:
+Este repositorio contiene el código fuente de la plataforma web moderna para **Posiciona.org**, construida con tecnologías de vanguardia para garantizar rendimiento, accesibilidad y una experiencia de usuario premium.
+
+## 🛠 Stack Tecnológico
+
+La arquitectura del proyecto se basa en un stack moderno y eficiente:
+
+*   **Core**: [Next.js 16.1](https://nextjs.org/) (App Router) - Framework React para producción.
+*   **Lenguaje**: [TypeScript](https://www.typescriptlang.org/) - Tipado estático robusto.
+*   **Estilos**: [Tailwind CSS v4](https://tailwindcss.com/) - Motor de estilos "utility-first" de próxima generación (configuración `oxford-spell`).
+*   **Animaciones**: [Framer Motion](https://www.framer.com/motion/) - Biblioteca de animaciones declarativas para React.
+*   **Componentes UI**:
+    *   [Radix UI](https://www.radix-ui.com/) - Primitivas accesibles sin estilos.
+    *   [Lucide React](https://lucide.dev/) - Iconografía consistente y ligera.
+*   **Fuentes**: `next/font` optimizado con **Montserrat** (Sans) y **JetBrains Mono** (Mono).
+
+## 📂 Estructura del Proyecto
+
+El proyecto sigue la arquitectura de **App Router** de Next.js:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+/
+├── app/
+│   ├── components/         # Componentes React modulares
+│   │   ├── layout/         # Navbar, Footer, FloatingCTA
+│   │   ├── home/           # Componentes específicos de la Home
+│   │   ├── personas/       # UI para sección Personas
+│   │   ├── ui/             # Componentes base reutilizables (Botones, Modales)
+│   │   └── seo/            # Componentes de metadatos y Schema markup
+│   ├── (routes)/           # Rutas de la aplicación (personas, empresas, etc.)
+│   ├── globals.css         # Configuración global de estilos y @theme de Tailwind v4
+│   └── layout.tsx          # Layout raíz con proveedores y configuración de fuentes
+├── public/                 # Assets estáticos (imágenes, favicons)
+└── ...configFiles          # Configuración de herramientas (TypeScript, PostCSS, etc.)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Instalación y Despliegue
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Requisitos Previos
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+*   Node.js 18+
+*   npm
 
-## Learn More
+### Desarrollo Local
 
-To learn more about Next.js, take a look at the following resources:
+1.  **Clonar el repositorio**:
+    ```bash
+    git clone https://github.com/srwebcl/posiciona.org.git
+    cd posiciona.org
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2.  **Instalar dependencias**:
+    ```bash
+    npm install
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3.  **Iniciar servidor de desarrollo**:
+    ```bash
+    npm run dev
+    ```
+    El sitio estará disponible en `http://localhost:3000`.
 
-## Deploy on Vercel
+### Construcción para Producción
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Para generar una build optimizada:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+npm start
+```
+
+## 🎨 Guía de Estilos y Diseño
+
+El sistema de diseño utiliza variables CSS nativas integradas via Tailwind v4 (`app/globals.css`):
+
+*   **Colores Corporativos**:
+    *   `--color-navy-deep`: Base oscura principal (#08355c / #020617)
+    *   `--color-amber-vial`: Acento primario (#ffb000)
+    *   `--color-blue-inst`: Acento secundario (#0f60a0)
+*   **Tipografía**:
+    *   Principal: Montserrat
+    *   Código/Técnico: JetBrains Mono
+
+## 🤝 Contribución
+
+Este proyecto es propiedad de **Posiciona.org** y desarrollado por **srweb**. Cualquier cambio debe seguir los estándares de código (ESLint, TypeScript Strict Mode) y pasar por revisión.
+
+---
+
+© 2026 Posiciona.org | Powered by **srweb**

@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 @theme inline {
   --color-navy-deep: #08355c;
   --color-blue-inst: #0f60a0;
@@ -70,6 +74,7 @@ body {
 .text-explosive {
   background: linear-gradient(90deg, #0f60a0 0%, #ffb000 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
   /* Fallback */
@@ -84,4 +89,10 @@ body {
 
 .animate-shine {
   animation: shine 6s linear infinite;
+}
+
+/* 6. Utilidades de Máscara (Fade Edges) */
+.masking-gradient-white {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }

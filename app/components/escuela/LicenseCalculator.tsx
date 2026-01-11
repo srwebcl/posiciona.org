@@ -50,22 +50,27 @@ export function LicenseCalculator() {
 
     return (
         <Card className="w-full max-w-md mx-auto bg-night-blue border border-white/10 shadow-2xl p-6">
-            <div className="flex items-center gap-3 mb-6">
-                <div className="bg-orange-industrial/20 p-2 rounded-lg text-orange-industrial">
-                    <Calculator className="w-6 h-6" />
+            <div className="mb-6">
+                <div className="flex items-center gap-3 mb-2">
+                    <div className="bg-orange-industrial/20 p-2 rounded-lg text-orange-industrial">
+                        <Calculator className="w-5 h-5" />
+                    </div>
+                    <h3 className="text-xl font-bold text-white">Simulador de Elegibilidad</h3>
                 </div>
-                <h3 className="text-xl font-bold text-white">Calculadora A3</h3>
+                <p className="text-sm text-gray-400">
+                    Descubre si calificas para el curso acelerado (2 años) según tu licencia actual.
+                </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-6">
                 <div>
-                    <label className="block text-sm font-medium text-gray-400 mb-2">Licencia Actual</label>
-                    <div className="grid grid-cols-3 gap-2">
-                        {["B", "A2", "A4", "A5", "Ninguna"].map((lic) => (
+                    <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">1. Tu Licencia Actual</label>
+                    <div className="grid grid-cols-4 gap-2">
+                        {["Ninguna", "B", "A2", "A4", "A5"].map((lic) => (
                             <button
                                 key={lic}
                                 onClick={() => setCurrentLicense(lic)}
-                                className={`py-2 px-3 rounded-md text-sm font-bold border transition-all ${currentLicense === lic ? "bg-orange-industrial text-white border-orange-industrial" : "bg-white/5 text-gray-300 border-white/10 hover:bg-white/10"}`}
+                                className={`py-2 px-1 rounded-md text-sm font-bold border transition-all ${currentLicense === lic ? "bg-orange-industrial text-white border-orange-industrial shadow-lg shadow-orange-500/20" : "bg-white/5 text-gray-300 border-white/10 hover:bg-white/10 hover:border-white/30"}`}
                             >
                                 {lic}
                             </button>
@@ -74,7 +79,10 @@ export function LicenseCalculator() {
                 </div>
 
                 <div>
-                    <label className="block text-sm font-medium text-gray-400 mb-2">Años de Antigüedad: {yearsHeld}</label>
+                    <div className="flex justify-between items-center mb-3">
+                        <label className="block text-xs font-bold uppercase tracking-wider text-gray-400">2. Años de Antigüedad</label>
+                        <span className="text-xl font-black text-amber-vial">{yearsHeld} Años</span>
+                    </div>
                     <input
                         type="range"
                         min="0"
@@ -85,8 +93,8 @@ export function LicenseCalculator() {
                     />
                 </div>
 
-                <Button onClick={calculate} className="w-full bg-orange-industrial hover:bg-orange-600 text-white font-bold">
-                    Calcular Tiempo
+                <Button onClick={calculate} className="w-full bg-orange-industrial hover:bg-orange-600 text-white font-bold h-12 text-base shadow-[0_4px_20px_rgba(249,115,22,0.3)]">
+                    Verificar mi Caso
                 </Button>
 
                 {result && (

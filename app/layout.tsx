@@ -29,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
+        suppressHydrationWarning
         className={`${montserrat.variable} ${jetbrainsMono.variable} antialiased bg-navy-deep text-white selection:bg-amber-vial selection:text-navy-deep relative overflow-x-hidden`}
       >
         <Navbar />
