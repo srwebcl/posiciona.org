@@ -1,5 +1,6 @@
 import { ContactForm } from "@/app/components/contact/ContactForm";
 import { Mail, MapPin, Phone, Building2 } from "lucide-react";
+import { PageHero } from "@/app/components/ui/PageHero";
 import { Suspense } from "react";
 
 export const metadata = {
@@ -11,16 +12,15 @@ export default function ContactPage() {
     return (
         <div className="bg-white min-h-screen">
             {/* Header */}
-            <section className="bg-navy-deep py-20 relative overflow-hidden">
-                <div className="container mx-auto px-4 relative z-10 text-center">
-                    <h1 className="text-4xl md:text-5xl font-black text-white uppercase mb-4">
+            {/* Header */}
+            <PageHero
+                title={
+                    <>
                         Hablemos de tu <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-vial to-amber-300">Futuro</span>
-                    </h1>
-                    <p className="text-gray-300 text-lg max-w-2xl mx-auto font-mono">
-                        Ya sea para capacitar a tu empresa o impulsar tu carrera personal, nuestro equipo está listo para orientarte.
-                    </p>
-                </div>
-            </section>
+                    </>
+                }
+                description="Ya sea para capacitar a tu empresa o impulsar tu carrera personal, nuestro equipo está listo para orientarte."
+            />
 
             <div className="container mx-auto px-4 py-16 -mt-10 relative z-20">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">

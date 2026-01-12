@@ -6,7 +6,7 @@ import { Gauge, ShieldCheck, Clock, MapPin } from "lucide-react";
 const hudWidgets = [
     {
         id: "status",
-        label: "SYSTEM STATUS",
+        label: "ESTADO",
         value: "ACREDITADO",
         icon: ShieldCheck,
         color: "text-green-500",
@@ -15,8 +15,8 @@ const hudWidgets = [
     },
     {
         id: "time",
-        label: "TIME REDUCTION",
-        value: "-50%",
+        label: "EFICIENCIA",
+        value: "-50% TIEMPO",
         icon: Clock,
         color: "text-amber-vial",
         position: "bottom-32 right-10",
@@ -24,7 +24,7 @@ const hudWidgets = [
     },
     {
         id: "license",
-        label: "TARGET LICENSE",
+        label: "OBJETIVO",
         value: "CLASE A3",
         icon: Gauge,
         color: "text-blue-inst",
@@ -33,8 +33,8 @@ const hudWidgets = [
     },
     {
         id: "map",
-        label: "SCENARIO",
-        value: "MINERA / URBANO",
+        label: "ENTORNO",
+        value: "MINA / CIUDAD",
         icon: MapPin,
         color: "text-white",
         position: "bottom-20 left-20",

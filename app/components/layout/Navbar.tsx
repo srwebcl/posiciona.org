@@ -13,6 +13,7 @@ const NAV_LINKS = [
     { name: "Personas", href: "/personas", type: "primary" },
     { name: "Empresas", href: "/empresas", type: "primary" },
     { name: "Nosotros", href: "/nosotros", type: "standard" },
+    { name: "Oficina Virtual", href: "/oficina-virtual", type: "standard" },
     { name: "Contacto", href: "/contacto", type: "standard" },
 ];
 
@@ -31,14 +32,15 @@ export function Navbar() {
     const coursesHref = pathname === "/personas" ? "#catalogo" : "/personas#catalogo";
 
     const currentLinks = isPersonas ? [
-        { name: "Cursos", href: coursesHref, type: "primary" },
+        { name: "Inicio", href: "/personas", type: "standard" },
+        { name: "Cursos", href: "/personas/cursos", type: "primary" },
         { name: "Escuela de Conductores", href: "/personas/escuela-conductores", type: "standard" },
         { name: "Contacto", href: "/personas/contacto", type: "standard" },
     ] : isEmpresas ? [
-        { name: "Soluciones", href: "#soluciones", type: "primary" },
-        { name: "Capacitación", href: "/empresas", type: "standard" },
-        { name: "Certificación", href: "/empresas", type: "standard" },
-        { name: "Contacto", href: "/contacto", type: "standard" },
+        { name: "Soluciones", href: "/empresas", type: "primary" },
+        { name: "Capacitación", href: "/empresas/capacitaciones", type: "standard" },
+        { name: "Certificación", href: "/empresas/certificaciones", type: "standard" },
+        { name: "Contacto", href: "/empresas/contacto", type: "standard" },
     ] : NAV_LINKS;
 
     useEffect(() => {

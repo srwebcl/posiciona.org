@@ -1,6 +1,6 @@
 "use client";
 
-import { ParticleNetwork } from "@/app/components/ui/particle-network";
+import { PageHero } from "@/app/components/ui/PageHero";
 import { TimelineHUD } from "@/app/components/home/TimelineHUD";
 import { TechButton } from "@/app/components/ui/tech-button";
 import { BadgeCheck, Building, GraduationCap, Users, Target, ShieldCheck } from "lucide-react";
@@ -10,25 +10,19 @@ export default function NosotrosPage() {
     return (
         <div className="min-h-screen bg-white">
             {/* Header / Hero */}
-            <section className="relative py-24 bg-navy-deep overflow-hidden">
-                <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
-                    <ParticleNetwork />
-                </div>
-                <div className="container mx-auto px-4 relative z-10 text-center">
-                    <span className="inline-block py-1 px-3 rounded-full bg-white/10 border border-white/20 text-amber-vial font-mono text-xs font-bold tracking-widest mb-6 backdrop-blur-md">
-                        NUESTRA ESENCIA
-                    </span>
-                    <h1 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter mb-6">
+            {/* Header / Hero */}
+            <PageHero
+                badge="NUESTRA ESENCIA"
+                title={
+                    <>
                         Más que Capacitación, <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-vial to-amber-300">
                             Construimos Futuro
                         </span>
-                    </h1>
-                    <p className="text-xl text-gray-300 max-w-3xl mx-auto font-mono leading-relaxed">
-                        Desde Arica para Chile, somos el puente entre las personas que buscan superarse y las empresas que necesitan excelencia.
-                    </p>
-                </div>
-            </section>
+                    </>
+                }
+                description="Desde Arica para Chile, somos el puente entre las personas que buscan superarse y las empresas que necesitan excelencia."
+            />
 
             {/* Historia / Main Content */}
             <section className="py-20">

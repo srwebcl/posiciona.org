@@ -13,32 +13,32 @@ const HIGHLIGHTS = [
         category: "ESCUELA DE CONDUCTORES",
         title: "Entrenamiento con Simuladores Europeos",
         description: "Únicos en el norte con tecnología de Realidad Virtual para cursos A3 y A5. Reduce riesgos y mejora tu aprendizaje.",
-        image: "/imagenes/posiciona-20.jpeg",
+        image: "/imagenes/posiciona-19.jpeg",
         icon: Play,
         color: "amber",
-        link: "/escuela-conductores",
-        badge: "Tecnología 2025"
+        link: "/personas/escuela-conductores",
+        badge: "Licencia Profesional"
     },
     {
         id: 2,
         category: "TALENTO DIGITAL",
-        title: "Bootcamps de Programación & Data",
+        title: "Bootcamps de Programación",
         description: "Reconversión laboral acelerada. Aprende las habilidades tecnológicas más demandadas por la industria hoy.",
-        image: "/imagenes/posiciona-24.png",
+        image: "/imagenes/posiciona-1.jpeg",
         icon: Cpu,
         color: "cyan",
         link: "/talento-digital",
-        badge: "Beca Disponible"
+        badge: "Becas Sence"
     },
     {
         id: 3,
         category: "CERTIFICACIÓN",
         title: "Evaluación de Competencias WYLAR",
-        description: "¿Tienes la experiencia pero no el título? Certifica tu oficio bajo ChileValora y mejora tu sueldo.",
-        image: "/imagenes/posiciona-10.jpeg",
+        description: "¿Tienes la experiencia pero no el título? Certifica tu oficio bajo ChileValora.",
+        image: "/imagenes/posiciona-18.jpeg",
         icon: Award,
         color: "blue",
-        link: "/empresas",
+        link: "/empresas/certificaciones",
         badge: "Validez Nacional"
     }
 ];
@@ -132,7 +132,7 @@ export function HighlightsCarousel() {
                                             HIGHLIGHTS[currentIndex].color === 'cyan' ? 'from-cyan-900 via-cyan-950 to-black' :
                                                 'from-blue-900 via-blue-950 to-black'
                                             }`} />
-                                        <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-110 opacity-60 mix-blend-overlay">
+                                        <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-110 opacity-80 mix-blend-overlay">
                                             <Image
                                                 src={HIGHLIGHTS[currentIndex].image}
                                                 alt={HIGHLIGHTS[currentIndex].title}
@@ -140,7 +140,7 @@ export function HighlightsCarousel() {
                                                 className="object-cover"
                                             />
                                         </div>
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80" />
 
                                         {/* Top Badge */}
                                         <div className="absolute top-8 left-8 z-20">
@@ -198,8 +198,8 @@ export function HighlightsCarousel() {
                                         item.color === 'cyan' ? 'from-cyan-900 to-black' :
                                             'from-blue-900 to-black'
                                         }`} />
-                                    <Image src={item.image} alt={item.title} fill className="object-cover opacity-60 mix-blend-overlay" />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90" />
+                                    <Image src={item.image} alt={item.title} fill className="object-cover opacity-80 mix-blend-overlay" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
 
                                     <div className="absolute bottom-0 left-0 right-0 p-6">
                                         <h4 className="text-xl font-bold text-white mb-2">{item.title}</h4>

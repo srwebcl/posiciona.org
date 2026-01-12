@@ -55,17 +55,13 @@ export function Footer() {
                     <div>
                         <h4 className="text-lg font-bold font-sans uppercase mb-6 text-amber-vial">Contacto</h4>
                         <ul className="space-y-4 text-sm text-gray-300">
-                            <li className="flex items-start gap-3">
-                                <MapPin className="w-5 h-5 text-blue-inst mt-0.5" />
-                                <span>Av. Santa María 2050,<br />Arica, Chile</span>
-                            </li>
                             <li className="flex items-center gap-3">
                                 <Phone className="w-5 h-5 text-blue-inst" />
-                                <span>+56 58 2 222 222</span>
+                                <span>+56 9 6666 4127</span>
                             </li>
                             <li className="flex items-center gap-3">
                                 <Mail className="w-5 h-5 text-blue-inst" />
-                                <span>contacto@posiciona.cl</span>
+                                <span>posiciona@posiciona.org</span>
                             </li>
                         </ul>
                     </div>

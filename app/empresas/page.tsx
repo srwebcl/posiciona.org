@@ -1,88 +1,88 @@
-import { GlassCard } from "@/app/components/ui/glass-card";
 import { TechButton } from "@/app/components/ui/tech-button";
-import { Building2, Users, FileCheck, ArrowRight } from "lucide-react";
-import { ParticleNetwork } from "@/app/components/ui/particle-network";
+import { Users, Building2, ArrowRight } from "lucide-react";
+import { EmpresasHero } from "@/app/components/empresas/EmpresasHero";
+import Link from "next/link";
+import { ContactForm } from "@/app/components/contact/ContactForm";
 
 export const metadata = {
     title: "Posiciona Empresas | Soluciones Corporativas",
     description: "Capacitación SENCE, cierre de brechas y certificación de competencias laborales para su equipo.",
 };
 
-export default function EmpresasPage() {
+export default function EmpresasHubPage() {
     return (
-        <div className="min-h-screen bg-navy-deep relative overflow-hidden pt-24 pb-20">
-            {/* Background Particles for Tech Feel */}
-            <div className="absolute inset-0 opacity-30 pointer-events-none">
-                <ParticleNetwork />
-            </div>
+        <div className="min-h-screen bg-white">
+            <EmpresasHero />
 
-            <div className="container mx-auto px-4 relative z-10">
-                <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8">
-                    <div className="max-w-3xl">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded border border-blue-inst/30 bg-blue-inst/10 text-blue-inst mb-4 font-mono text-xs font-bold uppercase">
-                            <Building2 className="w-4 h-4" /> División Corporativa
-                        </div>
-                        <h1 className="text-4xl md:text-6xl font-black text-white mb-6 uppercase leading-tight">
-                            Potencia su <span className="text-blue-inst">Capital Humano</span>
-                        </h1>
-                        <p className="text-xl text-gray-300 font-mono">
-                            Soluciones de capacitación a medida, gestión SENCE y certificación de competencias.
-                            Eleve los estándares de seguridad y productividad de su organización.
-                        </p>
+            {/* SECCIÓN DE NAVEGACIÓN (Light Theme) */}
+            <div className="py-20 bg-gray-50 border-b border-gray-100 relative z-10">
+                <div className="container mx-auto px-4">
+
+                    <div className="text-center mb-16">
+                        <span className="text-amber-vial font-bold tracking-widest text-sm uppercase">Nuestros Servicios</span>
+                        <h2 className="text-3xl md:text-5xl font-black text-navy-deep mt-2">
+                            Soluciones Corporativas
+                        </h2>
                     </div>
 
-                    <TechButton variant="primary" size="lg" className="h-14">
-                        Solicitar Reunión <ArrowRight className="ml-2 w-5 h-5" />
-                    </TechButton>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+
+                        {/* ENLACE A CAPACITACIONES */}
+                        <Link href="/empresas/capacitaciones" className="group">
+                            <div className="h-full bg-white rounded-3xl p-10 shadow-lg hover:shadow-2xl border border-gray-100 hover:border-amber-vial/30 transition-all duration-300 flex flex-col items-center text-center group-hover:-translate-y-2">
+                                <div className="mb-6 bg-amber-vial/10 w-20 h-20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                                    <Users className="w-10 h-10 text-amber-vial" />
+                                </div>
+                                <h2 className="text-3xl font-bold text-navy-deep mb-4 group-hover:text-amber-vial transition-colors">Capacitación y SENCE</h2>
+                                <p className="text-gray-500 mb-8 text-lg leading-relaxed max-w-sm">
+                                    Cierre de brechas, alfabetización digital y gestión experta de franquicia tributaria y becas laborales.
+                                </p>
+                                <span className="mt-auto inline-flex items-center text-amber-vial font-bold uppercase tracking-wider text-sm group-hover:underline">
+                                    Ver Soluciones <ArrowRight className="ml-2 w-4 h-4" />
+                                </span>
+                            </div>
+                        </Link>
+
+                        {/* ENLACE A CERTIFICACIONES */}
+                        <Link href="/empresas/certificaciones" className="group">
+                            <div className="h-full bg-white rounded-3xl p-10 shadow-lg hover:shadow-2xl border border-gray-100 hover:border-blue-inst/30 transition-all duration-300 flex flex-col items-center text-center group-hover:-translate-y-2">
+                                <div className="mb-6 bg-blue-inst/10 w-20 h-20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                                    <Building2 className="w-10 h-10 text-blue-inst" />
+                                </div>
+                                <h2 className="text-3xl font-bold text-navy-deep mb-4 group-hover:text-blue-inst transition-colors">Certificación de Calidad</h2>
+                                <p className="text-gray-500 mb-8 text-lg leading-relaxed max-w-sm">
+                                    Certificación de competencias laborales (Wylar), normas ISO 9001 y NCh 2728.
+                                </p>
+                                <span className="mt-auto inline-flex items-center text-blue-inst font-bold uppercase tracking-wider text-sm group-hover:underline">
+                                    Ver Certificaciones <ArrowRight className="ml-2 w-4 h-4" />
+                                </span>
+                            </div>
+                        </Link>
+
+                    </div>
                 </div>
+            </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <GlassCard className="border-t-4 border-t-amber-vial">
-                        <div className="mb-6 bg-amber-vial/10 w-fit p-3 rounded-lg">
-                            <Users className="w-8 h-8 text-amber-vial" />
-                        </div>
-                        <h3 className="text-2xl font-bold text-white mb-4">Cierre de Brechas</h3>
-                        <p className="text-gray-400 mb-6 font-mono text-sm leading-relaxed">
-                            Diagnóstico y nivelación para equipos operativos y mandos medios.
-                        </p>
-                        <ul className="space-y-2 text-gray-300 text-sm mb-8">
-                            <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-amber-vial rounded-full" /> Alfabetización Digital</li>
-                            <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-amber-vial rounded-full" /> Seguridad Industrial</li>
-                            <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-amber-vial rounded-full" /> Inglés Técnico TOEIC</li>
-                        </ul>
-                    </GlassCard>
+            {/* SECCIÓN CONTACTO RÁPIDO */}
+            <div className="py-24 bg-white relative overflow-hidden">
+                {/* Decorative background elements similar to PersonasJourney/FAQ */}
+                <div className="absolute top-0 right-0 w-1/3 h-full bg-gray-50 -skew-x-12 translate-x-1/2 z-0 pointer-events-none" />
 
-                    <GlassCard className="border-t-4 border-t-blue-inst">
-                        <div className="mb-6 bg-blue-inst/10 w-fit p-3 rounded-lg">
-                            <FileCheck className="w-8 h-8 text-blue-inst" />
+                <div className="container mx-auto px-4 relative z-10">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h3 className="text-2xl md:text-3xl font-bold text-navy-deep mb-4">¿Necesita Asesoría Directa?</h3>
+                            <p className="text-gray-500 text-lg">
+                                Nuestro equipo comercial está listo para diseñar un plan a medida para su organización.
+                            </p>
                         </div>
-                        <h3 className="text-2xl font-bold text-white mb-4">Gestión SENCE</h3>
-                        <p className="text-gray-400 mb-6 font-mono text-sm leading-relaxed">
-                            Ejecución de programas con Franquicia Tributaria y Becas Laborales OTIC.
-                        </p>
-                        <div className="p-3 bg-blue-inst/10 rounded border border-blue-inst/20 text-center">
-                            <span className="block text-sm font-bold text-blue-inst uppercase">Experiencia Comprobada</span>
-                            <span className="text-xs text-white">Licitaciones Públicas y Privadas</span>
-                        </div>
-                    </GlassCard>
 
-                    <GlassCard className="border-t-4 border-t-white">
-                        <div className="mb-6 bg-white/10 w-fit p-3 rounded-lg">
-                            <Building2 className="w-8 h-8 text-white" />
+                        {/* Wrapper for Contact Form to look good on light bg (Dark card style preserved for form) */}
+                        <div className="bg-navy-deep rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-inst/20 rounded-full blur-[80px] pointer-events-none" />
+                            <ContactForm prefilledInterest="Empresas - General" className="md:grid-cols-2" />
                         </div>
-                        <h3 className="text-2xl font-bold text-white mb-4">Alianza WYLAR</h3>
-                        <p className="text-gray-400 mb-6 font-mono text-sm leading-relaxed">
-                            Certificación de Competencias Laborales (en proceso de acreditación ChileValora).
-                        </p>
-                        <div className="flex gap-2 justify-center">
-                            <div className="p-2 bg-white/5 rounded border border-white/10 text-center w-full">
-                                <span className="block text-xl font-black text-white">ISO 9001</span>
-                            </div>
-                            <div className="p-2 bg-white/5 rounded border border-white/10 text-center w-full">
-                                <span className="block text-xl font-black text-white">NCh 2728</span>
-                            </div>
-                        </div>
-                    </GlassCard>
+                    </div>
                 </div>
             </div>
         </div>

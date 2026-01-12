@@ -120,7 +120,10 @@ export function PersonasCatalog() {
 
     const filteredServices = activeCategory === "TODOS"
         ? PERSONAS_SERVICES
-        : PERSONAS_SERVICES.filter(service => service.category === activeCategory);
+        : PERSONAS_SERVICES.filter(service =>
+            service.category === activeCategory ||
+            service.tags.some(tag => tag.toUpperCase() === activeCategory)
+        );
 
     return (
         <section id="catalogo" className="py-24 bg-white relative" style={{ scrollMarginTop: "200px" }}>
@@ -128,16 +131,8 @@ export function PersonasCatalog() {
             <div className="absolute inset-0 grid-bg opacity-5" />
             <div className="container mx-auto px-4">
 
-                {/* Section Header */}
-                <div className="text-center mb-16">
-                    <span className="text-amber-vial font-bold tracking-widest text-sm uppercase">Nuestra Oferta Académica</span>
-                    <h2 className="text-3xl md:text-5xl font-black text-navy-deep mt-2 mb-6">
-                        Programas de <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Alto Impacto</span>
-                    </h2>
-                    <p className="text-gray-500 max-w-2xl mx-auto text-lg leading-relaxed">
-                        Diseñados para la empleabilidad real. Desde licencias profesionales hasta competencias digitales certificadas y oficios industriales.
-                    </p>
-                </div>
+                {/* Header removido - manejado por PageHero en la página padre */}
+                <div className="mb-8" />
 
                 {/* Categories Filter (Tab System) */}
                 <div className="flex flex-wrap justify-center gap-3 mb-16">
@@ -203,9 +198,21 @@ export function PersonasCatalog() {
                                     {/* Tags Row */}
                                     <div className="flex flex-wrap gap-2 mb-4">
                                         {service.tags.map((tag, idx) => (
-                                            <span key={idx} className="px-2 py-1 rounded-md text-[10px] font-bold uppercase bg-gray-100 text-gray-600 border border-gray-200">
+                                            <button
+                                                key={idx}
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    // Buscamos si el tag ya existe en categorias, si no, podríamos agregarlo dinámicamente o simplemente filtrar
+                                                    // Por simplicidad, asumimos que queremos filtrar por este texto exacto
+                                                    // Pero para que funcione con el estado activeCategory que es string, necesitamos que la lógica de arriba lo soporte.
+                                                    // Una mejor opción rápida es solo permitir filtrar si el tag coincide con una categoría o implementar lógica de tag libre.
+                                                    // Vamos a mejorar esto permitiendo filtro por texto libre en activeCategory
+                                                    setActiveCategory(tag.toUpperCase());
+                                                }}
+                                                className="px-2 py-1 rounded-md text-[10px] font-bold uppercase bg-gray-100 text-gray-600 border border-gray-200 hover:bg-amber-vial hover:text-white hover:border-amber-vial transition-colors cursor-pointer"
+                                            >
                                                 {tag}
-                                            </span>
+                                            </button>
                                         ))}
                                     </div>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/app/components/ui/button";
 import { ChevronRight, Sparkles, Terminal } from "lucide-react";
@@ -114,14 +115,18 @@ export function Hero() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
-                        <Button size="lg" variant="primary" className="w-full sm:w-auto text-base h-12 px-6 shadow-[0_0_20px_rgba(255,176,0,0.3)] hover:shadow-[0_0_40px_rgba(255,176,0,0.5)] border-amber-vial/50">
-                            Soluciones Personas
-                            <ChevronRight className="ml-2 w-4 h-4" />
-                        </Button>
-                        <Button size="lg" variant="secondary" className="w-full sm:w-auto text-base h-12 px-6 backdrop-blur-md border-blue-inst/50 shadow-[0_0_15px_rgba(15,96,160,0.2)]">
-                            <Terminal className="mr-2 w-4 h-4" />
-                            Soluciones Empresas
-                        </Button>
+                        <Link href="/personas">
+                            <Button size="lg" variant="primary" className="w-full sm:w-auto text-base h-12 px-6 shadow-[0_0_20px_rgba(255,176,0,0.3)] hover:shadow-[0_0_40px_rgba(255,176,0,0.5)] border-amber-vial/50">
+                                Soluciones Personas
+                                <ChevronRight className="ml-2 w-4 h-4" />
+                            </Button>
+                        </Link>
+                        <Link href="/empresas">
+                            <Button size="lg" variant="secondary" className="w-full sm:w-auto text-base h-12 px-6 backdrop-blur-md border-blue-inst/50 shadow-[0_0_15px_rgba(15,96,160,0.2)]">
+                                <Terminal className="mr-2 w-4 h-4" />
+                                Soluciones Empresas
+                            </Button>
+                        </Link>
                     </div>
                 </motion.div>
             </div>

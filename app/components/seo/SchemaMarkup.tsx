@@ -6,17 +6,11 @@ export function SchemaMarkup() {
         "description": "Organismo Técnico de Capacitación líder en Arica. Escuela de Conductores Profesionales, Talento Digital y Oficios Industriales.",
         "url": "https://posiciona.cl",
         "logo": "https://posiciona.cl/imagenes/Logo-Posiciona.webp",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Av. Santa María 2050",
-            "addressLocality": "Arica",
-            "addressRegion": "Arica y Parinacota",
-            "postalCode": "1000000",
-            "addressCountry": "CL"
-        },
+
         "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+56-58-2-222-222",
+            "telephone": "+56 9 6666 4127",
+            "email": "posiciona@posiciona.org",
             "contactType": "customer service",
             "areaServed": "CL",
             "availableLanguage": "Spanish"

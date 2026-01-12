@@ -65,7 +65,7 @@ export function ContactForm({ prefilledInterest, className }: ContactFormProps) 
                         type="tel"
                         required
                         className="w-full bg-white/5 border border-white/20 rounded-lg p-3 text-white placeholder:text-gray-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-all font-medium text-sm"
-                        placeholder="+56 9 1234 5678"
+                        placeholder="+56 9 6666 4127"
                     />
                 </div>
             </div>

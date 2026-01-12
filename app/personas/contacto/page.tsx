@@ -1,5 +1,6 @@
 import { ContactForm } from "@/app/components/contact/ContactForm";
 import { Mail, Phone, MapPin, Clock, Loader2 } from "lucide-react";
+import { PageHero } from "@/app/components/ui/PageHero";
 import { Suspense } from "react";
 
 export const metadata = {
@@ -9,19 +10,22 @@ export const metadata = {
 
 export default function PersonasContactPage() {
     return (
-        <div className="bg-gray-50 min-h-screen pt-32 pb-24">
-            <div className="container mx-auto px-4">
+        <div className="bg-gray-50 min-h-screen pb-24">
+            <PageHero
+                badge="Atención Alumnos"
+                title={
+                    <>
+                        Hablemos de tu <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Futuro</span>
+                    </>
+                }
+                description="¿Tienes dudas sobre los cursos, fechas de inicio o cómo postular a la gratuidad SENCE? Nuestro equipo de admisión está listo para ayudarte."
+            />
+
+            <div className="container mx-auto px-4 py-12 relative z-10">
                 <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
 
                     {/* LEFT: Information & Context */}
-                    <div>
-                        <span className="text-amber-vial font-bold tracking-widest text-sm uppercase">Atención Alumnos</span>
-                        <h1 className="text-4xl md:text-5xl font-black text-navy-deep mt-2 mb-6">
-                            Hablemos de tu <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Futuro</span>
-                        </h1>
-                        <p className="text-gray-500 text-lg leading-relaxed mb-10">
-                            ¿Tienes dudas sobre los cursos, fechas de inicio o cómo postular a la gratuidad SENCE? Nuestro equipo de admisión está listo para ayudarte.
-                        </p>
+                    <div className="pt-10">
 
                         <div className="space-y-8">
                             <div className="flex items-start gap-4">
@@ -31,24 +35,13 @@ export default function PersonasContactPage() {
                                 <div>
                                     <h3 className="font-bold text-navy-deep text-lg">Llámanos o WhatsApp</h3>
                                     <p className="text-gray-500 mb-1">Atención inmediata preferente</p>
-                                    <a href="https://wa.me/56912345678" target="_blank" className="text-xl font-bold text-blue-600 hover:text-amber-vial transition-colors">
-                                        +56 9 1234 5678
+                                    <a href="https://wa.me/56966664127" target="_blank" className="text-xl font-bold text-blue-600 hover:text-amber-vial transition-colors">
+                                        +56 9 6666 4127
                                     </a>
                                 </div>
                             </div>
 
-                            <div className="flex items-start gap-4">
-                                <div className="bg-white p-3 rounded-xl shadow-md text-amber-vial border border-gray-100">
-                                    <MapPin className="w-6 h-6" />
-                                </div>
-                                <div>
-                                    <h3 className="font-bold text-navy-deep text-lg">Visítanos</h3>
-                                    <p className="text-gray-500">
-                                        Av. Velásquez 123, Arica.<br />
-                                        (Frente al Terminal Agropecuario)
-                                    </p>
-                                </div>
-                            </div>
+
 
                             <div className="flex items-start gap-4">
                                 <div className="bg-white p-3 rounded-xl shadow-md text-amber-vial border border-gray-100">

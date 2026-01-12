@@ -297,7 +297,7 @@ export function EscuelaLandingContent() {
                                     </div>
                                     <div>
                                         <h4 className="text-white font-bold text-lg">Atención Whatsapp</h4>
-                                        <p className="text-gray-500">¿Dudas rápidas? +56 9 1234 5678</p>
+                                        <p className="text-gray-500">¿Dudas rápidas? +56 9 6666 4127</p>
                                     </div>
                                 </div>
                             </div>
