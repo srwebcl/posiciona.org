@@ -267,7 +267,7 @@ export function EscuelaLandingContent() {
             {/* FINAL CONTACT SECTION */}
             <section className="py-24 bg-[#020B14] relative overflow-hidden">
                 {/* Background Decor */}
-                <div className="absolute inset-0 bg-[url('/imagenes/posiciona-20.jpeg')] bg-cover bg-center opacity-5" />
+                <div className="absolute inset-0 bg-[url('/imagenes/posiciona-21.jpeg')] bg-cover bg-center opacity-5" />
                 <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-amber-vial/5 to-transparent pointer-events-none" />
 
                 <div className="container mx-auto px-4 relative z-10">

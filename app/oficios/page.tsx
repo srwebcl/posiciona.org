@@ -12,7 +12,7 @@ export default function TradesPage() {
             {/* Trades Hero */}
             <section className="relative h-[40vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-night-blue">
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-industrial/10 to-transparent z-0" />
-                <div className="absolute inset-0 bg-[url('/imagenes/posiciona-20.jpeg')] bg-cover bg-center opacity-20 mix-blend-overlay" />
+                <div className="absolute inset-0 bg-[url('/imagenes/posiciona-21.jpeg')] bg-cover bg-center opacity-20 mix-blend-overlay" />
 
                 <div className="container mx-auto px-4 relative z-10 text-center">
                     <div className="inline-flex justify-center mb-6">

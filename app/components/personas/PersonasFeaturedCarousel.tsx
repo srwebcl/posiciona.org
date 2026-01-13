@@ -12,7 +12,7 @@ const FEATURED_COURSES = [
         id: "talento-digital",
         category: "TALENTO DIGITAL",
         title: "Bootcamp Desarrollo Front-End",
-        image: "/imagenes/posiciona-24.png",
+        image: "/imagenes/posiciona-23.jpeg",
         icon: Code2,
         link: "/talento-digital",
         color: "blue"
@@ -21,7 +21,7 @@ const FEATURED_COURSES = [
         id: "escuela-a3",
         category: "ESCUELA DE CONDUCTORES",
         title: "Licencia Profesional A3",
-        image: "/imagenes/posiciona-20.jpeg",
+        image: "/imagenes/posiciona-21.jpeg",
         icon: Truck,
         link: "/escuela-conductores", // Updated to correct link if needed or keep consistent
         color: "amber"
@@ -30,7 +30,7 @@ const FEATURED_COURSES = [
         id: "oficios-soldadura",
         category: "OFICIOS INDUSTRIALES",
         title: "Soldadura Calificada (MIG/TIG)",
-        image: "/imagenes/posiciona-10.jpeg",
+        image: "/imagenes/posiciona-11.jpeg",
         icon: Wrench,
         link: "/oficios",
         color: "cyan"
@@ -118,7 +118,7 @@ export function PersonasFeaturedCarousel() {
 
                                     <div>
                                         <span className={`text-[10px] font-bold tracking-widest uppercase mb-2 block ${course.color === 'amber' ? 'text-amber-400' :
-                                                course.color === 'cyan' ? 'text-cyan-400' : 'text-blue-400'
+                                            course.color === 'cyan' ? 'text-cyan-400' : 'text-blue-400'
                                             }`}>
                                             {course.category}
                                         </span>

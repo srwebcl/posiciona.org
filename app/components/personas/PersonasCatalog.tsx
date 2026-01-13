@@ -15,7 +15,7 @@ const PERSONAS_SERVICES = [
         title: "Bootcamp Desarrollo Front-End",
         description: "Domina React, JavaScript y CSS moderno. Conviértete en un desarrollador web demandado por la industria.",
         icon: Code2,
-        image: "/imagenes/posiciona-24.png",
+        image: "/imagenes/posiciona-23.jpeg",
         link: "/talento-digital",
         tags: ["Beca SENCE", "Online"]
     },
@@ -25,7 +25,7 @@ const PERSONAS_SERVICES = [
         title: "Full Stack Java Trainee",
         description: "Formación completa de Back-End a Front-End. Java, Spring Boot y bases de datos.",
         icon: Code2,
-        image: "/imagenes/posiciona-22.jpeg",
+        image: "/imagenes/posiciona-23.jpeg",
         link: "/talento-digital",
         tags: ["Intensivo", "Alta Empleabilidad"]
     },
@@ -35,7 +35,7 @@ const PERSONAS_SERVICES = [
         title: "Licencia Profesional A3",
         description: "Para taxis, ambulancias y transporte escolar. Entrenamiento avanzado con simulador europeo.",
         icon: Truck,
-        image: "/imagenes/posiciona-20.jpeg",
+        image: "/imagenes/posiciona-21.jpeg",
         link: "/escuela-conductores",
         tags: ["Simulador Real", "Acelerado"]
     },
@@ -55,7 +55,7 @@ const PERSONAS_SERVICES = [
         title: "Soldadura Calificada (MIG/TIG)",
         description: "Certifícate en procesos de soldadura industrial. Estándares mineros y de construcción.",
         icon: Wrench,
-        image: "/imagenes/posiciona-10.jpeg", // Industrial welding image
+        image: "/imagenes/posiciona-11.jpeg", // Industrial welding image
         link: "/oficios",
         tags: ["Presencial", "Certificación"]
     },
@@ -65,7 +65,7 @@ const PERSONAS_SERVICES = [
         title: "Electricidad Certificada SEC",
         description: "Preparación para obtención de licencia Clase D. Instalaciones domiciliarias e industriales.",
         icon: Wrench,
-        image: "/imagenes/posiciona-8.jpeg",
+        image: "/imagenes/posiciona-9.jpeg",
         link: "/oficios",
         tags: ["Licencia SEC", "Técnico"]
     },
