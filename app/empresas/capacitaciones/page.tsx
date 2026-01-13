@@ -1,5 +1,6 @@
 import { TechButton } from "@/app/components/ui/tech-button";
-import { Users, FileCheck, ArrowRight, Check, Mail } from "lucide-react";
+import { Suspense } from "react";
+import { Users, FileCheck, ArrowRight, Check, Mail, Loader2 } from "lucide-react";
 import { PageHero } from "@/app/components/ui/PageHero";
 import { ContactForm } from "@/app/components/contact/ContactForm";
 
@@ -96,7 +97,9 @@ export default function CapacitacionesEmpresasPage() {
                             </p>
                         </div>
                         <div className="relative z-10 max-w-lg mx-auto">
-                            <ContactForm prefilledInterest="Capacitación Empresa" className="md:grid-cols-1" />
+                            <Suspense fallback={<div className="flex justify-center py-10"><Loader2 className="w-8 h-8 animate-spin text-amber-vial" /></div>}>
+                                <ContactForm prefilledInterest="Capacitación Empresa" className="md:grid-cols-1" />
+                            </Suspense>
                             <div className="mt-8 pt-8 border-t border-white/10 flex justify-center gap-8 text-sm">
                                 <a href="mailto:posiciona@posiciona.org" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
                                     <Mail className="w-4 h-4" /> posiciona@posiciona.org

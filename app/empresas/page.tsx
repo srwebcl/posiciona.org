@@ -1,5 +1,6 @@
 import { TechButton } from "@/app/components/ui/tech-button";
-import { Users, Building2, ArrowRight } from "lucide-react";
+import { Suspense } from "react";
+import { Users, Building2, ArrowRight, Loader2 } from "lucide-react";
 import { EmpresasHero } from "@/app/components/empresas/EmpresasHero";
 import Link from "next/link";
 import { ContactForm } from "@/app/components/contact/ContactForm";
@@ -80,7 +81,9 @@ export default function EmpresasHubPage() {
                         {/* Wrapper for Contact Form to look good on light bg (Dark card style preserved for form) */}
                         <div className="bg-navy-deep rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-inst/20 rounded-full blur-[80px] pointer-events-none" />
-                            <ContactForm prefilledInterest="Empresas - General" className="md:grid-cols-2" />
+                            <Suspense fallback={<div className="flex justify-center py-10"><Loader2 className="w-8 h-8 animate-spin text-amber-vial" /></div>}>
+                                <ContactForm prefilledInterest="Empresas - General" className="md:grid-cols-2" />
+                            </Suspense>
                         </div>
                     </div>
                 </div>
