@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { TechButton } from "@/app/components/ui/tech-button";
 import { ContactForm } from "@/app/components/contact/ContactForm";
 import { Modal } from "@/app/components/ui/modal";
@@ -177,7 +177,9 @@ export default function OficinaVirtualClient() {
                     <p className="text-gray-600 dark:text-gray-300 mb-6 text-sm">
                         Completa el formulario para recibir asistencia con el Aula Virtual, notas, asistencia o certificados.
                     </p>
-                    <ContactForm variant="general" prefilledInterest="Soporte Académico" />
+                    <Suspense fallback={<div className="text-gray-500 text-sm">Cargando formulario...</div>}>
+                        <ContactForm variant="general" prefilledInterest="Soporte Académico" />
+                    </Suspense>
                 </div>
             </Modal>
         </div>

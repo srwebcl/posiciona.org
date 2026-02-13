@@ -5,6 +5,7 @@ import { Button } from "@/app/components/ui/button";
 import Link from "next/link";
 import { ArrowLeft, CheckCircle2, Calendar, Clock, Award, MapPin } from "lucide-react";
 import { ContactForm } from "@/app/components/contact/ContactForm";
+import { Suspense } from "react";
 
 export async function generateStaticParams() {
     return COURSES.map((course) => ({
@@ -130,7 +131,9 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
                                 </div>
 
                                 <div className="p-6">
-                                    <ContactForm prefilledInterest={course.title} variant="persona" />
+                                    <Suspense fallback={<div className="text-white/80 p-4">Cargando formulario...</div>}>
+                                        <ContactForm prefilledInterest={course.title} variant="persona" />
+                                    </Suspense>
                                 </div>
                             </div>
                         </div>
