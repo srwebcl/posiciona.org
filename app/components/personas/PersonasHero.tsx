@@ -12,14 +12,14 @@ const SLIDES = [
         video: "/imagenes/cursos.mp4",
         title: "Impulsa tu Desarrollo Profesional",
         subtitle: "Desde licencias profesionales de conducción hasta certificación en oficios y tecnología.",
-        cta: { text: "Ver Catálogo", href: "#catalogo", icon: BookOpen, variant: "primary" as const }
+        cta: { text: "Ver Catálogo", href: "/personas/cursos", icon: BookOpen, variant: "primary" as const }
     },
     {
         id: "escuela",
         video: "/imagenes/simulador.mp4",
         title: "Escuela de Conductores Profesional",
         subtitle: "Tecnología de Simulación Inmersiva única en la región. Obtén tu licencia A3 o A5 con expertos.",
-        cta: { text: "Conocer Escuela", href: "/escuela-conductores", icon: Truck, variant: "secondary" as const }
+        cta: { text: "Conocer Escuela", href: "/personas/escuela-conductores", icon: Truck, variant: "secondary" as const }
     }
 ];
 

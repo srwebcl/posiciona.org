@@ -20,7 +20,7 @@ export function DrivingSchoolBanner() {
                 <div className="flex flex-col md:flex-row items-center justify-between gap-8">
                     <div className="text-left max-w-2xl">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-vial/10 text-amber-vial border border-amber-vial/20 mb-4 tech-glow text-xs font-mono font-bold uppercase tracking-wider">
-                            <ShieldCheck className="w-4 h-4" /> Nueva Acreditación 2025
+                            <ShieldCheck className="w-4 h-4" /> Nueva Acreditación
                         </div>
 
                         <h2 className="text-3xl md:text-5xl font-black text-white mb-4 uppercase italic leading-tight">
@@ -42,7 +42,7 @@ export function DrivingSchoolBanner() {
                             </TechButton>
                         </Link>
                         <p className="text-xs text-center text-gray-500 font-mono uppercase">
-                            Cupos Limitados • Inicia Marzo 2025
+                            Cupos Limitados • Inicia Marzo
                         </p>
                     </div>
                 </div>

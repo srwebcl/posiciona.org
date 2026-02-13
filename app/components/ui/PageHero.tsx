@@ -28,7 +28,7 @@ export function PageHero({
     className,
 }: PageHeroProps) {
     return (
-        <section className={cn("relative py-24 md:py-32 bg-navy-deep overflow-hidden", className)}>
+        <section className={cn("relative pt-36 pb-20 md:pt-48 md:pb-32 bg-navy-deep overflow-hidden", className)}>
             {/* Background Layer */}
             <div className="absolute inset-0 z-0">
                 {video ? (

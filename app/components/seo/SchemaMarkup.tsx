@@ -9,7 +9,7 @@ export function SchemaMarkup() {
 
         "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+56 9 6666 4127",
+            "telephone": "+56 9 8453 4364",
             "email": "posiciona@posiciona.org",
             "contactType": "customer service",
             "areaServed": "CL",

@@ -52,7 +52,7 @@ export default function EmpresasHubPage() {
                                 </div>
                                 <h2 className="text-3xl font-bold text-navy-deep mb-4 group-hover:text-blue-inst transition-colors">Certificación de Calidad</h2>
                                 <p className="text-gray-500 mb-8 text-lg leading-relaxed max-w-sm">
-                                    Certificación de competencias laborales (Wylar), normas ISO 9001 y NCh 2728.
+                                    Certificación de competencias laborales (Wylar) y norma NCh 2728.
                                 </p>
                                 <span className="mt-auto inline-flex items-center text-blue-inst font-bold uppercase tracking-wider text-sm group-hover:underline">
                                     Ver Certificaciones <ArrowRight className="ml-2 w-4 h-4" />
@@ -82,7 +82,7 @@ export default function EmpresasHubPage() {
                         <div className="bg-navy-deep rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-inst/20 rounded-full blur-[80px] pointer-events-none" />
                             <Suspense fallback={<div className="flex justify-center py-10"><Loader2 className="w-8 h-8 animate-spin text-amber-vial" /></div>}>
-                                <ContactForm prefilledInterest="Empresas - General" className="md:grid-cols-2" />
+                                <ContactForm prefilledInterest="Empresas - General" className="md:grid-cols-2" variant="empresa" />
                             </Suspense>
                         </div>
                     </div>

@@ -50,8 +50,8 @@ export default function EmpresasContactPage() {
                                 <div>
                                     <h3 className="font-bold text-navy-deep text-lg">Contacto Comercial</h3>
                                     <p className="text-gray-500 mb-1">Llámenos o escribanos al WhatsApp</p>
-                                    <a href="https://wa.me/56966664127" target="_blank" className="text-xl font-bold text-blue-600 hover:text-amber-vial transition-colors">
-                                        +56 9 6666 4127
+                                    <a href="https://wa.me/56984534364" target="_blank" className="text-xl font-bold text-blue-600 hover:text-amber-vial transition-colors">
+                                        +56 9 8453 4364
                                     </a>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@ export default function EmpresasContactPage() {
                                 Complete el formulario y un ejecutivo comercial le contactará para agendar una reunión o enviar una propuesta.
                             </p>
                             <Suspense fallback={<div className="flex justify-center py-12"><Loader2 className="w-8 h-8 animate-spin text-amber-vial" /></div>}>
-                                <ContactForm prefilledInterest="Empresas - General" />
+                                <ContactForm prefilledInterest="Empresas - General" variant="empresa" />
                             </Suspense>
                         </div>
                     </div>

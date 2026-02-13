@@ -1,4 +1,5 @@
 import { TechButton } from "@/app/components/ui/tech-button";
+import Image from "next/image";
 import { Suspense } from "react";
 import { Building2, ArrowRight, ShieldCheck, Check, Mail, Loader2 } from "lucide-react";
 import { PageHero } from "@/app/components/ui/PageHero";
@@ -6,7 +7,7 @@ import { ContactForm } from "@/app/components/contact/ContactForm";
 
 export const metadata = {
     title: "Certificación de Competencias y Calidad | Posiciona",
-    description: "Certificación de competencias laborales Wylar (ChileValora) y gestión de calidad ISO 9001 / NCh 2728.",
+    description: "Certificación de competencias laborales Wylar (ChileValora) y gestión de calidad NCh 2728.",
 };
 
 export default function CertificacionesEmpresasPage() {
@@ -61,9 +62,14 @@ export default function CertificacionesEmpresasPage() {
                                 </p>
                             </div>
                             <div className="flex-shrink-0 w-full md:w-auto flex flex-col gap-4">
-                                <div className="p-6 bg-gray-50 rounded-2xl border border-gray-100 text-center min-w-[150px]">
-                                    <span className="block text-2xl font-black text-navy-deep">ChileValora</span>
-                                    <span className="text-[10px] uppercase text-gray-400 font-bold tracking-widest">En proceso</span>
+                                <div className="p-2 bg-white rounded-2xl border border-gray-100 text-center min-w-[200px] shadow-sm">
+                                    <Image
+                                        src="/imagenes/Timbre Wylar.png"
+                                        alt="Alianza Wylar"
+                                        width={200}
+                                        height={100}
+                                        className="w-48 h-auto object-contain mx-auto"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -78,8 +84,8 @@ export default function CertificacionesEmpresasPage() {
                                         <ShieldCheck className="w-4 h-4" /> Calidad Asegurada
                                     </div>
                                     <h2 className="text-3xl font-black text-navy-deep mb-6">
-                                        ISO 9001:2015 <br />
-                                        <span className="text-blue-inst font-bold text-xl block mt-1">Norma Chilena 2728</span>
+                                        Norma Chilena <br />
+                                        <span className="text-blue-inst font-bold text-xl block mt-1">NCh 2728</span>
                                     </h2>
                                     <p className="text-gray-600 mb-8 leading-relaxed">
                                         En Posiciona, la calidad no es una opción, es nuestro compromiso. Garantizamos procesos de capacitación trazables, evaluables y de alto impacto.
@@ -105,9 +111,13 @@ export default function CertificacionesEmpresasPage() {
 
                                 <div className="relative">
                                     <div className="bg-white rounded-2xl p-6 shadow-md border border-gray-100 transform rotate-1 hover:rotate-0 transition-transform duration-500">
-                                        <div className="aspect-video w-full bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center border border-gray-300 mb-4">
-                                            <ShieldCheck className="w-16 h-16 text-gray-400" />
-                                        </div>
+                                        <Image
+                                            src="/imagenes/nch2728.png"
+                                            alt="Certificación NCh 2728"
+                                            width={500}
+                                            height={400}
+                                            className="w-full h-auto object-contain rounded-lg mb-4"
+                                        />
                                         <div className="text-center">
                                             <p className="text-gray-500 text-xs uppercase tracking-widest font-bold">Certificación Vigente</p>
                                         </div>
@@ -133,7 +143,7 @@ export default function CertificacionesEmpresasPage() {
                         </div>
                         <div className="relative z-10 max-w-lg mx-auto">
                             <Suspense fallback={<div className="flex justify-center py-10"><Loader2 className="w-8 h-8 animate-spin text-amber-vial" /></div>}>
-                                <ContactForm prefilledInterest="Empresas - Certificación" className="md:grid-cols-1" />
+                                <ContactForm prefilledInterest="Empresas - Certificación" className="md:grid-cols-1" variant="empresa" />
                             </Suspense>
                             <div className="mt-8 pt-8 border-t border-white/10 flex justify-center gap-8 text-sm">
                                 <a href="mailto:posiciona@posiciona.org" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors">

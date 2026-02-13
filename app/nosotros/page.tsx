@@ -32,9 +32,12 @@ export default function NosotrosPage() {
                             <div className="absolute -inset-4 bg-amber-vial/20 rounded-2xl -rotate-2 blur-xl" />
                             <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200 aspect-video">
                                 {/* Placeholder image - Replace with real team/office photo */}
-                                <div className="absolute inset-0 bg-navy-deep/10 flex items-center justify-center bg-gray-100">
-                                    <Building className="w-20 h-20 text-navy-deep/20" />
-                                </div>
+                                <Image
+                                    src="/imagenes/posiciona-18.jpeg"
+                                    alt="Equipo Posiciona"
+                                    fill
+                                    className="object-cover"
+                                />
                             </div>
                             {/* Badger NCh */}
                             <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl border border-gray-100 flex flex-col items-center gap-2">
@@ -50,7 +53,7 @@ export default function NosotrosPage() {
                             <div>
                                 <h2 className="text-3xl font-black text-navy-deep mb-4 uppercase">Nuestro Propósito</h2>
                                 <p className="text-gray-600 leading-relaxed text-lg">
-                                    Nacimos con la convicción de que la formación técnica de calidad es el motor de movilidad social más potente. Combinamos la rigurosidad de la norma **ISO 9001:2008** y **NCh 2728** con una metodología humana, cercana y enfocada en la empleabilidad real.
+                                    Nacimos con la convicción de que la formación técnica de calidad es el motor de movilidad social más potente. Combinamos la rigurosidad de la norma NCh 2728 con una metodología humana, cercana y enfocada en la empleabilidad real.
                                 </p>
                             </div>
 
@@ -81,25 +84,31 @@ export default function NosotrosPage() {
                     <h3 className="text-navy-deep font-black uc-tracking-widest uppercase mb-10 text-sm tracking-widest opacity-70">
                         Acreditaciones Oficiales
                     </h3>
-                    <div className="flex flex-wrap justify-center gap-8 md:gap-16 grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-                        {/* Logos can be images, using placeholders text for now */}
-                        <div className="flex flex-col items-center gap-3 group">
-                            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-md border border-gray-100 group-hover:scale-110 transition-transform">
-                                <span className="font-black text-navy-deep text-xl">ISO</span>
+                    <div className="flex flex-wrap justify-center gap-12 md:gap-24 items-center grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+                        {/* NCh 2728 */}
+                        <div className="flex flex-col items-center gap-4 group">
+                            <div className="relative w-32 h-32 md:w-40 md:h-40 bg-white rounded-2xl flex items-center justify-center shadow-lg border border-gray-100 group-hover:scale-105 transition-transform p-4">
+                                <Image
+                                    src="/imagenes/nch2728.png"
+                                    alt="Certificación NCh 2728"
+                                    fill
+                                    className="object-contain p-2"
+                                />
                             </div>
-                            <span className="text-xs font-bold text-gray-600">9001:2008</span>
+                            <span className="text-sm font-bold text-gray-600 bg-white px-3 py-1 rounded-full shadow-sm border border-gray-100">NCh2728</span>
                         </div>
-                        <div className="flex flex-col items-center gap-3 group">
-                            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-md border border-gray-100 group-hover:scale-110 transition-transform">
-                                <span className="font-black text-navy-deep text-xl">NCh</span>
+
+                        {/* SENCE */}
+                        <div className="flex flex-col items-center gap-4 group">
+                            <div className="relative w-32 h-32 md:w-40 md:h-40 bg-white rounded-2xl flex items-center justify-center shadow-lg border border-gray-100 group-hover:scale-105 transition-transform p-4">
+                                <Image
+                                    src="/imagenes/logo-sence.webp"
+                                    alt="SENCE - Registro Nacional"
+                                    fill
+                                    className="object-contain p-2"
+                                />
                             </div>
-                            <span className="text-xs font-bold text-gray-600">2728 Of.2003</span>
-                        </div>
-                        <div className="flex flex-col items-center gap-3 group">
-                            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-md border border-gray-100 group-hover:scale-110 transition-transform">
-                                <span className="font-black text-navy-deep text-xl">SENCE</span>
-                            </div>
-                            <span className="text-xs font-bold text-gray-600">Registro Nacional</span>
+                            <span className="text-sm font-bold text-gray-600 bg-white px-3 py-1 rounded-full shadow-sm border border-gray-100">Registro Nacional</span>
                         </div>
                     </div>
                 </div>

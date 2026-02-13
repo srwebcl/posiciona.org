@@ -17,7 +17,7 @@ export function Footer() {
                             <BrandLogo variant="white" className="w-48" />
                         </Link>
                         <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-                            Posiciona ®. Centro de Capacitación certificado NCh 2728 e ISO 9001:2008.
+                            Posiciona ®. Centro de Capacitación certificado.
                             Calidad y eficiencia en servicios para personas y empresas.
                         </p>
                         <div className="flex gap-4">
@@ -33,10 +33,10 @@ export function Footer() {
                     <div>
                         <h4 className="text-lg font-bold font-sans uppercase mb-6 text-amber-vial">Para Personas</h4>
                         <ul className="space-y-4 text-sm text-gray-300 font-mono">
-                            <li><Link href="/personas#catalogo" className="hover:text-white transition-colors">Ver Cursos</Link></li>
-                            <li><Link href="/personas/escuela-conductores" className="hover:text-white transition-colors">Escuela Conductores</Link></li>
-                            <li><Link href="/personas" className="hover:text-white transition-colors">Gratuidad (SENCE)</Link></li>
-                            <li><Link href="/personas/contacto" className="hover:text-white transition-colors">Matrículas</Link></li>
+                            <li><Link href="/personas/cursos" className="hover:text-white transition-colors">Ver Catálogo Cursos</Link></li>
+                            <li><Link href="/personas/escuela-conductores" className="hover:text-white transition-colors">Escuela de Conductores</Link></li>
+                            <li><Link href="/talento-digital" className="hover:text-white transition-colors">Talento Digital (Becas)</Link></li>
+                            <li><Link href="/personas/contacto" className="hover:text-white transition-colors">Atención Personas</Link></li>
                         </ul>
                     </div>
 
@@ -44,24 +44,30 @@ export function Footer() {
                     <div>
                         <h4 className="text-lg font-bold font-sans uppercase mb-6 text-amber-vial">Para Empresas</h4>
                         <ul className="space-y-4 text-sm text-gray-300 font-mono">
-                            <li><Link href="/empresas" className="hover:text-white transition-colors">Capacitación</Link></li>
-                            <li><Link href="/empresas" className="hover:text-white transition-colors">Certificación Wylar</Link></li>
-                            <li><Link href="/empresas" className="hover:text-white transition-colors">Franquicia Tributaria</Link></li>
-                            <li><Link href="/contacto" className="hover:text-white transition-colors">Cotizar Servicios</Link></li>
+                            <li><Link href="/empresas/capacitaciones" className="hover:text-white transition-colors">Capacitación SENCE</Link></li>
+                            <li><Link href="/empresas/certificaciones" className="hover:text-white transition-colors">Certificación y Calidad</Link></li>
+                            <li><Link href="/empresas/contacto" className="hover:text-white transition-colors">Atención Empresas</Link></li>
                         </ul>
                     </div>
 
-                    {/* Contacto */}
+                    {/* Institucional y Contacto */}
                     <div>
-                        <h4 className="text-lg font-bold font-sans uppercase mb-6 text-amber-vial">Contacto</h4>
+                        <h4 className="text-lg font-bold font-sans uppercase mb-6 text-amber-vial">Institucional</h4>
+                        <ul className="space-y-4 text-sm text-gray-300 font-mono mb-8">
+                            <li><Link href="/nosotros" className="hover:text-white transition-colors">Sobre Nosotros</Link></li>
+                            <li><Link href="/oficina-virtual" className="hover:text-white transition-colors">Oficina Virtual</Link></li>
+                            <li><Link href="/contacto" className="hover:text-white transition-colors">Contacto General</Link></li>
+                        </ul>
+
+                        <h5 className="text-sm font-bold text-white mb-4">Contacto Directo</h5>
                         <ul className="space-y-4 text-sm text-gray-300">
                             <li className="flex items-center gap-3">
                                 <Phone className="w-5 h-5 text-blue-inst" />
-                                <span>+56 9 6666 4127</span>
+                                <span>+56 9 8453 4364</span>
                             </li>
                             <li className="flex items-center gap-3">
                                 <Mail className="w-5 h-5 text-blue-inst" />
-                                <span>posiciona@posiciona.org</span>
+                                <span>contacto@posiciona.org</span>
                             </li>
                         </ul>
                     </div>

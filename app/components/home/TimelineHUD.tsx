@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform, useMotionValue, useSpring } from "fram
 import { cn } from "@/app/lib/utils";
 
 const history = [
-    { year: 2009, title: "Origen OTEC Posiciona", text: "15 años de trayectoria. Certificación NCh 2728 e ISO 9001:2008." },
+    { year: 2009, title: "Origen OTEC Posiciona", text: "15 años de trayectoria. Certificación NCh 2728." },
     { year: 2015, title: "Becas CORFO Inglés", text: "Adjudicación licitación nacional The London Bridge (TOEIC)." },
     { year: 2019, title: "Talento Digital (Ciclo 1)", text: "Formación especializada SENCE: Front-End, Full Stack JS, Python." },
     { year: 2025, title: "Escuela Profesional A3", text: "Primera escuela acreditada con Simulador Europeo. Curso Especial 2 años.", current: true },

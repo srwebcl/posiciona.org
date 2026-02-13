@@ -18,7 +18,7 @@ const FAQS = [
     },
     {
         q: "¿Las certificaciones son válidas en todo Chile?",
-        a: "Absolutamente. Al ser OTEC certificado bajo NCh2728 e ISO 9001, nuestros diplomas tienen validez nacional para la industria."
+        a: "Absolutamente. Al ser OTEC certificado bajo NCh2728, nuestros diplomas tienen validez nacional para la industria."
     },
     {
         q: "¿Tienen convenios con empresas?",
@@ -75,7 +75,7 @@ export function PersonasFAQ() {
 
                             {/* Embedded Contact Form wrapped in Suspense */}
                             <Suspense fallback={<div className="h-96 w-full bg-white/5 animate-pulse rounded-xl" />}>
-                                <ContactForm />
+                                <ContactForm variant="persona" />
                             </Suspense>
                         </div>
                     </div>

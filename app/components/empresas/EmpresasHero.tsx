@@ -12,14 +12,14 @@ const SLIDES = [
         video: "/imagenes/cursos.mp4",
         title: "Potencia tu Capital Humano",
         subtitle: "Soluciones de capacitación a medida, gestión SENCE y cierre de brechas para equipos de alto rendimiento.",
-        cta: { text: "Ver Soluciones", href: "#soluciones", icon: Users, variant: "primary" as const }
+        cta: { text: "Ver Soluciones", href: "/empresas/capacitaciones", icon: Users, variant: "primary" as const }
     },
     {
         id: "certificacion",
         video: "/imagenes/simulador.mp4",
         title: "Certificación de Calidad",
-        subtitle: "Asegure la excelencia de sus procesos con certificación ISO 9001, NCh 2728 y competencias laborales.",
-        cta: { text: "Consultar Normas", href: "#certificacion", icon: FileCheck, variant: "secondary" as const }
+        subtitle: "Asegure la excelencia de sus procesos con certificación NCh 2728 y competencias laborales.",
+        cta: { text: "Consultar Normas", href: "/empresas/certificaciones", icon: FileCheck, variant: "secondary" as const }
     }
 ];
 

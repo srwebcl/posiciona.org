@@ -50,7 +50,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-lg">Llámanos</h4>
-                                        <p className="text-gray-300 text-xl font-mono tracking-tight">+56 58 2 222 222</p>
+                                        <p className="text-gray-300 text-xl font-mono tracking-tight">+56 9 8453 4364</p>
                                         <p className="text-gray-400 text-sm">Lun - Vie: 09:00 - 18:30 hrs</p>
                                     </div>
                                 </li>
@@ -84,7 +84,7 @@ export default function ContactPage() {
                             <p className="text-gray-500 text-sm">Completa el formulario y te derivaremos al área correspondiente (Personas o Empresas).</p>
                         </div>
                         <Suspense fallback={<div className="text-navy-deep">Cargando formulario...</div>}>
-                            <ContactForm />
+                            <ContactForm variant="general" />
                         </Suspense>
                     </div>
                 </div>

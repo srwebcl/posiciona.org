@@ -16,7 +16,7 @@ const metrics = [
         id: 2,
         icon: Award,
         value: "Calidad Certificada",
-        label: "Acreditación NCh 2728 e ISO 9001:2015.",
+        label: "Acreditación NCh 2728.",
         accent: "text-amber-600",
         bg: "bg-amber-50"
     },

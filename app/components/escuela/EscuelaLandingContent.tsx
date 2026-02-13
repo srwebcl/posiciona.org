@@ -7,6 +7,7 @@ import { Check, ShieldCheck, Gauge, Play, HardHat, Forklift, Zap, MessageSquare 
 import { DrivingSchoolAR } from "@/app/components/home/DrivingSchoolAR";
 import { Modal } from "@/app/components/ui/modal";
 import { ContactForm } from "@/app/components/contact/ContactForm";
+import { COURSES } from "@/app/data/courses";
 
 export function EscuelaLandingContent() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,7 +24,7 @@ export function EscuelaLandingContent() {
             <DrivingSchoolAR>
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-vial/20 text-amber-vial border border-amber-vial/30 mb-8 backdrop-blur-md tech-glow animate-fade-in-up">
                     <ShieldCheck className="w-4 h-4" />
-                    <span className="text-xs font-bold tracking-wide uppercase">Acreditada 2025</span>
+                    <span className="text-xs font-bold tracking-wide uppercase">Acreditada</span>
                 </div>
 
                 <h1 className="text-5xl md:text-7xl font-black text-white mb-8 uppercase italic leading-tight animate-fade-in-up delay-100">
@@ -54,17 +55,17 @@ export function EscuelaLandingContent() {
                         {/* Text Content */}
                         <div>
                             <div className="inline-block px-3 py-1 bg-green-900/30 text-green-400 text-xs font-bold rounded mb-4">
-                                NUEVA ACREDITACIÓN 2025
+                                NUEVA ACREDITACIÓN
                             </div>
                             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
-                                Acelera tu carrera: <br />
-                                <span className="text-amber-vial">De 4 a solo 2 Años</span>
+                                Acceso Directo con Simulador: <br />
+                                <span className="text-amber-vial">Solo 2 Años de Clase B</span>
                             </h2>
                             <p className="text-gray-400 text-lg mb-6">
-                                Este hito marca un antes y un después en la región. Posiciona es la <strong>Primera Escuela de Conductores Profesionales de Arica</strong> acreditada con Simulador de Conducción Europeo.
+                                Tradicionalmente, para obtener la Licencia A3 necesitas tener 2 años de antigüedad en Clase B y <strong>además 2 años de posesión de licencias profesionales</strong> (A1, A2, A4 o A5).
                             </p>
                             <p className="text-gray-400 text-lg">
-                                Nuestra tecnología te permite realizar el <strong>Curso Especial</strong> y obtener tu licencia A-3 en la mitad del tiempo tradicional. Una "llave maestra" para insertarte rápido en el mundo laboral.
+                                Gracias a nuestra tecnología de Simulación Acreditada, <strong>saltas el requisito de tener licencia profesional previa</strong>. Con solo tu licencia Clase B (2 años de antigüedad) y nuestro Curso Especial, puedes obtener directamente tu Licencia Profesional A3.
                             </p>
                         </div>
 
@@ -175,83 +176,35 @@ export function EscuelaLandingContent() {
                     <div className="text-center mb-16">
                         <span className="text-orange-industrial font-bold tracking-widest text-sm uppercase">Oferta Académica</span>
                         <h2 className="text-4xl md:text-5xl font-black text-navy-deep mt-2 mb-6">
-                            Formación en <span className="text-transparent bg-clip-text bg-gradient-to-r from-navy-deep to-blue-600">Maquinaria y Transporte</span>
+                            Formación Profesional <span className="text-transparent bg-clip-text bg-gradient-to-r from-navy-deep to-blue-600">En Arica</span>
                         </h2>
                         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                            Desde el transporte de pasajeros hasta la operación de alto tonelaje. Tu futuro laboral comienza aquí.
+                            Cursos presenciales con tecnología de punta. Única escuela acreditada con Simulador para Licencia A3.
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                        {[
-                            {
-                                title: "Licencia Clase A3",
-                                desc: "Habilita para conducir taxis, ambulancias, transporte escolar y vehículos de transporte público y privado de personas sin límite de asientos.",
-                                features: ["Incluye Simulador", "Práctica en Bus"],
-                                icon: ShieldCheck,
-                                color: "text-amber-vial",
-                                bg: "bg-amber-vial/10",
-                                border: "border-amber-vial"
-                            },
-                            {
-                                title: "Licencia Clase A5",
-                                desc: "Para la conducción de vehículos de carga, simples o articulados, cuyo peso bruto sea superior a 3.500 kilogramos.",
-                                features: ["Alta Empleabilidad Minera", "Manejo articulado"],
-                                icon: Gauge,
-                                color: "text-orange-industrial",
-                                bg: "bg-orange-industrial/10",
-                                border: "border-orange-industrial"
-                            },
-                            {
-                                title: "Licencia Clase A2",
-                                desc: "Para conducir taxis, ambulancias o vehículos motorizados de transporte público y privado de personas con capacidad de 10 a 17 asientos.",
-                                features: ["Ideal para iniciar", "Rápida inserción"],
-                                icon: Zap,
-                                color: "text-blue-600",
-                                bg: "bg-blue-100",
-                                border: "border-blue-500"
-                            },
-                            {
-                                title: "Licencia Clase A4",
-                                desc: "Transporte de carga cuyo peso bruto sea superior a 3.500 kilogramos (camiones rígidos).",
-                                features: ["Transporte urbano", "Distribución"],
-                                icon: ShieldCheck,
-                                color: "text-cyan-600",
-                                bg: "bg-cyan-100",
-                                border: "border-cyan-500"
-                            },
-                            {
-                                title: "Grúa Horquilla (Clase D)",
-                                desc: "Operación segura, mantenimiento preventivo y técnicas de estiba y desestiba de carga.",
-                                features: ["Certificación válida", "Alta Demanda Logística"],
-                                icon: Forklift,
-                                color: "text-yellow-600",
-                                bg: "bg-yellow-100",
-                                border: "border-yellow-500"
-                            },
-                            {
-                                title: "Maquinaria Pesada",
-                                desc: "Cursos especializados para Retroexcavadora, Cargador Frontal y otros equipos de movimiento de tierra.",
-                                features: ["Enfoque Minero", "Seguridad Operacional"],
-                                icon: HardHat,
-                                color: "text-red-600",
-                                bg: "bg-red-100",
-                                border: "border-red-500"
-                            }
-                        ].map((course, idx) => (
-                            <div key={idx} className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all border-b-4 ${course.border} group flex flex-col`}>
-                                <div className={`w-14 h-14 ${course.bg} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                                    <course.icon className={`w-7 h-7 ${course.color}`} />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                        {COURSES.filter(c => c.category === "ESCUELA DE CONDUCTORES").map((course, idx) => (
+                            <div key={idx} className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all border-b-4 ${course.id === 'escuela-a3' ? 'border-amber-vial' : 'border-blue-500'} group flex flex-col`}>
+                                <div className={`w-14 h-14 ${course.id === 'escuela-a3' ? 'bg-amber-vial/10 text-amber-vial' : 'bg-blue-100 text-blue-600'} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                                    <course.icon className="w-7 h-7" />
                                 </div>
                                 <h3 className="text-2xl font-bold text-navy-deep mb-3">{course.title}</h3>
-                                <p className="text-gray-600 mb-6 flex-grow">{course.desc}</p>
-                                <ul className="space-y-2 mb-8">
-                                    {course.features.map((feature, fIdx) => (
-                                        <li key={fIdx} className="flex items-center gap-2 text-sm text-gray-500">
-                                            <Check className="w-4 h-4 text-green-500" /> {feature}
-                                        </li>
-                                    ))}
-                                </ul>
+                                <p className="text-gray-600 mb-6 flex-grow">{course.description}</p>
+
+                                <div className="mb-8">
+                                    <span className="inline-block px-3 py-1 bg-gray-100 text-gray-600 text-xs font-bold rounded-full mb-3">
+                                        {course.location}
+                                    </span>
+                                    <ul className="space-y-2">
+                                        {course.tags.map((tag, tIdx) => (
+                                            <li key={tIdx} className="flex items-center gap-2 text-sm text-gray-500">
+                                                <Check className="w-4 h-4 text-green-500" /> {tag}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+
                                 <Button
                                     onClick={() => handleCotizar(course.title)}
                                     className="w-full bg-navy-deep text-white hover:bg-amber-vial hover:text-navy-deep font-bold transition-all shadow-md"
@@ -297,7 +250,7 @@ export function EscuelaLandingContent() {
                                     </div>
                                     <div>
                                         <h4 className="text-white font-bold text-lg">Atención Whatsapp</h4>
-                                        <p className="text-gray-500">¿Dudas rápidas? +56 9 6666 4127</p>
+                                        <p className="text-gray-500">¿Dudas rápidas? +56 9 8453 4364</p>
                                     </div>
                                 </div>
                             </div>
@@ -306,7 +259,7 @@ export function EscuelaLandingContent() {
                         <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-md shadow-2xl">
                             <h3 className="text-2xl font-bold text-white mb-6">Solicitar Información</h3>
                             <Suspense fallback={<div className="h-96 animate-pulse bg-white/5 rounded-3xl" />}>
-                                <ContactForm />
+                                <ContactForm variant="persona" />
                             </Suspense>
                         </div>
                     </div>
@@ -320,7 +273,7 @@ export function EscuelaLandingContent() {
                         Completa tus datos y te enviaremos la malla curricular y precios actualizados para <strong>{selectedInterest}</strong>.
                     </p>
                     <Suspense fallback={<div className="h-64 animate-pulse bg-white/5 rounded-xl" />}>
-                        <ContactForm prefilledInterest={selectedInterest} />
+                        <ContactForm prefilledInterest={selectedInterest} variant="persona" />
                     </Suspense>
                 </div>
             </Modal>

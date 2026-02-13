@@ -35,8 +35,8 @@ export default function PersonasContactPage() {
                                 <div>
                                     <h3 className="font-bold text-navy-deep text-lg">Llámanos o WhatsApp</h3>
                                     <p className="text-gray-500 mb-1">Atención inmediata preferente</p>
-                                    <a href="https://wa.me/56966664127" target="_blank" className="text-xl font-bold text-blue-600 hover:text-amber-vial transition-colors">
-                                        +56 9 6666 4127
+                                    <a href="https://wa.me/56984534364" target="_blank" className="text-xl font-bold text-blue-600 hover:text-amber-vial transition-colors">
+                                        +56 9 8453 4364
                                     </a>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@ export default function PersonasContactPage() {
                                 Completa el formulario y te enviaremos la ficha técnica y valores del curso de tu interés.
                             </p>
                             <Suspense fallback={<div className="flex justify-center py-12"><Loader2 className="w-8 h-8 animate-spin text-amber-vial" /></div>}>
-                                <ContactForm />
+                                <ContactForm variant="persona" />
                             </Suspense>
                         </div>
                     </div>

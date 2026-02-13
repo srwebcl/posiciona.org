@@ -84,7 +84,7 @@ export function Hero() {
                             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500"></span>
                         </span>
                         <span className="text-xs md:text-sm font-mono font-bold tracking-[0.2em] text-gray-300 uppercase group-hover:text-amber-vial transition-colors">
-                            NCh 2728 • ISO 9001
+                            Con Certificación NCh 2728
                         </span>
                     </motion.div>
 
@@ -111,7 +111,7 @@ export function Hero() {
 
                     {/* Paragraph - Slightly Larger & More Readable */}
                     <p className="text-xl md:text-2xl text-gray-100 mb-10 max-w-4xl mx-auto leading-relaxed font-light tracking-wide drop-shadow-md">
-                        <span className="text-white font-semibold">15 años de excelencia.</span> Líderes en formación <span className="py-1 px-2 mb bg-white/10 rounded text-amber-vial font-bold backdrop-blur-sm">Industrial</span> y <span className="py-1 px-3 bg-white/90 rounded text-navy-deep font-bold backdrop-blur-sm shadow-lg">Digital</span> desde Arica.
+                        <span className="text-white font-semibold">15 años de excelencia.</span> Líderes en formación <span className="py-1 px-2 mb bg-white/10 rounded text-amber-vial font-bold backdrop-blur-sm">Industrial</span> y <span className="py-1 px-3 bg-white/90 rounded text-navy-deep font-bold backdrop-blur-sm shadow-lg">Digital</span>
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-5">

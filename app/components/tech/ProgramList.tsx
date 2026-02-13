@@ -58,7 +58,7 @@ export function ProgramList() {
         <section className="py-24 bg-night-blue">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16">
-                    <Badge variant="tech" className="mb-4">ADMISIÓN 2025</Badge>
+                    <Badge variant="tech" className="mb-4">ADMISIÓN</Badge>
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Programas <span className="text-cyan-electric">Tech</span></h2>
                     <p className="text-gray-400 text-lg max-w-2xl mx-auto">
                         Metodología inmersiva. Aprende haciendo proyectos reales desde el día uno.

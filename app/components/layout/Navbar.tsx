@@ -51,6 +51,15 @@ export function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    // Lock Body Scroll when Menu Open
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+    }, [isMobileMenuOpen]);
+
     return (
         <>
             {/* SUPER HEADER / TOP BAR (Only in Sub-Portals) */}
@@ -74,7 +83,8 @@ export function Navbar() {
 
             <header
                 className={cn(
-                    "fixed left-0 right-0 z-50 transition-all duration-500",
+                    "fixed left-0 right-0 transition-all duration-500",
+                    isMobileMenuOpen ? "z-[70]" : "z-50",
                     isSubPortal ? "top-9" : "top-0", // Push down if TopBar exists
                     isScrolled
                         ? "bg-navy-deep/95 backdrop-blur-md border-b border-white/10 py-3 shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
@@ -144,7 +154,7 @@ export function Navbar() {
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: "100%" }}
                             transition={{ type: "tween", duration: 0.3 }}
-                            className="fixed inset-0 z-[60] bg-navy-deep/98 backdrop-blur-xl lg:hidden flex flex-col"
+                            className="fixed inset-0 z-[80] bg-navy-deep lg:hidden flex flex-col overscroll-none h-[100dvh]"
                         >
                             <div className="flex justify-between items-center p-6 border-b border-white/10">
                                 <BrandLogo className="w-40 h-10" variant="white" />

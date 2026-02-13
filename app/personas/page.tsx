@@ -1,5 +1,5 @@
 import { PersonasHero } from "@/app/components/personas/PersonasHero";
-import { PersonasFeaturedCarousel } from "@/app/components/personas/PersonasFeaturedCarousel";
+import { PersonasCategoryGrid } from "@/app/components/personas/PersonasCategoryGrid";
 import { PersonasWhy } from "@/app/components/personas/PersonasWhy";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -27,15 +27,16 @@ export default function PersonasPage() {
                         Descubre nuestra variedad de cursos diseñados para mejorar tu empleabilidad. Desde conducción profesional hasta desarrollo de software y oficios industriales.
                     </p>
 
-                    {/* Featured Carousel */}
+                    {/* Featured Carousel Replaced by Category Grid */}
                     <div className="mb-12">
-                        <PersonasFeaturedCarousel />
+                        <PersonasCategoryGrid />
                     </div>
+                    {/* Link "Ver Todos" removed or kept as fallback? User wanted categories. Keeping as fallback for full catalog traverse */}
                     <Link
                         href="/personas/cursos"
                         className="inline-flex items-center gap-2 bg-navy-deep text-white px-8 py-4 rounded-full font-bold uppercase tracking-wider hover:bg-blue-600 transition-colors shadow-lg hover:shadow-xl"
                     >
-                        Ver Todos los Cursos <ArrowRight className="w-5 h-5" />
+                        Ver Catálogo Completo <ArrowRight className="w-5 h-5" />
                     </Link>
                 </div>
             </div>
