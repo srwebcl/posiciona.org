@@ -4,9 +4,14 @@ export async function POST(request: Request) {
     try {
         const data = await request.json();
 
-        // Log the received data
+        // Determinar correos en copia según el interés
+        const isCertificacion = data.interest && data.interest.toLowerCase().includes('certificación');
+        const ccEmails = isCertificacion ? "contacto@wylar.cl" : undefined;
+
         console.log('--- CONTACT FORM SUBMISSION ---');
         console.log('Variant:', data.variant);
+        console.log('Interest:', data.interest);
+        if (isCertificacion) console.log('CC:', ccEmails);
         console.log('Data:', data);
         console.log('-------------------------------');
 
@@ -24,7 +29,8 @@ export async function POST(request: Request) {
 
         await transporter.sendMail({
             from: '"Posiciona Web" <noreply@posiciona.org>',
-            to: "contacto@posiciona.org",
+            to: "posiciona@posiciona.org",
+            cc: ccEmails, // Copia a Wylar si es certificación
             subject: `Nuevo Contacto Web: ${data.variant.toUpperCase()} - ${data.interest || "General"}`,
             text: JSON.stringify(data, null, 2),
             html: `<p>Nuevo mensaje de formulario...</p>`

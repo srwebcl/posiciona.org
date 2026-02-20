@@ -24,7 +24,7 @@ const highlights = [
     },
     {
         icon: Flame,
-        title: "Oficios Industriales",
+        title: "Oficios",
         desc: "Soldadura, Electricidad y Maquinaria.",
         status: "CERTIFICACIÓN SENCE",
         color: "text-gray-300",

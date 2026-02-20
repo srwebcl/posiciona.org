@@ -55,8 +55,7 @@ export function Footer() {
                         <h4 className="text-lg font-bold font-sans uppercase mb-6 text-amber-vial">Institucional</h4>
                         <ul className="space-y-4 text-sm text-gray-300 font-mono mb-8">
                             <li><Link href="/nosotros" className="hover:text-white transition-colors">Sobre Nosotros</Link></li>
-                            <li><Link href="/oficina-virtual" className="hover:text-white transition-colors">Oficina Virtual</Link></li>
-                            <li><Link href="/contacto" className="hover:text-white transition-colors">Contacto General</Link></li>
+                            <li><Link href="/contacto" className="hover:text-white transition-colors">Oficina Virtual</Link></li>
                         </ul>
 
                         <h5 className="text-sm font-bold text-white mb-4">Contacto Directo</h5>
@@ -67,7 +66,7 @@ export function Footer() {
                             </li>
                             <li className="flex items-center gap-3">
                                 <Mail className="w-5 h-5 text-blue-inst" />
-                                <span>contacto@posiciona.org</span>
+                                <span>posiciona@posiciona.org</span>
                             </li>
                         </ul>
                     </div>

@@ -59,7 +59,7 @@ export function HomeSegmentation() {
                                     Impulsa tu Futuro
                                 </h3>
                                 <p className="text-gray-600 mb-8 leading-relaxed">
-                                    Obtén tu Licencia Profesional, certifícate en Oficios Industriales o domina el mundo digital. Formación práctica para el mundo real.
+                                    Obtén tu Licencia Profesional, certifícate en Oficios o domina el mundo digital. Formación práctica para el mundo real.
                                 </p>
                                 <div className="flex items-center text-amber-vial font-bold group-hover:translate-x-2 transition-transform">
                                     Ver Cursos y Licencias <ArrowRight className="ml-2 w-5 h-5" />

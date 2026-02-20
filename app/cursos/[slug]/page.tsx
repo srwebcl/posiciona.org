@@ -94,24 +94,120 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
                     <div className="grid lg:grid-cols-3 gap-12">
                         {/* Main Info */}
                         <div className="lg:col-span-2 space-y-12">
-                            <div>
-                                <h2 className="text-3xl font-bold text-navy-deep mb-6">Descripción del Programa</h2>
-                                <p className="text-lg text-gray-600 leading-relaxed">
-                                    {course.extendedDescription || course.description}
-                                </p>
-                            </div>
+                            {(course as any).details ? (
+                                <>
+                                    <div>
+                                        <h2 className="text-3xl font-bold text-navy-deep mb-4">Descripción del Programa</h2>
+                                        <p className="text-lg text-gray-600 leading-relaxed whitespace-pre-line">
+                                            {course.extendedDescription || course.description}
+                                        </p>
+                                    </div>
 
-                            <div>
-                                <h3 className="text-2xl font-bold text-navy-deep mb-6">Lo que aprenderás</h3>
-                                <div className="grid sm:grid-cols-2 gap-4">
-                                    {(course.learning_outcomes || course.tags).map((item, idx) => (
-                                        <div key={idx} className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-blue-100 hover:shadow-md transition-all">
-                                            <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
-                                            <span className="text-gray-700 font-medium">{item}</span>
+                                    {(course as any).details.modality && (
+                                        <div>
+                                            <h3 className="text-2xl font-bold text-navy-deep mb-5 border-b pb-2">Modalidad y Duración</h3>
+                                            <ul className="space-y-4">
+                                                {(course as any).details.modality.map((item: string, idx: number) => (
+                                                    <li key={idx} className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                                                        <CheckCircle2 className="w-6 h-6 text-amber-500 shrink-0" />
+                                                        <span className="text-gray-700 font-medium">{item}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
                                         </div>
-                                    ))}
-                                </div>
-                            </div>
+                                    )}
+
+                                    {(course as any).details.allowsDriving && (
+                                        <div>
+                                            <h3 className="text-2xl font-bold text-navy-deep mb-5 border-b pb-2">
+                                                {course.category === "ESCUELA DE CONDUCTORES" ? "¿Qué permite conducir?" : "Lo que aprenderás"}
+                                            </h3>
+                                            <ul className="space-y-3">
+                                                {(course as any).details.allowsDriving.map((item: string, idx: number) => (
+                                                    <li key={idx} className="flex items-start gap-3">
+                                                        <CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
+                                                        <span className="text-gray-700">{item}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+
+                                    {(course as any).details.requirements && (
+                                        <div>
+                                            <h3 className="text-2xl font-bold text-navy-deep mb-5 border-b pb-2">Requisitos de Postulación</h3>
+                                            <ul className="space-y-3 bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                                                {(course as any).details.requirements.map((item: string, idx: number) => (
+                                                    <li key={idx} className="flex items-start gap-3">
+                                                        <div className="w-2 h-2 rounded-full bg-blue-600 mt-2 shrink-0"></div>
+                                                        <span className="text-gray-700">{item}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+
+                                    {(course as any).details.approval && (
+                                        <div>
+                                            <h3 className="text-2xl font-bold text-navy-deep mb-5 border-b pb-2">¿Cómo apruebo mi curso?</h3>
+                                            <ol className="list-decimal list-inside space-y-3 text-gray-700 font-medium bg-amber-50/50 p-6 rounded-2xl border border-amber-100/50">
+                                                {(course as any).details.approval.map((item: string, idx: number) => (
+                                                    <li key={idx} className="pl-2">{item}</li>
+                                                ))}
+                                            </ol>
+                                        </div>
+                                    )}
+
+                                    {(course as any).details.certification && (
+                                        <div>
+                                            <h3 className="text-2xl font-bold text-navy-deep mb-5 border-b pb-2">Certificación</h3>
+                                            <div className="flex items-start gap-4 p-6 bg-gradient-to-br from-blue-50 to-white rounded-2xl border border-blue-100">
+                                                <Award className="w-8 h-8 text-blue-600 shrink-0" />
+                                                <p className="text-gray-700 font-medium">
+                                                    {(course as any).details.certification}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {(course as any).details.importantInfo && (
+                                        <div>
+                                            <h3 className="text-2xl font-bold text-red-900 mb-5 border-b border-red-100 pb-2">Información Importante</h3>
+                                            <div className="bg-red-50 p-6 rounded-2xl border border-red-100">
+                                                <ul className="space-y-3">
+                                                    {(course as any).details.importantInfo.map((item: string, idx: number) => (
+                                                        <li key={idx} className="flex items-start gap-3 text-red-800">
+                                                            <span className="font-bold">•</span>
+                                                            <span className="font-medium">{item}</span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    )}
+                                </>
+                            ) : (
+                                <>
+                                    <div>
+                                        <h2 className="text-3xl font-bold text-navy-deep mb-6">Descripción del Programa</h2>
+                                        <p className="text-lg text-gray-600 leading-relaxed whitespace-pre-line">
+                                            {course.extendedDescription || course.description}
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h3 className="text-2xl font-bold text-navy-deep mb-6">Lo que aprenderás</h3>
+                                        <div className="grid sm:grid-cols-2 gap-4">
+                                            {(course.learning_outcomes || course.tags).map((item, idx) => (
+                                                <div key={idx} className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-blue-100 hover:shadow-md transition-all">
+                                                    <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
+                                                    <span className="text-gray-700 font-medium">{item}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </>
+                            )}
                         </div>
 
                         {/* Sidebar CTA */}

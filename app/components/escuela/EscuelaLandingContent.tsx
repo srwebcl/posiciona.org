@@ -185,8 +185,8 @@ export function EscuelaLandingContent() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                         {COURSES.filter(c => c.category === "ESCUELA DE CONDUCTORES").map((course, idx) => (
-                            <div key={idx} className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all border-b-4 ${course.id === 'escuela-a3' ? 'border-amber-vial' : 'border-blue-500'} group flex flex-col`}>
-                                <div className={`w-14 h-14 ${course.id === 'escuela-a3' ? 'bg-amber-vial/10 text-amber-vial' : 'bg-blue-100 text-blue-600'} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                            <div key={idx} className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all border-b-4 ${course.color === 'amber' ? 'border-amber-vial' : 'border-blue-500'} group flex flex-col`}>
+                                <div className={`w-14 h-14 ${course.color === 'amber' ? 'bg-amber-vial/10 text-amber-vial' : 'bg-blue-100 text-blue-600'} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
                                     <course.icon className="w-7 h-7" />
                                 </div>
                                 <h3 className="text-2xl font-bold text-navy-deep mb-3">{course.title}</h3>

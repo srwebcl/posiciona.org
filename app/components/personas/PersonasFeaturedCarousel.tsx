@@ -28,7 +28,7 @@ const FEATURED_COURSES = [
     },
     {
         id: "oficios-soldadura",
-        category: "OFICIOS INDUSTRIALES",
+        category: "OFICIOS",
         title: "Soldadura Calificada (MIG/TIG)",
         image: "/imagenes/posiciona-11.jpeg",
         icon: Wrench,

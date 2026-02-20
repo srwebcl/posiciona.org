@@ -3,7 +3,7 @@ export function SchemaMarkup() {
         "@context": "https://schema.org",
         "@type": "EducationalOrganization",
         "name": "Posiciona OTEC",
-        "description": "Organismo Técnico de Capacitación líder en Arica. Escuela de Conductores Profesionales, Talento Digital y Oficios Industriales.",
+        "description": "Organismo Técnico de Capacitación líder en Arica. Escuela de Conductores Profesionales, Talento Digital y Oficios.",
         "url": "https://posiciona.cl",
         "logo": "https://posiciona.cl/imagenes/Logo-Posiciona.webp",
 

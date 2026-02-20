@@ -24,7 +24,7 @@ export default function PersonasPage() {
                         Programas de <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Alto Impacto</span>
                     </h2>
                     <p className="text-gray-500 max-w-2xl mx-auto text-lg leading-relaxed mb-12">
-                        Descubre nuestra variedad de cursos diseñados para mejorar tu empleabilidad. Desde conducción profesional hasta desarrollo de software y oficios industriales.
+                        Descubre nuestra variedad de cursos diseñados para mejorar tu empleabilidad. Desde conducción profesional hasta desarrollo de software y oficios.
                     </p>
 
                     {/* Featured Carousel Replaced by Category Grid */}

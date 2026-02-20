@@ -1,7 +1,7 @@
 import { TechButton } from "@/app/components/ui/tech-button";
 import Image from "next/image";
 import { Suspense } from "react";
-import { Building2, ArrowRight, ShieldCheck, Check, Mail, Loader2 } from "lucide-react";
+import { Building2, ArrowRight, ShieldCheck, Check, Mail, Loader2, ExternalLink } from "lucide-react";
 import { PageHero } from "@/app/components/ui/PageHero";
 import { ContactForm } from "@/app/components/contact/ContactForm";
 
@@ -60,6 +60,11 @@ export default function CertificacionesEmpresasPage() {
                                 <p className="text-gray-600 font-sans text-base leading-relaxed">
                                     Evalúe y reconozca formalmente los conocimientos, habilidades y aptitudes de sus trabajadores, independientemente de cómo hayan sido adquiridas.
                                 </p>
+                                <div className="mt-6">
+                                    <a href="https://wylar.cl" target="_blank" rel="noopener noreferrer" className="inline-flex items-center font-bold text-blue-inst hover:text-navy-deep group transition-colors">
+                                        Conocer más en wylar.cl <ExternalLink className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                    </a>
+                                </div>
                             </div>
                             <div className="flex-shrink-0 w-full md:w-auto flex flex-col gap-4">
                                 <div className="p-2 bg-white rounded-2xl border border-gray-100 text-center min-w-[200px] shadow-sm">

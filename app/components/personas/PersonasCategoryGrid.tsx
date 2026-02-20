@@ -29,47 +29,14 @@ const CATEGORIES = [
     },
     {
         id: "oficios",
-        title: "Oficios Industriales",
+        title: "Oficios",
         icon: Wrench,
         description: "Soldadura, Electricidad y Montaje Industrial.",
         color: "text-orange-600",
         bg: "bg-orange-50",
         border: "border-orange-100",
         hover: "hover:border-orange-600",
-        link: "/personas/cursos?category=OFICIOS%20INDUSTRIALES" // Filtro en catalogo
-    },
-    {
-        id: "salud",
-        title: "Salud y Cuidados",
-        icon: HeartPulse,
-        description: "Formación en cuidado de pacientes y primeros auxilios.",
-        color: "text-rose-500",
-        bg: "bg-rose-50",
-        border: "border-rose-100",
-        hover: "hover:border-rose-500",
-        link: "/personas/cursos?category=SALUD"
-    },
-    {
-        id: "idiomas",
-        title: "Idiomas",
-        icon: Languages,
-        description: "Inglés Laboral y certificación TOEIC.",
-        color: "text-indigo-600",
-        bg: "bg-indigo-50",
-        border: "border-indigo-100",
-        hover: "hover:border-indigo-600",
-        link: "/personas/cursos?category=IDIOMAS"
-    },
-    {
-        id: "artesania",
-        title: "Artesanía",
-        icon: Star,
-        description: "Orfebrería, diseño y emprendimiento creativo.",
-        color: "text-purple-600",
-        bg: "bg-purple-50",
-        border: "border-purple-100",
-        hover: "hover:border-purple-600",
-        link: "/personas/cursos?category=ARTESANÍA"
+        link: "/personas/cursos?category=OFICIOS" // Filtro en catalogo
     }
 ];
 

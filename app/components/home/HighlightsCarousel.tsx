@@ -98,9 +98,9 @@ export function HighlightsCarousel() {
                             transition={{ duration: 45, ease: "linear", repeat: Infinity }}
                         >
                             {[...ALLIANCES, ...ALLIANCES, ...ALLIANCES, ...ALLIANCES].map((partner, idx) => (
-                                <div key={idx} className="relative group flex items-center justify-center shrink-0 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-500">
+                                <div key={idx} className="relative group flex items-center justify-center shrink-0 opacity-80 hover:opacity-100 transition-all duration-500">
                                     <div
-                                        className="relative h-12 w-36 md:w-44 transition-transform duration-300"
+                                        className="relative h-12 w-36 md:w-44 transition-transform duration-300 group-hover:scale-105"
                                         style={{ transform: `scale(${partner.scale})` }}
                                     >
                                         <Image

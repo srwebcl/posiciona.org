@@ -166,7 +166,7 @@ export function ContactForm({ prefilledInterest, className, variant = "general" 
                             onChange={handleChange}
                             required
                             className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-sm"
-                            placeholder="+56 9 8453 4364"
+                            placeholder="+56 9 1234 5678"
                         />
                     </div>
                 )}
@@ -198,7 +198,7 @@ export function ContactForm({ prefilledInterest, className, variant = "general" 
                             onChange={handleChange}
                             required
                             className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-sm"
-                            placeholder="+56 9 8453 4364"
+                            placeholder="+56 9 1234 5678"
                         />
                     </div>
                 )}

@@ -13,7 +13,7 @@ import { COURSES } from "@/app/data/courses";
 const FILTERS = [
     { id: "all", label: "Todos los Cursos" },
     { id: "ESCUELA DE CONDUCTORES", label: "Escuela de Conductores" },
-    { id: "OFICIOS INDUSTRIALES", label: "Oficios Industriales" },
+    { id: "OFICIOS", label: "Oficios" },
     { id: "TALENTO DIGITAL", label: "Talento Digital" },
 ];
 
@@ -22,13 +22,13 @@ export function CoursesGrid() {
 
     // Filter logic
     const filteredCourses = activeFilter === "all"
-        ? COURSES.filter(c => ["ESCUELA DE CONDUCTORES", "OFICIOS INDUSTRIALES", "TALENTO DIGITAL"].includes(c.category)) // Show only main categories or all? Let's show all from these 3 main ones for Home
+        ? COURSES.filter(c => ["ESCUELA DE CONDUCTORES", "OFICIOS", "TALENTO DIGITAL"].includes(c.category)) // Show only main categories or all? Let's show all from these 3 main ones for Home
         : COURSES.filter(course => course.category === activeFilter);
 
     // Slice to limit items on Home if needed? User said "mismos del catalogo", so maybe all. But 3 columns x N rows. 
 
     return (
-        <section className="py-24 bg-white relative">
+        <section className="py-24 bg-transparent relative">
             <div className="container mx-auto px-4">
 
                 {/* Header & Title */}

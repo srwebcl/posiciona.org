@@ -32,10 +32,7 @@ import { COURSES } from "@/app/data/courses";
 const CATEGORIES = [
     "ESCUELA DE CONDUCTORES",
     "TALENTO DIGITAL",
-    "OFICIOS INDUSTRIALES",
-    "SALUD",
-    "IDIOMAS",
-    "ARTESANÍA"
+    "OFICIOS"
 ];
 
 const LOCATIONS = [
@@ -332,7 +329,7 @@ function CatalogStore() {
                                                     <service.icon className="w-4 h-4" />
                                                     <span className="uppercase tracking-wide">
                                                         {service.category === "ESCUELA DE CONDUCTORES" ? "Escuela" :
-                                                            service.category === "OFICIOS INDUSTRIALES" ? "Oficios" :
+                                                            service.category === "OFICIOS" ? "Oficios" :
                                                                 service.category === "TALENTO DIGITAL" ? "Digital" : service.category}
                                                     </span>
                                                 </div>

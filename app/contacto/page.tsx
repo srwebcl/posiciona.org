@@ -4,7 +4,7 @@ import { PageHero } from "@/app/components/ui/PageHero";
 import { Suspense } from "react";
 
 export const metadata = {
-    title: "Contacto Posiciona | Matricúlate Hoy",
+    title: "Oficina Virtual | Posiciona",
     description: "Contáctanos para más información sobre nuestros cursos de conducción, tecnología y oficios. Sede Arica.",
 };
 
@@ -14,6 +14,7 @@ export default function ContactPage() {
             {/* Header */}
             {/* Header */}
             <PageHero
+                badge="Oficina Virtual"
                 title={
                     <>
                         Hablemos de tu <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-vial to-amber-300">Futuro</span>
@@ -60,7 +61,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-lg">Escríbenos</h4>
-                                        <p className="text-gray-300">contacto@posiciona.cl</p>
+                                        <p className="text-gray-300">posiciona@posiciona.org</p>
                                         <p className="text-gray-400 text-sm">Respuesta en max. 24 hrs</p>
                                     </div>
                                 </li>
