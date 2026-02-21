@@ -55,7 +55,7 @@ export default function CertificacionesEmpresasPage() {
                                 </div>
                                 <h3 className="text-3xl font-bold text-navy-deep mb-4">Alianza WYLAR</h3>
                                 <p className="text-gray-600 mb-6 font-sans text-base leading-relaxed">
-                                    Ofrecemos servicios de <strong>Certificación de Competencias Laborales</strong> a través de nuestra alianza estratégica con Wylar (Centro en proceso de acreditación ChileValora).
+                                    Ofrecemos servicios de <strong>Certificación de Competencias Laborales</strong> a través de nuestra alianza estratégica con Wylar.
                                 </p>
                                 <p className="text-gray-600 font-sans text-base leading-relaxed">
                                     Evalúe y reconozca formalmente los conocimientos, habilidades y aptitudes de sus trabajadores, independientemente de cómo hayan sido adquiridas.
@@ -148,7 +148,7 @@ export default function CertificacionesEmpresasPage() {
                         </div>
                         <div className="relative z-10 max-w-lg mx-auto">
                             <Suspense fallback={<div className="flex justify-center py-10"><Loader2 className="w-8 h-8 animate-spin text-amber-vial" /></div>}>
-                                <ContactForm prefilledInterest="Empresas - Certificación" className="md:grid-cols-1" variant="empresa" />
+                                <ContactForm prefilledInterest="Empresas - Certificación" className="md:grid-cols-1" variant="empresa" hideInterestDropdown={true} />
                             </Suspense>
                             <div className="mt-8 pt-8 border-t border-white/10 flex justify-center gap-8 text-sm">
                                 <a href="mailto:posiciona@posiciona.org" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors">

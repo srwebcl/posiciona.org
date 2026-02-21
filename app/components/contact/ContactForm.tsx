@@ -11,6 +11,8 @@ interface ContactFormProps {
     prefilledInterest?: string;
     className?: string; // Allow custom styling wrapper
     variant?: "general" | "persona" | "empresa";
+    hideInterestDropdown?: boolean;
+    filterCategory?: string;
 }
 
 const EMPRESA_SERVICES = [
@@ -19,7 +21,7 @@ const EMPRESA_SERVICES = [
     "Otros Asuntos"
 ];
 
-export function ContactForm({ prefilledInterest, className, variant = "general" }: ContactFormProps) {
+export function ContactForm({ prefilledInterest, className, variant = "general", hideInterestDropdown = false, filterCategory }: ContactFormProps) {
     const searchParams = useSearchParams();
     const [interest, setInterest] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -172,8 +174,9 @@ export function ContactForm({ prefilledInterest, className, variant = "general" 
                 )}
             </div>
 
-            {/* --- COMMON FIELDS: Email & Phone (Persona) / Service (Empresa) --- */}
+            {/* --- MIXED FIELDS BLOCK (Correo, Phone, Interest) --- */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* 1. Email (Always Present, Half Width here) */}
                 <div>
                     <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">CORREO</label>
                     <input
@@ -187,7 +190,7 @@ export function ContactForm({ prefilledInterest, className, variant = "general" 
                     />
                 </div>
 
-                {/* Phone for Persona (was in prev row for others to balance layout) */}
+                {/* 2. Phone for Persona (As second column next to email) */}
                 {variant === "persona" && (
                     <div>
                         <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">Teléfono</label>
@@ -203,12 +206,10 @@ export function ContactForm({ prefilledInterest, className, variant = "general" 
                     </div>
                 )}
 
-                {/* Interest Selector for Persona/Empresa */}
-                {variant !== "general" && (
-                    <div className={variant !== "persona" ? "" : "md:col-span-2"}>
-                        <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">
-                            {variant === "empresa" ? "Servicio de Interés" : "Curso de Interés"}
-                        </label>
+                {/* 3. Interest for Empresa (As second column next to email) */}
+                {variant === "empresa" && !hideInterestDropdown && (
+                    <div>
+                        <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">Servicio de Interés</label>
                         <div className="relative">
                             <select
                                 value={interest}
@@ -216,16 +217,9 @@ export function ContactForm({ prefilledInterest, className, variant = "general" 
                                 className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all appearance-none font-medium text-sm"
                             >
                                 <option value="" className="bg-white text-gray-400">Seleccionar...</option>
-
-                                {variant === "empresa" ? (
-                                    EMPRESA_SERVICES.map(service => (
-                                        <option key={service} value={service} className="bg-white text-gray-900">{service}</option>
-                                    ))
-                                ) : (
-                                    COURSES.map(course => (
-                                        <option key={course.id} value={course.title} className="bg-white text-gray-900">{course.title}</option>
-                                    ))
-                                )}
+                                {EMPRESA_SERVICES.map(service => (
+                                    <option key={service} value={service} className="bg-white text-gray-900">{service}</option>
+                                ))}
                             </select>
                             <div className="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-gray-500">
                                 <svg className="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd"></path></svg>
@@ -234,6 +228,30 @@ export function ContactForm({ prefilledInterest, className, variant = "general" 
                     </div>
                 )}
             </div>
+
+            {/* --- EXTRA FULL WIDTH ROWS (Interest for Persona, since Phone took the spot) --- */}
+            {variant === "persona" && !hideInterestDropdown && (
+                <div>
+                    <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">Curso de Interés</label>
+                    <div className="relative">
+                        <select
+                            value={interest}
+                            onChange={(e) => setInterest(e.target.value)}
+                            className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all appearance-none font-medium text-sm"
+                        >
+                            <option value="" className="bg-white text-gray-400">Seleccionar...</option>
+                            {COURSES
+                                .filter(course => !filterCategory || course.category === filterCategory)
+                                .map(course => (
+                                    <option key={course.id} value={course.title} className="bg-white text-gray-900">{course.title}</option>
+                                ))}
+                        </select>
+                        <div className="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-gray-500">
+                            <svg className="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd"></path></svg>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* --- GENERAL: Subject --- */}
             {variant === "general" && (
@@ -245,7 +263,7 @@ export function ContactForm({ prefilledInterest, className, variant = "general" 
                         onChange={(e) => setInterest(e.target.value)} // Re-using interest as subject for general
                         value={interest}
                         className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-sm"
-                        placeholder="Consulta General, Reclamo, Sugerencia..."
+                        placeholder="Consultas generales, sugerencias..."
                     />
                 </div>
             )}
@@ -257,7 +275,7 @@ export function ContactForm({ prefilledInterest, className, variant = "general" 
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/20 rounded-lg p-3 text-white placeholder:text-gray-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-all font-medium resize-none text-sm"
+                    className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium resize-none text-sm"
                     placeholder="Dudas específicas..."
                 />
             </div>

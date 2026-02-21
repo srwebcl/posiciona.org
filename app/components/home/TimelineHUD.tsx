@@ -4,11 +4,22 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 import { cn } from "@/app/lib/utils";
 
-const history = [
-    { year: 2009, title: "Origen OTEC Posiciona", text: "15 años de trayectoria. Certificación NCh 2728." },
-    { year: 2015, title: "Becas CORFO Inglés", text: "Adjudicación licitación nacional The London Bridge (TOEIC)." },
-    { year: 2019, title: "Talento Digital (Ciclo 1)", text: "Formación especializada SENCE: Front-End, Full Stack JS, Python." },
-    { year: 2025, title: "Escuela Profesional A3", text: "Primera escuela acreditada con Simulador Europeo. Curso Especial 2 años.", current: true },
+type HistoryItem = {
+    year: number;
+    title: string;
+    text: string;
+    current?: boolean;
+};
+
+const history: HistoryItem[] = [
+    { year: 2009, title: "Origen OTEC Posiciona", text: "Inicios de nuestra trayectoria. Obtención de Certificación NCh 2728." },
+    { year: 2012, title: "Alianzas Estratégicas", text: "Ejecución continua de cursos mediante Franquicia Tributaria para el sector empresarial." },
+    { year: 2015, title: "Becas CORFO Inglés", text: "Adjudicación de la licitación nacional The London Bridge (TOEIC)." },
+    { year: 2017, title: "Becas Laborales SENCE", text: "Despliegue de programas de oficios enfocados en poblaciones y sectores productivos." },
+    { year: 2019, title: "Pioneros en Tech", text: "Talento Digital (Ciclo 1): Formación especializada en Front-End, Full Stack JS y Python." },
+    { year: 2021, title: "Reinvéntate y Cesantía", text: "Fuerte ejecución de Fondos de Cesantía Solidario y cursos Reinvéntate para la reconversión laboral." },
+    { year: 2024, title: "Consolidación Empleabilidad", text: "Programa Talento Digital y ejecución exitosa de más de 26 cursos en el año con alta empleabilidad." },
+    { year: 2025, title: "Escuela Profesional A3", text: "Primera escuela acreditada con Simulador Europeo. Curso Especial 2 años." },
     { year: 2026, title: "Proyección Tecnológica", text: "Web, Cloud & Security. Ejecución de 26+ nuevos cursos online." },
 ];
 
@@ -81,35 +92,28 @@ export function TimelineHUD() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-100px" }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className={`relative flex flex-col md:flex-row gap-8 md:gap-0 items-start ${index % 2 === 0 ? "md:flex-row-reverse text-left md:text-left" : "text-left md:text-right"}`}
+                                className={`relative flex flex-col md:flex-row gap-6 md:gap-0 items-start md:items-center ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}
                             >
                                 {/* Year Display */}
-                                <div className="flex-1 w-full pl-12 md:pl-0 md:px-12">
+                                <div className={`flex-1 w-full pl-12 md:pl-0 md:px-12 flex flex-col justify-center ${index % 2 === 0 ? "md:items-start text-left" : "md:items-end text-left md:text-right"}`}>
                                     <div className={`text-6xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-b from-gray-200 to-white stroke-text-gray ${item.current ? "text-amber-vial bg-none" : ""
                                         }`}>
                                         <div className="relative inline-block">
-                                            {item.year === 2026 ? "2026+" : <Counter value={item.year} />}
-                                            {item.current && (
-                                                <span className="absolute -top-4 -right-4 flex h-3 w-3">
-                                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-vial opacity-75"></span>
-                                                    <span className="relative inline-flex rounded-full h-3 w-3 bg-amber-vial"></span>
-                                                </span>
-                                            )}
+                                            {item.year === 2026 ? <span className="font-mono text-4xl md:text-6xl font-black text-gray-300 group-hover:text-blue-inst transition-colors">2026+</span> : <Counter value={item.year} />}
                                         </div>
                                     </div>
                                 </div>
 
-                                {/* Content Card - White logic */}
-                                <div className="flex-1 w-full pl-12 md:pl-0 md:px-12">
-                                    <div className="bg-white border border-gray-100 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 group">
-                                        <h3 className="text-xl font-bold text-navy-deep mb-2 group-hover:text-blue-inst transition-colors">{item.title}</h3>
-                                        <p className="text-gray-600 font-mono text-sm leading-relaxed">{item.text}</p>
+                                {/* Content Card */}
+                                <div className={`flex-1 w-full pl-12 md:pl-0 md:px-12 flex flex-col justify-center ${index % 2 === 0 ? "md:items-end text-left md:text-right" : "md:items-start text-left"}`}>
+                                    <div className="bg-white border border-gray-100 p-6 md:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 group max-w-lg w-full">
+                                        <h3 className="text-xl md:text-2xl font-bold text-navy-deep mb-3 group-hover:text-amber-vial transition-colors">{item.title}</h3>
+                                        <p className="text-gray-600 text-sm md:text-base leading-relaxed">{item.text}</p>
                                     </div>
                                 </div>
 
                                 {/* Dot on Line */}
-                                <div className={`absolute left-4 md:left-1/2 w-4 h-4 rounded-full border-2 border-white -translate-x-1/2 mt-8 z-10 ${item.current ? "bg-amber-vial shadow-[0_0_20px_rgba(255,176,0,0.5)] scale-150" : "bg-blue-inst"
-                                    }`} />
+                                <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full border-2 border-white -translate-x-1/2 z-20 bg-blue-inst top-10 md:top-1/2 md:-translate-y-1/2" />
                             </motion.div>
                         ))}
                     </div>

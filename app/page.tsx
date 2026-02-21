@@ -2,6 +2,7 @@ import { Hero } from "./components/home/Hero";
 import { CoursesGrid } from "./components/home/CoursesGrid";
 import { CoursePreview } from "./components/home/CoursePreview";
 import { HighlightsCarousel } from "./components/home/HighlightsCarousel";
+import { LatestBlog } from "./components/home/LatestBlog";
 import { Footer } from "./components/layout/Footer";
 
 
@@ -12,6 +13,9 @@ export default function Home() {
 
       {/* Novedades / Highlights + Alianzas Integradas */}
       <HighlightsCarousel />
+
+      {/* Latest Blog Highlight */}
+      <LatestBlog />
 
 
       <div className="bg-gradient-to-b from-gray-50 to-white text-navy-deep relative z-10">

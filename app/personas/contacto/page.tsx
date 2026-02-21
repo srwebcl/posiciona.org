@@ -30,6 +30,19 @@ export default function PersonasContactPage() {
                         <div className="space-y-8">
                             <div className="flex items-start gap-4">
                                 <div className="bg-white p-3 rounded-xl shadow-md text-amber-vial border border-gray-100">
+                                    <MapPin className="w-6 h-6" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-navy-deep text-lg mb-2">Nuestras Sedes</h3>
+                                    <p className="text-navy-deep font-bold text-sm">Sede Santiago</p>
+                                    <p className="text-gray-500 text-sm mb-2">Alameda Libertador Bernardo Ohiggins 252 Ofic. 21, Santiago</p>
+                                    <p className="text-navy-deep font-bold text-sm">Sede Arica</p>
+                                    <p className="text-gray-500 text-sm">21 de mayo 699 piso 2, Arica</p>
+                                </div>
+                            </div>
+
+                            <div className="flex items-start gap-4">
+                                <div className="bg-white p-3 rounded-xl shadow-md text-amber-vial border border-gray-100">
                                     <Phone className="w-6 h-6" />
                                 </div>
                                 <div>
@@ -50,8 +63,7 @@ export default function PersonasContactPage() {
                                 <div>
                                     <h3 className="font-bold text-navy-deep text-lg">Horario de Atención</h3>
                                     <p className="text-gray-500">
-                                        Lunes a Viernes: 09:00 - 18:00 hrs.<br />
-                                        Sábados: 10:00 - 13:00 hrs.
+                                        Lunes a viernes 09:00 a 18:00 hrs
                                     </p>
                                 </div>
                             </div>

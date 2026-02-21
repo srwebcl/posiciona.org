@@ -31,7 +31,7 @@ export default function ContactPage() {
 
                         <div className="relative z-10">
                             <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
-                                <Building2 className="w-6 h-6 text-amber-vial" /> Sede Central
+                                <Building2 className="w-6 h-6 text-amber-vial" /> Nuestras Sedes
                             </h3>
 
                             <ul className="space-y-8">
@@ -40,9 +40,11 @@ export default function ContactPage() {
                                         <MapPin className="w-6 h-6" />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-lg">Ubicación</h4>
-                                        <p className="text-gray-300">Av. Santa María 2050</p>
-                                        <p className="text-gray-400 text-sm">Arica, Chile</p>
+                                        <h4 className="font-bold text-lg mb-2">Ubicación</h4>
+                                        <p className="text-gray-300 font-bold text-sm">Sede Santiago</p>
+                                        <p className="text-gray-400 text-sm mb-2">Alameda Libertador Bernardo Ohiggins 252 Ofic. 21, Santiago</p>
+                                        <p className="text-gray-300 font-bold text-sm">Sede Arica</p>
+                                        <p className="text-gray-400 text-sm">21 de mayo 699 piso 2, Arica</p>
                                     </div>
                                 </li>
                                 <li className="flex items-start gap-4 group">
@@ -52,7 +54,7 @@ export default function ContactPage() {
                                     <div>
                                         <h4 className="font-bold text-lg">Llámanos</h4>
                                         <p className="text-gray-300 text-xl font-mono tracking-tight">+56 9 8453 4364</p>
-                                        <p className="text-gray-400 text-sm">Lun - Vie: 09:00 - 18:30 hrs</p>
+                                        <p className="text-gray-400 text-sm">Lunes a viernes 09:00 a 18:00 hrs</p>
                                     </div>
                                 </li>
                                 <li className="flex items-start gap-4 group">
@@ -62,19 +64,11 @@ export default function ContactPage() {
                                     <div>
                                         <h4 className="font-bold text-lg">Escríbenos</h4>
                                         <p className="text-gray-300">posiciona@posiciona.org</p>
-                                        <p className="text-gray-400 text-sm">Respuesta en max. 24 hrs</p>
                                     </div>
                                 </li>
                             </ul>
 
-                            <div className="mt-12 pt-8 border-t border-white/10">
-                                <div className="bg-white/5 rounded-xl h-48 w-full relative overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
-                                    {/* Map Embed or Image */}
-                                    <div className="absolute inset-0 flex items-center justify-center text-gray-500 font-mono text-xs">
-                                        [Mapa Interactivo aquí]
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
 

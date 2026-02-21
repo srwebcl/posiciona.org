@@ -2,6 +2,7 @@
 
 import { useState, Suspense } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/app/components/ui/button";
 import { Check, ShieldCheck, Gauge, Play, HardHat, Forklift, Zap, MessageSquare } from "lucide-react";
 import { DrivingSchoolAR } from "@/app/components/home/DrivingSchoolAR";
@@ -51,52 +52,96 @@ export function EscuelaLandingContent() {
             <section className="py-20 bg-gradient-to-b from-night-blue to-[#050f1a]">
                 <div className="container mx-auto px-4">
                     {/* ROW 1: TEXT & GUARANTEES */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20">
-                        {/* Text Content */}
-                        <div>
-                            <div className="inline-block px-3 py-1 bg-green-900/30 text-green-400 text-xs font-bold rounded mb-4">
-                                NUEVA ACREDITACIÓN
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+                        {/* LEFT COLUMN: INFO & GUARANTEES */}
+                        <div className="flex flex-col gap-8">
+                            <div>
+                                <div className="inline-block px-3 py-1 bg-green-900/30 text-green-400 text-xs font-bold rounded mb-4">
+                                    NUEVA ACREDITACIÓN
+                                </div>
+                                <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6 leading-tight">
+                                    Acceso Directo con Simulador:<br />
+                                    <span className="text-amber-vial">Solo 2 años clase B</span>
+                                </h2>
+                                <p className="text-gray-400 text-lg mb-6">
+                                    Hoy puedes acceder a Licencia Profesional <strong>Clase A3 (buses)</strong> o <strong>Clase A5 (camiones articulados)</strong> sin esperar 2 años con otra licencia profesional clase A.
+                                </p>
+                                <p className="text-gray-400 text-lg mb-8">
+                                    Gracias al <strong>Plan Especial con Simulador</strong>, autorizado por el Ministerio de Transportes y Telecomunicaciones, puedes avanzar directamente si cumples con los requisitos.
+                                </p>
+
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-white/5 border border-white/10 rounded-2xl p-6 mb-6">
+                                    <div>
+                                        <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                                            <Check className="text-green-500 w-5 h-5" /> ¿Qué necesitas?
+                                        </h3>
+                                        <ul className="space-y-3 pl-2">
+                                            <li className="text-gray-300 relative before:content-[''] before:absolute before:-left-3 before:top-2 before:w-1.5 before:h-1.5 before:bg-amber-vial before:rounded-full text-sm">Tener 20 años o más</li>
+                                            <li className="text-gray-300 relative before:content-[''] before:absolute before:-left-3 before:top-2 before:w-1.5 before:h-1.5 before:bg-amber-vial before:rounded-full text-sm">Licencia Clase B con mínimo 2 años de antigüedad</li>
+                                            <li className="text-gray-300 relative before:content-[''] before:absolute before:-left-3 before:top-2 before:w-1.5 before:h-1.5 before:bg-amber-vial before:rounded-full text-sm">Cédula de identidad chilena vigente</li>
+                                            <li className="text-gray-300 relative before:content-[''] before:absolute before:-left-3 before:top-2 before:w-1.5 before:h-1.5 before:bg-amber-vial before:rounded-full text-sm">Extranjeros: residencia legal en Chile</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                                            <ShieldCheck className="text-cyan-electric w-5 h-5" /> Ventajas del Plan
+                                        </h3>
+                                        <ul className="space-y-3 pl-2">
+                                            <li className="text-gray-300 relative before:content-[''] before:absolute before:-left-3 before:top-2 before:w-1.5 before:h-1.5 before:bg-cyan-electric before:rounded-full text-sm">Sin esperar 2 años con otra Clase A</li>
+                                            <li className="text-gray-300 relative before:content-[''] before:absolute before:-left-3 before:top-2 before:w-1.5 before:h-1.5 before:bg-cyan-electric before:rounded-full text-sm">Formación avanzada con simulador</li>
+                                            <li className="text-gray-300 relative before:content-[''] before:absolute before:-left-3 before:top-2 before:w-1.5 before:h-1.5 before:bg-cyan-electric before:rounded-full text-sm">Acceso más rápido al mercado laboral</li>
+                                            <li className="text-gray-300 relative before:content-[''] before:absolute before:-left-3 before:top-2 before:w-1.5 before:h-1.5 before:bg-cyan-electric before:rounded-full text-sm">Capacitación de alto estándar</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div className="bg-blue-900/20 border border-blue-500/20 rounded-xl p-5 mb-6">
+                                    <h3 className="text-lg font-bold text-white mb-3">¿Qué permite cada licencia?</h3>
+                                    <ul className="space-y-2">
+                                        <li className="text-gray-300 text-sm"><strong className="text-cyan-400">A3:</strong> Conducir buses y transporte de pasajeros sin límite de capacidad.</li>
+                                        <li className="text-gray-300 text-sm"><strong className="text-cyan-400">A5:</strong> Conducir camiones de alto tonelaje y vehículos articulados.</li>
+                                    </ul>
+                                </div>
+                                <div className="bg-amber-vial/10 border border-amber-vial/30 rounded-xl p-6 text-center shadow-inner">
+                                    <p className="text-amber-100 font-medium mb-4">
+                                        Si ya tienes Clase B con 2 años, estás listo para dar el siguiente paso.
+                                    </p>
+                                    <Button
+                                        onClick={() => handleCotizar("Plan Especial A3/A5")}
+                                        className="w-full bg-amber-vial text-navy-deep hover:bg-white font-bold transition-colors shadow-lg shadow-amber-500/20 py-6 text-lg"
+                                    >
+                                        Matricúlate hoy
+                                    </Button>
+                                </div>
                             </div>
-                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
-                                Acceso Directo con Simulador: <br />
-                                <span className="text-amber-vial">Solo 2 Años de Clase B</span>
-                            </h2>
-                            <p className="text-gray-400 text-lg mb-6">
-                                Tradicionalmente, para obtener la Licencia A3 necesitas tener 2 años de antigüedad en Clase B y <strong>además 2 años de posesión de licencias profesionales</strong> (A1, A2, A4 o A5).
-                            </p>
-                            <p className="text-gray-400 text-lg">
-                                Gracias a nuestra tecnología de Simulación Acreditada, <strong>saltas el requisito de tener licencia profesional previa</strong>. Con solo tu licencia Clase B (2 años de antigüedad) y nuestro Curso Especial, puedes obtener directamente tu Licencia Profesional A3.
-                            </p>
                         </div>
 
-                        {/* Guarantees Box */}
-                        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-colors">
-                            <h4 className="text-white font-bold text-xl mb-6 flex items-center gap-3">
-                                <ShieldCheck className="w-6 h-6 text-cyan-electric" /> Garantías Académicas
-                            </h4>
-                            <ul className="space-y-4">
-                                {[
-                                    "Autorizada para licencias A-2 y A-3",
-                                    "Equipamiento Europeo de Alta Tecnología",
-                                    "Alineado con exigencias de minería",
-                                    "Formación moderna y 100% segura"
-                                ].map((item, idx) => (
-                                    <li key={idx} className="flex items-center gap-3 text-gray-300">
-                                        <div className="bg-cyan-900/30 p-1.5 rounded-full"><Check className="w-4 h-4 text-cyan-electric" /></div>
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
+                        {/* RIGHT COLUMN: CONTACT FORM */}
+                        <div id="contacto-form-top" className="relative group lg:sticky lg:top-40">
+                            {/* Decorator blob */}
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-amber-vial/10 rounded-full blur-[100px] pointer-events-none" />
+
+                            <div className="bg-gradient-to-br from-[#1c1c1c] to-[#2a2a2a] border border-white/10 rounded-[1.5rem] p-8 md:p-10 shadow-2xl relative z-10">
+                                <h3 className="text-2xl font-bold text-white mb-6">Solicitar Información</h3>
+                                <Suspense fallback={<div className="h-96 animate-pulse bg-white/5 rounded-3xl" />}>
+                                    <ContactForm variant="persona" filterCategory="ESCUELA DE CONDUCTORES" />
+                                </Suspense>
+                            </div>
                         </div>
                     </div>
 
-                    {/* ROW 2: VIDEO CENTERED */}
-                    <div className="max-w-5xl mx-auto relative group">
+                    {/* ROW 2: VIDEO CENTERED (FULL WIDTH) */}
+                    <div className="max-w-5xl mx-auto relative group mt-24">
+                        <div className="text-center mb-10">
+                            <h3 className="text-3xl font-bold text-white uppercase tracking-wider">Conoce nuestro simulador</h3>
+                            <div className="w-24 h-1 bg-cyan-electric mx-auto mt-4 rounded-full"></div>
+                        </div>
+
                         {/* Decorator blob */}
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-cyan-electric/20 rounded-full blur-[100px] pointer-events-none" />
 
                         <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/20 group-hover:border-cyan-electric/50 transition-colors duration-500">
-                            <div className="aspect-video">
+                            <div className="aspect-video relative">
                                 <iframe
                                     width="100%"
                                     height="100%"
@@ -105,18 +150,17 @@ export function EscuelaLandingContent() {
                                     frameBorder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen
-                                    className="w-full h-full"
+                                    className="w-full h-full object-cover"
                                 />
                             </div>
-
                             {/* Caption */}
-                            <div className="absolute bottom-0 left-0 right-0 bg-black/80 backdrop-blur px-6 py-4 flex items-center justify-between">
+                            <div className="absolute bottom-0 left-0 right-0 bg-black/80 backdrop-blur px-6 py-4 flex items-center justify-between pointer-events-none">
                                 <div className="flex items-center gap-3">
                                     <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
                                         <Play className="w-5 h-5 text-white fill-current" />
                                     </div>
                                     <div>
-                                        <span className="block text-white font-bold text-sm">Simulador Lander en Acción</span>
+                                        <span className="block text-white font-bold text-sm">Simulador Simestruck en Acción</span>
                                         <span className="text-xs text-cyan-electric">Ver demostración</span>
                                     </div>
                                 </div>
@@ -137,7 +181,7 @@ export function EscuelaLandingContent() {
 
                 <div className="container mx-auto px-4 relative z-10">
                     <div className="text-center mb-16">
-                        <span className="text-cyan-electric font-bold tracking-widest text-sm uppercase">Tecnología Lander Europeo</span>
+                        <span className="text-cyan-electric font-bold tracking-widest text-sm uppercase">Tecnología Simestruck</span>
                         <h2 className="text-4xl md:text-5xl font-black text-white mt-2 mb-6 uppercase">
                             Entrenamiento <span className="text-cyan-electric drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]">Sin Límites</span>
                         </h2>
@@ -183,34 +227,47 @@ export function EscuelaLandingContent() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
                         {COURSES.filter(c => c.category === "ESCUELA DE CONDUCTORES").map((course, idx) => (
-                            <div key={idx} className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all border-b-4 ${course.color === 'amber' ? 'border-amber-vial' : 'border-blue-500'} group flex flex-col`}>
-                                <div className={`w-14 h-14 ${course.color === 'amber' ? 'bg-amber-vial/10 text-amber-vial' : 'bg-blue-100 text-blue-600'} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                                    <course.icon className="w-7 h-7" />
-                                </div>
-                                <h3 className="text-2xl font-bold text-navy-deep mb-3">{course.title}</h3>
-                                <p className="text-gray-600 mb-6 flex-grow">{course.description}</p>
+                            <div key={idx} className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden group hover:shadow-2xl transition-all duration-300 flex flex-col">
+                                <div className="relative h-56 w-full overflow-hidden bg-navy-deep">
+                                    <Image src={course.image} alt={course.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700 opacity-90" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/40 to-transparent z-10" />
 
-                                <div className="mb-8">
-                                    <span className="inline-block px-3 py-1 bg-gray-100 text-gray-600 text-xs font-bold rounded-full mb-3">
-                                        {course.location}
-                                    </span>
-                                    <ul className="space-y-2">
+                                    {/* Icon Badge */}
+                                    <div className="absolute top-4 right-4 z-20 bg-white/10 backdrop-blur-md p-2 rounded-xl border border-white/20 shadow-sm">
+                                        <course.icon className="w-6 h-6 text-white" />
+                                    </div>
+
+                                    {/* Title Context */}
+                                    <div className="absolute bottom-0 left-0 p-6 z-20 w-full">
+                                        <span className="inline-block px-3 py-1 bg-amber-vial text-navy-deep text-xs font-black uppercase tracking-wider rounded-md mb-2 shadow-sm">
+                                            {course.location}
+                                        </span>
+                                        <h3 className="text-2xl font-bold text-white leading-tight drop-shadow-md">{course.title}</h3>
+                                    </div>
+                                </div>
+
+                                <div className="p-6 md:p-8 flex flex-col flex-grow">
+                                    <p className="text-gray-600 mb-6 flex-grow leading-relaxed">
+                                        {course.description}
+                                    </p>
+
+                                    <ul className="space-y-3 mb-8">
                                         {course.tags.map((tag, tIdx) => (
-                                            <li key={tIdx} className="flex items-center gap-2 text-sm text-gray-500">
-                                                <Check className="w-4 h-4 text-green-500" /> {tag}
+                                            <li key={tIdx} className="flex items-center gap-3 text-sm text-gray-500 font-medium bg-gray-50 px-4 py-2.5 rounded-lg border border-gray-100">
+                                                <Check className="w-4 h-4 text-green-500 shrink-0" /> {tag}
                                             </li>
                                         ))}
                                     </ul>
-                                </div>
 
-                                <Button
-                                    onClick={() => handleCotizar(course.title)}
-                                    className="w-full bg-navy-deep text-white hover:bg-amber-vial hover:text-navy-deep font-bold transition-all shadow-md"
-                                >
-                                    Más Información
-                                </Button>
+                                    <Button
+                                        onClick={() => handleCotizar(course.title)}
+                                        className="w-full bg-navy-deep text-white hover:bg-amber-vial hover:text-navy-deep font-bold transition-all shadow-md py-6 text-base"
+                                    >
+                                        Más Información
+                                    </Button>
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -256,11 +313,17 @@ export function EscuelaLandingContent() {
                             </div>
                         </div>
 
-                        <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-md shadow-2xl">
-                            <h3 className="text-2xl font-bold text-white mb-6">Solicitar Información</h3>
-                            <Suspense fallback={<div className="h-96 animate-pulse bg-white/5 rounded-3xl" />}>
-                                <ContactForm variant="persona" />
-                            </Suspense>
+                        <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-md shadow-2xl text-center">
+                            <h3 className="text-2xl font-bold text-white mb-4">¿Tienes Dudas Adicionales?</h3>
+                            <p className="text-gray-400 mb-8">
+                                Si aún tienes dudas sobre el proceso de matrícula, los requisitos específicos para el subsidio o cualquier otro detalle de la Escuela de Conductores, estamos aquí para ayudarte en todo momento.
+                            </p>
+                            <Link
+                                href="/personas/contacto"
+                                className="w-full sm:w-auto inline-flex justify-center items-center bg-amber-vial text-navy-deep hover:bg-white font-bold transition-colors py-6 px-10 text-lg shadow-lg rounded-xl"
+                            >
+                                Solicitar Información
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -273,7 +336,7 @@ export function EscuelaLandingContent() {
                         Completa tus datos y te enviaremos la malla curricular y precios actualizados para <strong>{selectedInterest}</strong>.
                     </p>
                     <Suspense fallback={<div className="h-64 animate-pulse bg-white/5 rounded-xl" />}>
-                        <ContactForm prefilledInterest={selectedInterest} variant="persona" />
+                        <ContactForm prefilledInterest={selectedInterest} variant="persona" filterCategory="ESCUELA DE CONDUCTORES" />
                     </Suspense>
                 </div>
             </Modal>

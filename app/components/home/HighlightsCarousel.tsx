@@ -37,6 +37,9 @@ const ALLIANCES = [
     { name: "WYLAR", logo: "/imagenes/logo-wylar.webp", scale: 0.9 },
     { name: "CHILE VALORA", logo: "/imagenes/logo_chilevalora.png", scale: 1.1 },
     { name: "CORFO", logo: "/imagenes/logo-corfo-becas.png", scale: 1.15 },
+    { name: "OTIC PROFORMA", logo: "/imagenes/logo-otic-proforma.png", scale: 1 },
+    { name: "BANOTIC", logo: "/imagenes/banotic-logo.png", scale: 1 },
+    { name: "OTIC CCHC", logo: "/imagenes/logo-otic-cchc.webp", scale: 1 },
 ];
 
 export function HighlightsCarousel() {

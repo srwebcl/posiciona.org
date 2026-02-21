@@ -30,16 +30,18 @@ export default function EmpresasContactPage() {
                     <div className="pt-10">
 
                         <div className="space-y-8">
+
+
                             <div className="flex items-start gap-4">
                                 <div className="bg-white p-3 rounded-xl shadow-md text-blue-inst border border-gray-100">
-                                    <Building2 className="w-6 h-6" />
+                                    <MapPin className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-navy-deep text-lg">Oficina Corporativa</h3>
-                                    <p className="text-gray-500 mb-1">Atención Exclusiva Empresas</p>
-                                    <p className="text-gray-600 text-sm">
-                                        Gestionamos sus requerimientos de Franquicia Tributaria, licitaciones y convenios marco.
-                                    </p>
+                                    <h3 className="font-bold text-navy-deep text-lg mb-2">Nuestras Sedes</h3>
+                                    <p className="text-navy-deep font-bold text-sm">Sede Santiago</p>
+                                    <p className="text-gray-500 text-sm mb-2">Alameda Libertador Bernardo Ohiggins 252 Ofic. 21, Santiago</p>
+                                    <p className="text-navy-deep font-bold text-sm">Sede Arica</p>
+                                    <p className="text-gray-500 text-sm">21 de mayo 699 piso 2, Arica</p>
                                 </div>
                             </div>
 
@@ -50,9 +52,10 @@ export default function EmpresasContactPage() {
                                 <div>
                                     <h3 className="font-bold text-navy-deep text-lg">Contacto Comercial</h3>
                                     <p className="text-gray-500 mb-1">Llámenos o escribanos al WhatsApp</p>
-                                    <a href="https://wa.me/56984534364" target="_blank" className="text-xl font-bold text-blue-600 hover:text-amber-vial transition-colors">
+                                    <a href="https://wa.me/56984534364" target="_blank" className="text-xl font-bold text-blue-600 hover:text-amber-vial transition-colors block">
                                         +56 9 8453 4364
                                     </a>
+                                    <p className="text-gray-500 mt-1 text-sm">Lunes a viernes 09:00 a 18:00 hrs</p>
                                 </div>
                             </div>
 

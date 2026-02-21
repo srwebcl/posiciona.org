@@ -10,7 +10,7 @@ import {
 const FAQS = [
     {
         q: "¿Puedo postular a la Gratuidad Talento Digital?",
-        a: "Sí, si cumples con los requisitos SENCE (RSH hasta 80%, cesantía o búsqueda de empleo). Revisa la ficha específica de Bootcamps."
+        a: <>Sí, si cumples con los requisitos SENCE (RSH hasta 80%, cesantía o búsqueda de empleo). Revisa la ficha específica en <a href="https://talentodigitalparachile.cl/" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline">https://talentodigitalparachile.cl/</a></>
     },
     {
         q: "¿Cuánto dura el curso de Conductor Profesional A3?",
@@ -23,6 +23,10 @@ const FAQS = [
     {
         q: "¿Tienen convenios con empresas?",
         a: "Sí, trabajamos directamente con las principales empresas de transporte y minería de la región para facilitar prácticas y empleo."
+    },
+    {
+        q: "¿Puedo postular a la gratuidad en cursos de oficios?",
+        a: <>Sí, a través de Sence puedes elegir tu curso y postular en el link: <br /><a href="https://eligetucurso.sence.cl/" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline">https://eligetucurso.sence.cl/</a></>
     }
 ];
 

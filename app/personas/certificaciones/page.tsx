@@ -96,7 +96,7 @@ export default function CertificacionesPersonasPage() {
                         </div>
                         <div className="relative z-10 max-w-lg mx-auto">
                             <Suspense fallback={<div className="flex justify-center py-10"><Loader2 className="w-8 h-8 animate-spin text-amber-vial" /></div>}>
-                                <ContactForm prefilledInterest="Personas - Certificación de Competencias" className="md:grid-cols-1" variant="persona" />
+                                <ContactForm prefilledInterest="Personas - Certificación de Competencias" className="md:grid-cols-1" variant="persona" hideInterestDropdown={true} />
                             </Suspense>
                             <div className="mt-8 pt-8 border-t border-white/10 flex justify-center gap-8 text-sm">
                                 <a href="mailto:posiciona@posiciona.org" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors">

@@ -50,15 +50,7 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
                                         <div className="text-xs text-gray-500 uppercase font-bold">Duración</div>
                                         <div className="text-white font-semibold">{course.duration}</div>
                                     </div>
-                                </div>
-                                <div className="flex items-center gap-3 bg-white/5 rounded-xl px-5 py-3 border border-white/10">
-                                    <Award className="w-5 h-5 text-gray-400" />
-                                    <div>
-                                        <div className="text-xs text-gray-500 uppercase font-bold">Certificación</div>
-                                        <div className="text-white font-semibold">{course.badge}</div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center gap-3 bg-white/5 rounded-xl px-5 py-3 border border-white/10">
+
                                     <MapPin className="w-5 h-5 text-gray-400" />
                                     <div>
                                         <div className="text-xs text-gray-500 uppercase font-bold">Modalidad</div>

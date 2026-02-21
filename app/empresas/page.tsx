@@ -36,10 +36,10 @@ export default function EmpresasHubPage() {
                                 </div>
                                 <h2 className="text-3xl font-bold text-navy-deep mb-4 group-hover:text-amber-vial transition-colors">Capacitación y SENCE</h2>
                                 <p className="text-gray-500 mb-8 text-lg leading-relaxed max-w-sm">
-                                    Cierre de brechas, alfabetización digital y gestión experta de franquicia tributaria y becas laborales.
+                                    Somos una OTEC con amplia experiencia. Destacamos en cursos de Conducción Profesional con y sin Franquicia Tributaria.
                                 </p>
                                 <span className="mt-auto inline-flex items-center text-amber-vial font-bold uppercase tracking-wider text-sm group-hover:underline">
-                                    Ver Soluciones <ArrowRight className="ml-2 w-4 h-4" />
+                                    Cotizar Capacitación <ArrowRight className="ml-2 w-4 h-4" />
                                 </span>
                             </div>
                         </Link>

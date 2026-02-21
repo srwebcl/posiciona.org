@@ -12,7 +12,7 @@ export default function NosotrosPage() {
             {/* Header / Hero */}
             {/* Header / Hero */}
             <PageHero
-                badge="NUESTRA ESENCIA"
+                badge="PRESENCIA NACIONAL"
                 title={
                     <>
                         Más que Capacitación, <br />
@@ -21,7 +21,7 @@ export default function NosotrosPage() {
                         </span>
                     </>
                 }
-                description="Desde Arica para Chile, somos el puente entre las personas que buscan superarse y las empresas que necesitan excelencia."
+                description="Somos el puente entre las personas que buscan superarse y las empresas que necesitan excelencia."
             />
 
             {/* Historia / Main Content */}

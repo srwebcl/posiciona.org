@@ -322,52 +322,62 @@ function CatalogStore() {
                                         transition={{ duration: 0.2 }}
                                         className="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-blue-300 shadow-sm hover:shadow-xl hover:shadow-blue-900/10 transition-all duration-300 flex flex-col h-full relative"
                                     >
-                                        <div className="p-6 flex flex-col h-full">
-                                            {/* Header: Category & Badge */}
-                                            <div className="flex justify-between items-start mb-4">
-                                                <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold ${service.color === 'amber' ? 'bg-amber-50 text-amber-600' : service.color === 'cyan' ? 'bg-cyan-50 text-cyan-600' : 'bg-blue-50 text-blue-600'}`}>
-                                                    <service.icon className="w-4 h-4" />
-                                                    <span className="uppercase tracking-wide">
-                                                        {service.category === "ESCUELA DE CONDUCTORES" ? "Escuela" :
-                                                            service.category === "OFICIOS" ? "Oficios" :
-                                                                service.category === "TALENTO DIGITAL" ? "Digital" : service.category}
-                                                    </span>
+                                        <div className="flex flex-col h-full">
+                                            {/* Image Header */}
+                                            <div className="relative h-48 w-full overflow-hidden shrink-0">
+                                                <Image
+                                                    src={service.image}
+                                                    alt={service.title}
+                                                    fill
+                                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                                />
+                                                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent" />
+
+                                                {/* Badges overlaid on image */}
+                                                <div className="absolute top-4 left-4 right-4 flex justify-between items-start">
+                                                    <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold shadow-sm backdrop-blur-md ${service.color === 'amber' ? 'bg-amber-400/90 text-navy-deep' : service.color === 'cyan' ? 'bg-cyan-400/90 text-navy-deep' : 'bg-blue-600/90 text-white'}`}>
+                                                        <service.icon className="w-4 h-4" />
+                                                        <span className="uppercase tracking-wide">
+                                                            {service.category === "ESCUELA DE CONDUCTORES" ? "Escuela" :
+                                                                service.category === "OFICIOS" ? "Oficios" :
+                                                                    service.category === "TALENTO DIGITAL" ? "Digital" : service.category}
+                                                        </span>
+                                                    </div>
                                                 </div>
-                                                {service.badge && (
-                                                    <span className="px-2.5 py-1 rounded-md bg-gray-50 border border-gray-100 text-[10px] font-bold uppercase tracking-wider text-gray-500">
-                                                        {service.badge}
-                                                    </span>
-                                                )}
                                             </div>
 
-                                            <h3 className="text-xl font-bold text-navy-deep mb-3 line-clamp-2 leading-tight group-hover:text-blue-600 transition-colors">
-                                                {service.title}
-                                            </h3>
+                                            {/* Content Body */}
+                                            <div className="p-6 flex flex-col flex-1">
 
-                                            <p className="text-sm text-gray-500 line-clamp-3 mb-6 leading-relaxed">
-                                                {service.description}
-                                            </p>
+                                                <h3 className="text-xl font-bold text-navy-deep mb-3 line-clamp-2 leading-tight group-hover:text-blue-600 transition-colors">
+                                                    {service.title}
+                                                </h3>
 
-                                            <div className="mt-auto">
-                                                <div className="h-px w-full bg-gray-100 mb-4" />
+                                                <p className="text-sm text-gray-500 line-clamp-3 mb-6 leading-relaxed">
+                                                    {service.description}
+                                                </p>
 
-                                                <div className="flex items-center justify-between mb-4 text-xs">
-                                                    <span className="flex items-center gap-1.5 text-gray-500 font-medium bg-gray-50 px-2 py-1 rounded">
-                                                        <MapPin className="w-3.5 h-3.5" />
-                                                        {service.location.replace(" (Presencial)", "").replace(" (Todo Chile)", "")}
-                                                    </span>
-                                                    <span className="text-gray-400 font-medium">
-                                                        {service.duration}
-                                                    </span>
+                                                <div className="mt-auto">
+                                                    <div className="h-px w-full bg-gray-100 mb-4" />
+
+                                                    <div className="flex items-center justify-between mb-4 text-xs">
+                                                        <span className="flex items-center gap-1.5 text-gray-500 font-medium bg-gray-50 px-2 py-1 rounded">
+                                                            <MapPin className="w-3.5 h-3.5" />
+                                                            {service.location.replace(" (Presencial)", "").replace(" (Todo Chile)", "")}
+                                                        </span>
+                                                        <span className="text-gray-400 font-medium">
+                                                            {service.duration}
+                                                        </span>
+                                                    </div>
+
+                                                    <Link href={`/cursos/${service.slug}`} className="block">
+                                                        <Button
+                                                            className="w-full bg-navy-deep text-white hover:bg-blue-600 border border-transparent hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 font-bold tracking-wide"
+                                                        >
+                                                            Ver Detalle <ArrowRight className="w-4 h-4 ml-2" />
+                                                        </Button>
+                                                    </Link>
                                                 </div>
-
-                                                <Link href={`/cursos/${service.slug}`} className="block">
-                                                    <Button
-                                                        className="w-full bg-navy-deep text-white hover:bg-blue-600 border border-transparent hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 font-bold tracking-wide"
-                                                    >
-                                                        Ver Detalle <ArrowRight className="w-4 h-4 ml-2" />
-                                                    </Button>
-                                                </Link>
                                             </div>
                                         </div>
                                     </motion.div>
