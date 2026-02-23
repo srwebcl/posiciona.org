@@ -1,92 +1,106 @@
-import { TechButton } from "@/app/components/ui/tech-button";
 import { Suspense } from "react";
-import { Users, FileCheck, ArrowRight, Check, Mail, Loader2 } from "lucide-react";
+import { Users, Mail, Loader2 } from "lucide-react";
 import { PageHero } from "@/app/components/ui/PageHero";
 import { ContactForm } from "@/app/components/contact/ContactForm";
+import Image from "next/image";
 
 export const metadata = {
     title: "Capacitación Empresas y Franquicia SENCE | Posiciona",
     description: "Cierre de brechas de competencias y gestión experta de franquicia tributaria SENCE para su empresa.",
 };
 
+const coursesList = [
+    { title: "Soldadura y Electricidad", img: "/imagenes/soldador.jpeg" },
+    { title: "Operador de Grúa Horquilla y Maquinaria Pesada", img: "/imagenes/grua-horquilla.jpeg" },
+    { title: "Camión Pluma y Equipos de Izaje", img: "/imagenes/camion-pluma.png" },
+    { title: "Climatización e Instalador de Gas Clase 3", img: "/imagenes/climatizacion.jpeg" },
+    { title: "Desarrollo de Software – Talento Digital", img: "/imagenes/desarrollo-front.jpeg" },
+    { title: "Ley Karin, Prevención de Riesgos y normativas vigentes, entre otros.", img: "/imagenes/ley-karin.jpeg" },
+];
 export default function CapacitacionesEmpresasPage() {
     return (
         <div className="min-h-screen bg-white">
             <PageHero
                 badge="Soluciones Corporativas"
-                video="/imagenes/cursos.mp4"
                 title={
                     <>
-                        Capacitación y <span className="text-blue-inst">Gestión SENCE</span>
+                        Capacitación y <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Gestión SENCE</span>
                     </>
                 }
                 description="Programas de formación a medida para cerrar brechas de competencias y maximizar el uso de su franquicia tributaria."
-                align="left"
-                className="pt-32 md:pt-48 pb-20 md:pb-32"
-            >
-                <a href="#contacto">
-                    <TechButton variant="primary" size="lg" className="h-14">
-                        Cotizar Capacitación <ArrowRight className="ml-2 w-5 h-5" />
-                    </TechButton>
-                </a>
-            </PageHero>
+            />
 
-            {/* SECCIÓN SOLUCIONES (Light Theme) */}
-            <div className="py-24 bg-white relative z-10">
+            {/* SECCIÓN CURSOS Y OTEC */}
+            <div className="py-24 md:py-32 bg-gray-50 relative z-10 border-b border-gray-100/50">
                 <div className="container mx-auto px-4">
-                    <div className="text-center mb-16 max-w-3xl mx-auto">
-                        <span className="text-amber-vial font-bold tracking-widest text-sm uppercase">Nuestra Metodología</span>
-                        <h2 className="text-3xl md:text-5xl font-black text-navy-deep mt-2 mb-6">
-                            Formación de Alto Impacto
-                        </h2>
-                        <p className="text-gray-500 text-lg">
-                            Combinamos tecnología educativa, instructores expertos y gestión administrativa eficiente para garantizar resultados medibles.
-                        </p>
-                    </div>
+                    <div className="max-w-6xl mx-auto">
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                        {/* CARD 1: Cierre de Brechas */}
-                        <div className="bg-white rounded-3xl p-10 shadow-xl border border-gray-100 min-h-[420px] flex flex-col hover:border-amber-vial/30 transition-all duration-300">
-                            <div className="mb-6 bg-amber-vial/10 w-fit p-4 rounded-xl">
-                                <Users className="w-8 h-8 text-amber-vial" />
+                        {/* Encabezado Principal */}
+                        <div className="text-center mb-16 max-w-4xl mx-auto">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50/80 text-amber-700 text-[11px] font-bold border border-amber-100/50 mb-8 tracking-[0.2em] uppercase shadow-sm">
+                                <Users className="w-3.5 h-3.5" /> Capacitación Continua
                             </div>
-                            <h3 className="text-2xl font-bold text-navy-deep mb-4">Cierre de Brechas</h3>
-                            <p className="text-gray-600 mb-8 font-sans text-base leading-relaxed flex-grow">
-                                Diagnóstico y nivelación para equipos operativos y mandos medios. Diseñamos programas específicos para potenciar habilidades críticas y mejorar la productividad.
+                            <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-black text-navy-deep mb-8 leading-[1.1] tracking-tight">
+                                Capacitación <span className="text-amber-vial">y SENCE</span>
+                            </h2>
+                            <p className="text-gray-600 text-xl md:text-2xl leading-relaxed font-light">
+                                En <strong className="font-bold text-navy-deep">OTEC Posiciona</strong> desarrollamos cursos y programas de capacitación alineados con las exigencias del mercado y la normativa chilena.
                             </p>
-                            <ul className="space-y-4 text-gray-600 text-sm">
-                                <li className="flex items-center gap-3"><div className="bg-amber-100 p-1 rounded-full"><Check className="w-3 h-3 text-amber-600" /></div> Alfabetización Digital</li>
-                                <li className="flex items-center gap-3"><div className="bg-amber-100 p-1 rounded-full"><Check className="w-3 h-3 text-amber-600" /></div> Habilidades Blandas y Liderazgo</li>
-                                <li className="flex items-center gap-3"><div className="bg-amber-100 p-1 rounded-full"><Check className="w-3 h-3 text-amber-600" /></div> Inglés Técnico TOEIC</li>
-                                <li className="flex items-center gap-3"><div className="bg-amber-100 p-1 rounded-full"><Check className="w-3 h-3 text-amber-600" /></div> Seguridad Operacional</li>
-                            </ul>
                         </div>
 
-                        {/* CARD 2: Gestión SENCE */}
-                        <div className="bg-white rounded-3xl p-10 shadow-xl border border-gray-100 min-h-[420px] flex flex-col hover:border-blue-inst/30 transition-all duration-300">
-                            <div className="mb-6 bg-blue-inst/10 w-fit p-4 rounded-xl">
-                                <FileCheck className="w-8 h-8 text-blue-inst" />
-                            </div>
-                            <h3 className="text-2xl font-bold text-navy-deep mb-4">Gestión SENCE</h3>
-                            <p className="text-gray-600 mb-8 font-sans text-base leading-relaxed flex-grow">
-                                Maximizamos el uso de su Franquicia Tributaria SENCE. Nos encargamos de la gestión administrativa y ejecución experta de sus planes de capacitación.
-                            </p>
-                            <ul className="space-y-4 text-gray-600 text-sm mb-8">
-                                <li className="flex items-center gap-3"><div className="bg-blue-100 p-1 rounded-full"><Check className="w-3 h-3 text-blue-600" /></div> Franquicia Tributaria</li>
-                                <li className="flex items-center gap-3"><div className="bg-blue-100 p-1 rounded-full"><Check className="w-3 h-3 text-blue-600" /></div> Becas Laborales OTIC</li>
-                                <li className="flex items-center gap-3"><div className="bg-blue-100 p-1 rounded-full"><Check className="w-3 h-3 text-blue-600" /></div> Precontratos de Capacitación</li>
-                            </ul>
-                            <div className="p-4 bg-gray-50 rounded-lg border border-gray-200 text-center mt-auto">
-                                <span className="block text-sm font-bold text-blue-inst uppercase mb-1">Experiencia Comprobada</span>
-                                <span className="text-xs text-gray-500">Licitaciones Públicas y Privadas</span>
-                            </div>
+                        {/* Grid de Imágenes de Cursos */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+                            {coursesList.map((course, idx) => {
+                                const isChileValora = course.title.toLowerCase().includes("chilevalora");
+
+                                return (
+                                    <div key={idx} className="group bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl hover:border-amber-vial/30 transition-all duration-300 flex flex-col h-full">
+                                        <div className="relative h-56 w-full overflow-hidden bg-gray-200">
+                                            <Image
+                                                src={course.img}
+                                                alt={course.title}
+                                                fill
+                                                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+
+                                            {/* Badge ChileValora */}
+                                            {isChileValora && (
+                                                <Image
+                                                    src="/imagenes/logo_chilevalora.webp"
+                                                    alt="Sello ChileValora"
+                                                    width={90}
+                                                    height={30}
+                                                    className="absolute top-3 right-3 z-10 object-contain drop-shadow-md"
+                                                />
+                                            )}
+                                        </div>
+                                        <div className="p-6 flex-grow flex items-center justify-center text-center">
+                                            <h3 className="text-lg font-bold text-navy-deep leading-snug group-hover:text-amber-vial transition-colors">
+                                                {course.title}
+                                            </h3>
+                                        </div>
+                                    </div>
+                                );
+                            })}
                         </div>
+
+                        {/* Cierre Textual */}
+                        <div className="text-center space-y-6 text-lg text-gray-600 max-w-3xl mx-auto">
+                            <p>
+                                Programas con o sin franquicia tributaria SENCE, adaptados a la realidad de su empresa.
+                            </p>
+                            <p className="text-navy-deep font-black text-2xl md:text-3xl pt-6">
+                                Formamos equipos más productivos, seguros y competitivos.
+                            </p>
+                        </div>
+
                     </div>
                 </div>
             </div>
 
             {/* CONTACTO */}
-            <section id="contacto" className="py-24 bg-navy-deep relative">
+            <section id="contacto" className="py-24 bg-navy-deep relative border-t border-gray-800">
                 <div className="container mx-auto px-4">
                     <div className="max-w-4xl mx-auto bg-gradient-to-br from-[#0f172a] to-[#1e293b] rounded-3xl p-8 md:p-12 border border-white/10 shadow-2xl relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-amber-vial/5 rounded-full blur-[80px] pointer-events-none" />

@@ -11,7 +11,7 @@ export const COURSES = [
         description: "Amplía tus oportunidades laborales en el transporte de pasajeros, incluyendo aplicaciones móviles y servicios.",
         extendedDescription: "Obtén tu Licencia Profesional Clase A2 y amplía tus oportunidades laborales en el transporte de pasajeros, incluyendo aplicaciones móviles y servicios públicos o privados.",
         icon: Truck,
-        image: "/imagenes/a2.jpeg",
+        image: "/imagenes/a2.png",
         duration: "2 Meses",
         tags: ["Transporte Pasajeros", "Apps Móviles", "Ambulancias"],
         badge: "Alta Empleabilidad",

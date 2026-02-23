@@ -160,7 +160,7 @@ export function EscuelaLandingContent() {
                                         <Play className="w-5 h-5 text-white fill-current" />
                                     </div>
                                     <div>
-                                        <span className="block text-white font-bold text-sm">Simulador Simestruck en Acción</span>
+                                        <span className="block text-white font-bold text-sm">Simulador Simumak en Acción</span>
                                         <span className="text-xs text-cyan-electric">Ver demostración</span>
                                     </div>
                                 </div>
@@ -181,7 +181,7 @@ export function EscuelaLandingContent() {
 
                 <div className="container mx-auto px-4 relative z-10">
                     <div className="text-center mb-16">
-                        <span className="text-cyan-electric font-bold tracking-widest text-sm uppercase">Tecnología Simestruck</span>
+                        <span className="text-cyan-electric font-bold tracking-widest text-sm uppercase">Tecnología Simumak</span>
                         <h2 className="text-4xl md:text-5xl font-black text-white mt-2 mb-6 uppercase">
                             Entrenamiento <span className="text-cyan-electric drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]">Sin Límites</span>
                         </h2>
@@ -298,7 +298,7 @@ export function EscuelaLandingContent() {
                                     </div>
                                     <div>
                                         <h4 className="text-white font-bold text-lg">Certificación Oficial</h4>
-                                        <p className="text-gray-500">Todos nuestros cursos son válidos ante la Dirección del Trabajo y empresas mineras.</p>
+                                        <p className="text-gray-500">Todos nuestros cursos certificados ante el Ministerio de Transporte.</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">

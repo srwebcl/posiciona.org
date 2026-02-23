@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, MapPin, Phone, Youtube, Linkedin, Facebook } from "lucide-react";
+import { Mail, MapPin, Phone, Youtube, Linkedin, Facebook, Instagram } from "lucide-react";
 import { TechButton } from "@/app/components/ui/tech-button";
 import { BrandLogo } from "@/app/components/ui/brand-logo";
 
@@ -23,6 +23,7 @@ export function Footer() {
                         <div className="flex gap-4">
                             {[
                                 { Icon: Facebook, url: "https://www.facebook.com/posiciona.org/" },
+                                { Icon: Instagram, url: "https://www.instagram.com/posiciona?igsh=MWl2ano3NXJyMW1wbw==" },
                                 { Icon: Linkedin, url: "https://www.linkedin.com/company/posiciona/" },
                                 { Icon: Youtube, url: "https://www.youtube.com/user/MultimediaPosiciona" }
                             ].map((social, i) => (

@@ -13,6 +13,8 @@ interface ContactFormProps {
     variant?: "general" | "persona" | "empresa";
     hideInterestDropdown?: boolean;
     filterCategory?: string;
+    customDropdown?: { label: string; options: string[] };
+    certificacionLayout?: boolean;
 }
 
 const EMPRESA_SERVICES = [
@@ -21,7 +23,7 @@ const EMPRESA_SERVICES = [
     "Otros Asuntos"
 ];
 
-export function ContactForm({ prefilledInterest, className, variant = "general", hideInterestDropdown = false, filterCategory }: ContactFormProps) {
+export function ContactForm({ prefilledInterest, className, variant = "general", hideInterestDropdown = false, filterCategory, customDropdown, certificacionLayout = false }: ContactFormProps) {
     const searchParams = useSearchParams();
     const [interest, setInterest] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -126,110 +128,220 @@ export function ContactForm({ prefilledInterest, className, variant = "general",
                 </div>
             )}
 
-            {/* --- COMMON FIELDS: Name & Rut (Persona) / Contact Name (Empresa) --- */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">
-                        {variant === "empresa" ? "Nombre de Contacto" : "Nombre Completo"}
-                    </label>
-                    <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-sm"
-                        placeholder="Juan Pérez"
-                    />
-                </div>
-
-                {/* RUT Field only for Persona */}
-                {variant === "persona" && (
-                    <div>
-                        <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">RUT (Opcional)</label>
-                        <input
-                            type="text"
-                            name="rut"
-                            value={formData.rut}
-                            onChange={handleChange}
-                            className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-sm"
-                            placeholder="12.345.678-9"
-                        />
-                    </div>
-                )}
-
-                {variant !== "persona" && (
-                    <div>
-                        <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">Teléfono</label>
-                        <input
-                            type="tel"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            required
-                            className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-sm"
-                            placeholder="+56 9 1234 5678"
-                        />
-                    </div>
-                )}
-            </div>
-
-            {/* --- MIXED FIELDS BLOCK (Correo, Phone, Interest) --- */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* 1. Email (Always Present, Half Width here) */}
-                <div>
-                    <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">CORREO</label>
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-sm"
-                        placeholder="contacto@email.com"
-                    />
-                </div>
-
-                {/* 2. Phone for Persona (As second column next to email) */}
-                {variant === "persona" && (
-                    <div>
-                        <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">Teléfono</label>
-                        <input
-                            type="tel"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            required
-                            className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-sm"
-                            placeholder="+56 9 1234 5678"
-                        />
-                    </div>
-                )}
-
-                {/* 3. Interest for Empresa (As second column next to email) */}
-                {variant === "empresa" && !hideInterestDropdown && (
-                    <div>
-                        <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">Servicio de Interés</label>
-                        <div className="relative">
-                            <select
-                                value={interest}
-                                onChange={(e) => setInterest(e.target.value)}
-                                className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all appearance-none font-medium text-sm"
-                            >
-                                <option value="" className="bg-white text-gray-400">Seleccionar...</option>
-                                {EMPRESA_SERVICES.map(service => (
-                                    <option key={service} value={service} className="bg-white text-gray-900">{service}</option>
-                                ))}
-                            </select>
-                            <div className="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-gray-500">
-                                <svg className="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd"></path></svg>
-                            </div>
+            {certificacionLayout ? (
+                <>
+                    {/* --- B2C CERTIFICACIONES LAYOUT --- */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">Nombre Completo</label>
+                            <input
+                                type="text"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                required
+                                className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-sm"
+                                placeholder="Juan Pérez"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">Correo Electrónico</label>
+                            <input
+                                type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                                className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-sm"
+                                placeholder="contacto@correo.com"
+                            />
                         </div>
                     </div>
-                )}
-            </div>
 
-            {/* --- EXTRA FULL WIDTH ROWS (Interest for Persona, since Phone took the spot) --- */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">Teléfono</label>
+                            <input
+                                type="tel"
+                                name="phone"
+                                value={formData.phone}
+                                onChange={handleChange}
+                                required
+                                className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-sm"
+                                placeholder="+56 9 1234 5678"
+                            />
+                        </div>
+                        {customDropdown && (
+                            <div>
+                                <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">{customDropdown.label}</label>
+                                <div className="relative">
+                                    <select
+                                        value={interest}
+                                        onChange={(e) => setInterest(e.target.value)}
+                                        required
+                                        className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all appearance-none font-medium text-sm"
+                                    >
+                                        <option value="" className="bg-white text-gray-400">Seleccionar...</option>
+                                        {customDropdown.options.map(opt => (
+                                            <option key={opt} value={opt} className="bg-white text-gray-900">{opt}</option>
+                                        ))}
+                                    </select>
+                                    <div className="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-gray-500">
+                                        <svg className="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd"></path></svg>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </>
+            ) : (
+                <>
+                    {/* --- COMMON FIELDS: Name & Rut (Persona) / Contact Name (Empresa) --- */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">
+                                {variant === "empresa" ? "Nombre de Contacto" : "Nombre Completo"}
+                            </label>
+                            <input
+                                type="text"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                required
+                                className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-sm"
+                                placeholder="Juan Pérez"
+                            />
+                        </div>
+
+                        {/* RUT Field only for Persona */}
+                        {variant === "persona" && (
+                            <div>
+                                <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">RUT (Opcional)</label>
+                                <input
+                                    type="text"
+                                    name="rut"
+                                    value={formData.rut}
+                                    onChange={handleChange}
+                                    className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-sm"
+                                    placeholder="12.345.678-9"
+                                />
+                            </div>
+                        )}
+
+                        {variant !== "persona" && (
+                            <div>
+                                <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">Teléfono</label>
+                                <input
+                                    type="tel"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-sm"
+                                    placeholder="+56 9 1234 5678"
+                                />
+                            </div>
+                        )}
+                    </div>
+
+                    {/* --- MIXED FIELDS BLOCK (Correo + Campo Variable según variante) --- */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {/* 1. Email (Always present in Column 1) */}
+                        <div>
+                            <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">Correo Electrónico</label>
+                            <input
+                                type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                                className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-sm"
+                                placeholder="contacto@empresa.com"
+                            />
+                        </div>
+
+                        {/* 2. Variable Column 2 */}
+
+                        {/* Custom Dropdown (overrides default specific interests if provided) */}
+                        {customDropdown && (
+                            <div>
+                                <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">{customDropdown.label}</label>
+                                <div className="relative">
+                                    <select
+                                        value={interest}
+                                        onChange={(e) => setInterest(e.target.value)}
+                                        required
+                                        className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all appearance-none font-medium text-sm"
+                                    >
+                                        <option value="" className="bg-white text-gray-400">Seleccionar...</option>
+                                        {customDropdown.options.map(opt => (
+                                            <option key={opt} value={opt} className="bg-white text-gray-900">{opt}</option>
+                                        ))}
+                                    </select>
+                                    <div className="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-gray-500">
+                                        <svg className="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd"></path></svg>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* For General: Subject */}
+                        {variant === "general" && !customDropdown && (
+                            <div>
+                                <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">Asunto</label>
+                                <input
+                                    type="text"
+                                    name="asunto"
+                                    onChange={(e) => setInterest(e.target.value)}
+                                    value={interest}
+                                    className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-sm"
+                                    placeholder="Consultas generales..."
+                                />
+                            </div>
+                        )}
+
+                        {/* For Persona: Phone */}
+                        {variant === "persona" && (
+                            <div>
+                                <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">Teléfono</label>
+                                <input
+                                    type="tel"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-sm"
+                                    placeholder="+56 9 1234 5678"
+                                />
+                            </div>
+                        )}
+
+                        {/* For Empresa: Interest Dropdown */}
+                        {variant === "empresa" && !hideInterestDropdown && !customDropdown && (
+                            <div>
+                                <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">Servicio de Interés</label>
+                                <div className="relative">
+                                    <select
+                                        value={interest}
+                                        onChange={(e) => setInterest(e.target.value)}
+                                        className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all appearance-none font-medium text-sm"
+                                    >
+                                        <option value="" className="bg-white text-gray-400">Seleccionar...</option>
+                                        {EMPRESA_SERVICES.map(service => (
+                                            <option key={service} value={service} className="bg-white text-gray-900">{service}</option>
+                                        ))}
+                                    </select>
+                                    <div className="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-gray-500">
+                                        <svg className="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd"></path></svg>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </>
+            )}
+
+            {/* --- EXTRA FULL WIDTH ROWS --- */}
             {variant === "persona" && !hideInterestDropdown && (
                 <div>
                     <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">Curso de Interés</label>
@@ -250,21 +362,6 @@ export function ContactForm({ prefilledInterest, className, variant = "general",
                             <svg className="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd"></path></svg>
                         </div>
                     </div>
-                </div>
-            )}
-
-            {/* --- GENERAL: Subject --- */}
-            {variant === "general" && (
-                <div>
-                    <label className="block text-xs font-bold text-gray-300 mb-1 uppercase tracking-wider">Asunto</label>
-                    <input
-                        type="text"
-                        name="asunto" // mapped to message or separate? let's stick to standard payload
-                        onChange={(e) => setInterest(e.target.value)} // Re-using interest as subject for general
-                        value={interest}
-                        className="w-full bg-white border border-gray-300 rounded-lg p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-sm"
-                        placeholder="Consultas generales, sugerencias..."
-                    />
                 </div>
             )}
 

@@ -249,7 +249,7 @@ export function Navbar() {
                             <div className="grid md:grid-cols-2 gap-4 md:gap-6 relative z-10">
                                 {/* OTEC Card */}
                                 <a
-                                    href="https://aulavirtual.thelondonbridge.cl/"
+                                    href="https://aulavirtual.thelondonbridge.cl/login/index.php"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={() => setIsAulaModalOpen(false)}

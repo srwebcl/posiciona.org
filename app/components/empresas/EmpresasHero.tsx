@@ -12,14 +12,14 @@ const SLIDES = [
         video: "/imagenes/cursos.mp4",
         title: "Potencia tu Capital Humano",
         subtitle: "Somos un OTEC con amplia experiencia. Especialistas en cursos de Conducción Profesional con y sin Franquicia Tributaria, además de soluciones a medida para tu equipo.",
-        cta: { text: "Cotizar Capacitación", href: "/empresas/contacto", icon: Users, variant: "primary" as const }
+        cta: { text: "Ir a Capacitaciones", href: "/empresas/capacitaciones", icon: Users, variant: "primary" as const }
     },
     {
         id: "certificacion",
         video: "/imagenes/simulador.mp4",
         title: "Certificación de Calidad",
         subtitle: "Asegure la excelencia de sus procesos con certificación NCh 2728 y evaluación de competencias laborales. Cotice su proyecto hoy.",
-        cta: { text: "Asesoría Directa", href: "/empresas/contacto", icon: FileCheck, variant: "secondary" as const }
+        cta: { text: "Ir a Certificaciones", href: "/empresas/certificaciones", icon: FileCheck, variant: "secondary" as const }
     }
 ];
 

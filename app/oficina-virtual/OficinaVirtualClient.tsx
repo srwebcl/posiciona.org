@@ -61,7 +61,7 @@ export default function OficinaVirtualClient() {
                             </div>
 
                             <div className="space-y-4 flex-1">
-                                <a href="https://aulavirtual.thelondonbridge.cl/" target="_blank" className="block p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 transition-all group/item">
+                                <a href="https://aulavirtual.thelondonbridge.cl/login/index.php" target="_blank" className="block p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 transition-all group/item">
                                     <div className="flex items-center justify-between">
                                         <div className="flex items-center gap-3">
                                             <BookOpen className="w-5 h-5 text-amber-vial" />

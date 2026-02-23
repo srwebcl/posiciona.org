@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/app/components/layout/Navbar";
 import { Footer } from "@/app/components/layout/Footer";
 import { FloatingCTA } from "@/app/components/layout/FloatingCTA";
+import { WhatsAppButton } from "@/app/components/layout/WhatsAppButton";
 import { SchemaMarkup } from "@/app/components/seo/SchemaMarkup";
 
 const montserrat = Montserrat({
@@ -38,6 +39,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <FloatingCTA />
+        <WhatsAppButton />
         <SchemaMarkup />
       </body>
     </html>

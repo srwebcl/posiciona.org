@@ -10,127 +10,180 @@ export const metadata = {
     description: "Certificación de competencias laborales Wylar (ChileValora) y gestión de calidad NCh 2728.",
 };
 
+const wylarCertifications = [
+    { title: "Instalador(a) Eléctrico Clase D", desc: "Certificación bajo Sistema ChileValora", img: "/imagenes/electricista.jpeg" },
+    { title: "Cuidador(a) de Personas Mayores", desc: "Certificación bajo Sistema ChileValora", img: "/imagenes/cuidado-adulto-mayor.jpg" },
+    { title: "Calificación de Soldadores", desc: "Certificación Técnica Privada", img: "/imagenes/soldador.jpeg" },
+    { title: "Rigger y Maniobras de Izaje, entre otros", desc: "Certificación Técnica Privada", img: "/imagenes/rigger-izaje.png" }
+];
+
 export default function CertificacionesEmpresasPage() {
     return (
         <div className="min-h-screen bg-white">
             <PageHero
                 badge="Calidad y Normativa"
-                video="/imagenes/simulador.mp4"
                 title={
                     <>
-                        Certificación de <span className="text-white">Competencias Laborales</span>
+                        Certificación de <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Competencias Laborales</span>
                     </>
                 }
-                description="Asegure la calidad de sus procesos y competencias laborales con nuestros servicios de certificación y alianza estratégica Wylar."
-                align="left"
-                className="pt-32 md:pt-48 pb-20 md:pb-32"
-            >
-                <a href="#contacto">
-                    <TechButton variant="primary" size="lg" className="h-14">
-                        Consultar Certificación <ArrowRight className="ml-2 w-5 h-5" />
-                    </TechButton>
-                </a>
-            </PageHero>
+                description="Asegure la calidad de sus procesos y competencias laborales con nuestros servicios de certificación y alianza estratégica Wylar Ltda."
+            />
 
-            {/* SECCIÓN ALIANZAS Y CALIDAD (Light Theme) */}
-            <div className="py-24 bg-white relative z-10">
+            {/* SECCIÓN 1: ALIANZA WYLAR (Minimalist Focused Layout) */}
+            <div className="py-24 md:py-32 bg-white relative z-10 border-b border-gray-100/50">
                 <div className="container mx-auto px-4">
-                    <div className="text-center mb-16 max-w-3xl mx-auto">
-                        <span className="text-blue-inst font-bold tracking-widest text-sm uppercase">Excelencia Corporativa</span>
-                        <h2 className="text-3xl md:text-5xl font-black text-navy-deep mt-2 mb-6">
-                            Estándares de Calidad
-                        </h2>
-                        <p className="text-gray-500 text-lg">
-                            Validamos el "Saber Hacer" de sus colaboradores y optimizamos sus procesos bajo normativas internacionales.
-                        </p>
-                    </div>
+                    <div className="max-w-4xl mx-auto">
 
-                    <div className="grid grid-cols-1 gap-12 max-w-5xl mx-auto">
-
-                        {/* CARD 1: Alianza WYLAR */}
-                        <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100 flex flex-col md:flex-row gap-10 items-center hover:border-blue-inst/30 transition-all duration-300">
-                            <div className="flex-1">
-                                <div className="mb-6 bg-blue-inst/10 w-fit p-4 rounded-xl">
-                                    <Building2 className="w-8 h-8 text-blue-inst" />
-                                </div>
-                                <h3 className="text-3xl font-bold text-navy-deep mb-4">Alianza WYLAR</h3>
-                                <p className="text-gray-600 mb-6 font-sans text-base leading-relaxed">
-                                    Ofrecemos servicios de <strong>Certificación de Competencias Laborales</strong> a través de nuestra alianza estratégica con Wylar.
-                                </p>
-                                <p className="text-gray-600 font-sans text-base leading-relaxed">
-                                    Evalúe y reconozca formalmente los conocimientos, habilidades y aptitudes de sus trabajadores, independientemente de cómo hayan sido adquiridas.
-                                </p>
-                                <div className="mt-6">
-                                    <a href="https://wylar.cl" target="_blank" rel="noopener noreferrer" className="inline-flex items-center font-bold text-blue-inst hover:text-navy-deep group transition-colors">
-                                        Conocer más en wylar.cl <ExternalLink className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                    </a>
-                                </div>
+                        {/* Encabezado y Badge */}
+                        <div className="text-center mb-16">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50/80 text-blue-700 text-[11px] font-bold border border-blue-100/50 mb-8 tracking-[0.2em] uppercase shadow-sm">
+                                <Building2 className="w-3.5 h-3.5" /> Alianza Estratégica
                             </div>
-                            <div className="flex-shrink-0 w-full md:w-auto flex flex-col gap-4">
-                                <div className="p-2 bg-white rounded-2xl border border-gray-100 text-center min-w-[200px] shadow-sm">
-                                    <Image
-                                        src="/imagenes/Timbre Wylar.png"
-                                        alt="Alianza Wylar"
-                                        width={200}
-                                        height={100}
-                                        className="w-48 h-auto object-contain mx-auto"
-                                    />
-                                </div>
-                            </div>
+                            <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-black text-navy-deep mb-8 leading-[1.1] tracking-tight">
+                                Alianza Estratégica <br className="hidden md:block" />
+                                <span className="text-blue-inst">con WYLAR</span>
+                            </h2>
+                            <p className="text-gray-600 text-xl md:text-2xl leading-relaxed font-light">
+                                Fortalezca la competitividad de su empresa mediante la Certificación de Competencias Laborales, gracias a nuestra alianza estratégica con <strong className="font-bold text-navy-deep">WYLAR Certificadora</strong>.
+                            </p>
                         </div>
 
-                        {/* CARD 2: ISO & Calidad */}
-                        <div className="bg-gray-50 rounded-3xl p-8 md:p-12 border border-gray-100 relative overflow-hidden">
-                            <div className="absolute top-0 right-0 w-1/2 h-full bg-blue-inst/5 -skew-x-12 translate-x-1/2 z-0" />
-
-                            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                                <div>
-                                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold border border-blue-200 mb-6 uppercase tracking-wider">
-                                        <ShieldCheck className="w-4 h-4" /> Calidad Asegurada
-                                    </div>
-                                    <h2 className="text-3xl font-black text-navy-deep mb-6">
-                                        Norma Chilena <br />
-                                        <span className="text-blue-inst font-bold text-xl block mt-1">NCh 2728</span>
-                                    </h2>
-                                    <p className="text-gray-600 mb-8 leading-relaxed">
-                                        En Posiciona, la calidad no es una opción, es nuestro compromiso. Garantizamos procesos de capacitación trazables, evaluables y de alto impacto.
-                                    </p>
-
-                                    <ul className="space-y-4">
-                                        <li className="flex items-start gap-3">
-                                            <div className="mt-1 bg-white p-1 rounded-full shadow-sm"><Check className="w-3 h-3 text-blue-600" /></div>
-                                            <div>
-                                                <h4 className="text-navy-deep font-bold text-sm">Mejora Continua</h4>
-                                                <p className="text-gray-500 text-sm">Evaluación constante de nuestros relatores.</p>
+                        {/* Carrusel Infinito de Certificaciones */}
+                        <style>{`
+                            @keyframes infiniteScroll {
+                                0% { transform: translateX(0); }
+                                100% { transform: translateX(calc(-50% - 12px)); }
+                            }
+                            .animate-infinite-scroll {
+                                animation: infiniteScroll 30s linear infinite;
+                                width: max-content;
+                            }
+                            .animate-infinite-scroll:hover {
+                                animation-play-state: paused;
+                            }
+                        `}</style>
+                        <div className="w-[100vw] relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-x-hidden bg-gray-50/30 py-16 border-y border-gray-100 mb-16 [mask-image:_linear-gradient(to_right,transparent_0,_black_10vw,_black_90vw,transparent_100%)] md:[mask-image:_linear-gradient(to_right,transparent_0,_black_20vw,_black_80vw,transparent_100%)]">
+                            <div className="flex animate-infinite-scroll gap-6">
+                                {[...wylarCertifications, ...wylarCertifications].map((cert, index) => {
+                                    const isChileValora = cert.desc.toLowerCase().includes("chilevalora");
+                                    return (
+                                        <div key={index} className="w-[280px] md:w-[320px] shrink-0 bg-white rounded-2xl border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col group hover:shadow-xl transition-all duration-300 hover:border-blue-100">
+                                            <div className="h-44 relative overflow-hidden bg-gray-200">
+                                                <Image
+                                                    src={cert.img}
+                                                    alt={cert.title}
+                                                    fill
+                                                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                                />
+                                                {isChileValora && (
+                                                    <Image
+                                                        src="/imagenes/logo_chilevalora.webp"
+                                                        alt="Sello ChileValora"
+                                                        width={90}
+                                                        height={30}
+                                                        className="absolute top-3 right-3 z-10 object-contain drop-shadow-md"
+                                                    />
+                                                )}
                                             </div>
-                                        </li>
-                                        <li className="flex items-start gap-3">
-                                            <div className="mt-1 bg-white p-1 rounded-full shadow-sm"><Check className="w-3 h-3 text-blue-600" /></div>
-                                            <div>
-                                                <h4 className="text-navy-deep font-bold text-sm">Satisfacción del Cliente</h4>
-                                                <p className="text-gray-500 text-sm">Enfoque en requerimientos específicos.</p>
+                                            <div className="p-6 flex-1 flex flex-col justify-center">
+                                                <strong className="font-bold text-navy-deep block mb-2 leading-tight text-lg group-hover:text-blue-600 transition-colors">{cert.title}</strong>
+                                                <span className="text-gray-500 text-sm font-medium">{cert.desc}</span>
                                             </div>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div className="relative">
-                                    <div className="bg-white rounded-2xl p-6 shadow-md border border-gray-100 transform rotate-1 hover:rotate-0 transition-transform duration-500">
-                                        <Image
-                                            src="/imagenes/nch2728.png"
-                                            alt="Certificación NCh 2728"
-                                            width={500}
-                                            height={400}
-                                            className="w-full h-auto object-contain rounded-lg mb-4"
-                                        />
-                                        <div className="text-center">
-                                            <p className="text-gray-500 text-xs uppercase tracking-widest font-bold">Certificación Vigente</p>
                                         </div>
-                                    </div>
-                                </div>
+                                    );
+                                })}
                             </div>
                         </div>
 
+                        {/* Cierre / Call to Action Textual */}
+                        <div className="text-center">
+                            <div className="mb-10 text-xl font-medium text-gray-600 leading-relaxed max-w-3xl mx-auto space-y-6">
+                                <p>
+                                    Asegure personal competente, reduzca riesgos operacionales y cumpla con estándares técnicos exigidos por la industria.
+                                </p>
+                                <p>
+                                    Evalúe y certifique formalmente las competencias de sus trabajadores, transformando su experiencia en respaldo verificable que aumenta la productividad, mejora la seguridad y fortalece la imagen de su empresa frente a clientes y organismos fiscalizadores.
+                                </p>
+                            </div>
+
+                            <p className="text-navy-deep font-black text-2xl md:text-3xl mb-12">
+                                Más confianza, menos riesgos y mayor competitividad para su organización.
+                            </p>
+
+                            <div className="flex flex-col items-center justify-center gap-6 pt-10 border-t border-gray-100">
+                                <Image
+                                    src="/imagenes/Timbre Wylar.png"
+                                    alt="Logo Wylar Certificadora"
+                                    width={160}
+                                    height={60}
+                                    className="w-40 h-auto object-contain mb-2"
+                                />
+                                <a href="https://wylar.cl" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center bg-gray-900 text-white font-bold px-8 py-4 rounded-xl hover:bg-blue-inst hover:shadow-xl hover:shadow-blue-inst/20 hover:-translate-y-1 transition-all duration-300 group text-lg">
+                                    Conoce más en wylar.cl <ExternalLink className="ml-3 w-5 h-5 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            {/* SECCIÓN 2: CALIDAD ISO NCH 2728 (Light Gray Minimalist Section) */}
+            <div className="py-24 bg-gray-50 relative z-10 overflow-hidden">
+                <div className="container mx-auto px-4 relative z-10">
+                    <div className="max-w-5xl mx-auto">
+
+                        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 items-center">
+
+                            {/* Text Column */}
+                            <div className="md:col-span-7">
+                                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold border border-emerald-100 mb-8 tracking-[0.2em] uppercase">
+                                    <ShieldCheck className="w-3.5 h-3.5" /> Calidad Asegurada
+                                </div>
+                                <h2 className="text-3xl md:text-4xl font-black text-navy-deep mb-6 leading-tight">
+                                    Norma Chilena <br />
+                                    <span className="text-blue-inst font-normal">ISO NCh 2728</span>
+                                </h2>
+                                <p className="text-gray-600 mb-8 text-lg md:text-xl leading-relaxed font-light">
+                                    En Posiciona, la calidad no es una opción, es nuestro compromiso inquebrantable. Garantizamos procesos de capacitación corporativa trazables y de alto impacto.
+                                </p>
+
+                                <ul className="space-y-6">
+                                    <li className="flex items-start gap-4">
+                                        <div className="mt-1 bg-white border border-gray-100 shadow-sm p-2 rounded-xl shrink-0"><Check className="w-4 h-4 text-emerald-600" /></div>
+                                        <div>
+                                            <h4 className="text-navy-deep font-bold text-base mb-1 tracking-wide">Mejora Continua del Servicio</h4>
+                                            <p className="text-gray-500 text-base leading-relaxed">Evaluación constante de nuestros relatores, diseño instruccional y soporte logístico empresarial.</p>
+                                        </div>
+                                    </li>
+                                    <li className="flex items-start gap-4">
+                                        <div className="mt-1 bg-white border border-gray-100 shadow-sm p-2 rounded-xl shrink-0"><Check className="w-4 h-4 text-emerald-600" /></div>
+                                        <div>
+                                            <h4 className="text-navy-deep font-bold text-base mb-1 tracking-wide">Satisfacción del Cliente B2B</h4>
+                                            <p className="text-gray-500 text-base leading-relaxed">Enfoque consultivo en requerimientos específicos para el cumplimiento de objetivos organizacionales.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            {/* Image Column (Clean Insignia) */}
+                            <div className="md:col-span-5 flex justify-center md:justify-end">
+                                <div className="bg-white rounded-[2rem] p-8 md:p-12 shadow-xl border border-gray-100 w-full max-w-sm flex flex-col items-center">
+                                    <Image
+                                        src="/imagenes/nch2728.png"
+                                        alt="Certificación NCh 2728"
+                                        width={400}
+                                        height={300}
+                                        className="w-full h-auto object-contain mb-8 mix-blend-multiply"
+                                    />
+                                    <div className="w-full text-center pt-6 border-t border-gray-50">
+                                        <p className="text-gray-400 text-[10px] uppercase tracking-[0.2em] font-bold">Certificación Vigente</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -148,7 +201,12 @@ export default function CertificacionesEmpresasPage() {
                         </div>
                         <div className="relative z-10 max-w-lg mx-auto">
                             <Suspense fallback={<div className="flex justify-center py-10"><Loader2 className="w-8 h-8 animate-spin text-amber-vial" /></div>}>
-                                <ContactForm prefilledInterest="Empresas - Certificación" className="md:grid-cols-1" variant="empresa" hideInterestDropdown={true} />
+                                <ContactForm
+                                    customDropdown={{ label: "Certificación de Interés", options: wylarCertifications.map(c => c.title) }}
+                                    className="md:grid-cols-1"
+                                    variant="empresa"
+                                    hideInterestDropdown={true}
+                                />
                             </Suspense>
                             <div className="mt-8 pt-8 border-t border-white/10 flex justify-center gap-8 text-sm">
                                 <a href="mailto:posiciona@posiciona.org" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors">

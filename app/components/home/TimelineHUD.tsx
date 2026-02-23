@@ -19,7 +19,7 @@ const history: HistoryItem[] = [
     { year: 2019, title: "Pioneros en Tech", text: "Talento Digital (Ciclo 1): Formación especializada en Front-End, Full Stack JS y Python." },
     { year: 2021, title: "Reinvéntate y Cesantía", text: "Fuerte ejecución de Fondos de Cesantía Solidario y cursos Reinvéntate para la reconversión laboral." },
     { year: 2024, title: "Consolidación Empleabilidad", text: "Programa Talento Digital y ejecución exitosa de más de 26 cursos en el año con alta empleabilidad." },
-    { year: 2025, title: "Escuela Profesional A3", text: "Primera escuela acreditada con Simulador Europeo. Curso Especial 2 años." },
+    { year: 2025, title: "Escuela de Conductores Profesionales", text: "Primera escuela acreditada con Simulador Europeo. Curso Especial 2 años." },
     { year: 2026, title: "Proyección Tecnológica", text: "Web, Cloud & Security. Ejecución de 26+ nuevos cursos online." },
 ];
 
