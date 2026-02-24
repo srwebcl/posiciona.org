@@ -28,6 +28,7 @@ export function Navbar() {
     const isEmpresas = pathname.startsWith("/empresas");
     const isSubPortal = isPersonas || isEmpresas;
     const isEscuelaLanding = pathname === "/personas/escuela-conductores";
+    const isGracias = pathname === "/gracias";
 
     // Dynamic Navigation Links
     const coursesHref = pathname === "/personas" ? "#catalogo" : "/personas#catalogo";
@@ -89,14 +90,16 @@ export function Navbar() {
                     isSubPortal ? "top-9" : "top-0", // Push down if TopBar exists
                     isScrolled
                         ? "bg-navy-deep/95 backdrop-blur-md border-b border-white/10 py-3 shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
-                        : "bg-transparent py-6"
+                        : isGracias
+                            ? "bg-white py-6 shadow-sm border-b border-gray-100"
+                            : "bg-transparent py-6"
                 )}
             >
                 <div className="container mx-auto px-6 max-w-7xl">
                     <div className="flex items-center justify-between">
                         {/* 1. Logo (Enhanced Size) */}
                         <Link href={isPersonas ? "/personas" : isEmpresas ? "/empresas" : "/"} className="relative block group shrink-0">
-                            <BrandLogo className="w-40 h-10 md:w-56 md:h-14 xl:w-64 xl:h-16" variant="white" />
+                            <BrandLogo className="w-40 h-10 md:w-56 md:h-14 xl:w-64 xl:h-16" variant={!isScrolled && isGracias ? "default" : "white"} />
                             {/* Glow effect on hover */}
                             <div className="absolute inset-0 bg-white/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                         </Link>
@@ -111,10 +114,12 @@ export function Navbar() {
                                         href={link.href}
                                         className={cn(
                                             "relative px-3 xl:px-4 py-2 text-xs xl:text-sm font-bold uppercase tracking-wide xl:tracking-wider whitespace-nowrap rounded-full transition-all duration-300",
-                                            link.type === "primary" ? "hover:bg-white/10" : "hover:text-amber-vial",
+                                            link.type === "primary"
+                                                ? (!isScrolled && isGracias ? "hover:bg-navy-deep/10" : "hover:bg-white/10")
+                                                : "hover:text-amber-vial",
                                             isActive
-                                                ? "text-white"
-                                                : "text-gray-300"
+                                                ? (!isScrolled && isGracias ? "text-navy-deep" : "text-white")
+                                                : (!isScrolled && isGracias ? "text-slate-600" : "text-gray-300")
                                         )}
                                     >
                                         {link.name}
@@ -143,7 +148,10 @@ export function Navbar() {
                             </div>
 
                             <button
-                                className="lg:hidden text-white hover:text-amber-vial transition-colors p-2"
+                                className={cn(
+                                    "lg:hidden transition-colors p-2",
+                                    !isScrolled && isGracias ? "text-navy-deep hover:text-amber-vial" : "text-white hover:text-amber-vial"
+                                )}
                                 onClick={() => setIsMobileMenuOpen(true)}
                             >
                                 <Menu className="w-8 h-8" />

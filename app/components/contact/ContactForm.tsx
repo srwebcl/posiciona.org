@@ -7,6 +7,7 @@ import { Send, Loader2 } from "lucide-react";
 import { cn } from "@/app/lib/utils";
 import { COURSES } from "@/app/data/courses"; // Import courses for dropdown
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { BrandLogo } from "@/app/components/ui/brand-logo";
 
 interface ContactFormProps {
     prefilledInterest?: string;
@@ -29,8 +30,9 @@ export function ContactForm({ prefilledInterest, className, variant = "general",
     const router = useRouter();
     const [interest, setInterest] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isRedirecting, setIsRedirecting] = useState(false);
     const [submitError, setSubmitError] = useState("");
+    const [error, setError] = useState(""); // Added as per instruction
     const { executeRecaptcha } = useGoogleReCaptcha();
 
     // Dynamic fields state
@@ -108,12 +110,8 @@ export function ContactForm({ prefilledInterest, className, variant = "general",
             const data = await res.json().catch(() => ({}));
 
             if (res.ok) {
-                setIsSubmitted(true);
-                // Retrasar redirección para que el usuario alcance a leer el globo de éxito
-                setTimeout(() => {
-                    window.scrollTo(0, 0);
-                    router.push("/gracias");
-                }, 1800);
+                setIsRedirecting(true);
+                router.push("/gracias");
             } else {
                 console.error("Error submitting form", data);
                 setSubmitError(data.message || "Ocurrió un error al enviar el formulario. Por favor intente nuevamente.");
@@ -126,12 +124,16 @@ export function ContactForm({ prefilledInterest, className, variant = "general",
         }
     };
 
-    if (isSubmitted) {
+    if (isRedirecting) {
         return (
-            <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-8 text-center animate-fade-in-up">
-                <h3 className="text-2xl font-bold text-white mb-2">¡Mensaje Enviado!</h3>
-                <p className="text-gray-300">Hemos recibido su solicitud. Un ejecutivo de Posiciona le contactará a la brevedad al correo proporcionado.</p>
-                <Button variant="outline" className="mt-6 border-white/20 text-white hover:bg-white/10" onClick={() => setIsSubmitted(false)}>Enviar otro mensaje</Button>
+            <div className="flex flex-col items-center justify-center py-20 text-center animate-fade-in-up">
+                <div className="mb-6 relative">
+                    <div className="absolute inset-0 bg-white/20 blur-xl rounded-full animate-pulse" />
+                    <BrandLogo variant="default" className="w-48 h-12 relative z-10" />
+                </div>
+                <Loader2 className="w-8 h-8 text-amber-vial animate-spin mx-auto mb-4" />
+                <h3 className="text-xl font-bold mb-2 text-navy-deep">Procesando solicitud...</h3>
+                <p className="text-gray-500">Por favor espere un momento.</p>
             </div>
         );
     }

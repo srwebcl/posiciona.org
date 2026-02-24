@@ -77,8 +77,12 @@ export default function AdminLogin() {
                 <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-96 h-96 bg-amber-vial/10 rounded-full blur-3xl shadow-2xl"></div>
                 <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-96 h-96 bg-white/5 rounded-full blur-3xl shadow-2xl"></div>
 
-                <div className="relative z-10">
-                    <BrandLogo variant="white" className="w-64 h-16 md:w-72 md:h-20 opacity-100" />
+                <div className="relative z-10 mb-6">
+                    <img
+                        src="/imagenes/Logo-Posiciona.webp"
+                        alt="Posiciona"
+                        className="h-16 md:h-20 w-auto filter-white drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] opacity-100 object-left"
+                    />
                 </div>
 
                 <div className="relative z-10 max-w-md">
