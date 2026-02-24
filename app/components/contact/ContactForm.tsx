@@ -63,12 +63,20 @@ export function ContactForm({ prefilledInterest, className, variant = "general",
         setIsLoading(true);
 
         let recaptchaToken = "";
-        if (executeRecaptcha) {
-            try {
-                recaptchaToken = await executeRecaptcha("contact_form");
-            } catch (error) {
-                console.error("Error generating reCAPTCHA token:", error);
-            }
+
+        if (!executeRecaptcha) {
+            console.error("reCAPTCHA not ready");
+            setIsLoading(false);
+            return; // Prevent submission if reCAPTCHA isn't ready
+        }
+
+        try {
+            // Get the reCAPTCHA token for this specific action
+            recaptchaToken = await executeRecaptcha("contact_form");
+        } catch (error) {
+            console.error("Error generating reCAPTCHA token:", error);
+            setIsLoading(false);
+            return; // Stop if we can't get the token
         }
 
         const payload = {
