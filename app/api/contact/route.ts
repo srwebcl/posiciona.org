@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { prisma } from '@/app/lib/prisma'; // Import Prisma global client
 
 export async function POST(request: Request) {
     try {
@@ -50,7 +51,28 @@ export async function POST(request: Request) {
         const subjectInterest = interest || "General";
         const formVariant = variant?.toUpperCase() || "GENERAL";
 
-        // 2. Lógica de Destinatarios y Copias
+        // 2. Guardar el Lead en la Base de Datos (Neon.tech vía Prisma)
+        try {
+            await prisma.lead.create({
+                data: {
+                    name: clientName,
+                    email: clientEmail,
+                    phone: clientPhone,
+                    variant: formVariant,
+                    interest: subjectInterest,
+                    message: clientMessage !== "Sin mensaje." ? clientMessage : null,
+                    rut: rut || null,
+                    company: company || null,
+                    role: role || null,
+                }
+            });
+            console.log(`--- LEAD GUARDADO EN DB: ${clientEmail} ---`);
+        } catch (dbError) {
+            console.error("Error al guardar Lead en base de datos:", dbError);
+            // No bloqueamos el envío de correo si falla la DB, pero lo registramos
+        }
+
+        // 3. Lógica de Destinatarios y Copias
         const isCertificacion = subjectInterest.toLowerCase().includes('certificación');
         const ccEmails = isCertificacion ? ["contacto@wylar.cl"] : [];
         const bccEmails = ["contacto@srweb.cl"]; // Copia oculta de control
