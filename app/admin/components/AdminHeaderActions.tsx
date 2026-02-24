@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { LogOut, Loader2 } from "lucide-react";
+import Link from "next/link";
 
 export function AdminHeaderActions() {
     const [isLoggingOut, setIsLoggingOut] = useState(false);
@@ -22,9 +23,13 @@ export function AdminHeaderActions() {
 
     return (
         <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-amber-vial flex items-center justify-center border border-amber-vial/50 shadow-sm">
-                <span className="text-navy-deep font-bold text-[11px]">AD</span>
-            </div>
+            <Link
+                href="/admin/perfil"
+                className="w-9 h-9 rounded-full bg-amber-vial flex items-center justify-center border-2 border-transparent hover:border-white/30 shadow-sm transition-all hover:scale-105 group relative"
+                title="Mi Perfil"
+            >
+                <span className="text-navy-deep font-bold text-sm">AD</span>
+            </Link>
 
             <div className="h-5 w-px bg-white/20 hidden sm:block" />
 

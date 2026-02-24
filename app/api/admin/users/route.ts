@@ -45,11 +45,10 @@ export async function POST(request: Request) {
             return NextResponse.json({ success: false, message: 'No Autorizado' }, { status: 403 });
         }
 
-        const { name, email, password, role: newUserRole } = await request.json();
+        const { name, email, role: requestedRole } = await request.json();
 
-        // Validaciones básicas
-        if (!name || !email || !password || !newUserRole) {
-            return NextResponse.json({ success: false, message: 'Faltan datos requeridos' }, { status: 400 });
+        if (!name || !email) {
+            return NextResponse.json({ success: false, message: "Nombre y correo son obligatorios" }, { status: 400 });
         }
 
         const existingUser = await prisma.user.findUnique({ where: { email } });
@@ -57,8 +56,10 @@ export async function POST(request: Request) {
             return NextResponse.json({ success: false, message: 'El correo ya está registrado' }, { status: 400 });
         }
 
+        // Auto-generate strong temporal password
+        const password = Math.random().toString(36).slice(-10) + Math.floor(Math.random() * 9);
         const hashedPassword = await bcrypt.hash(password, 10);
-
+        const newUserRole = requestedRole === "ADMIN" ? "ADMIN" : "USER";
         const newUser = await prisma.user.create({
             data: {
                 name,

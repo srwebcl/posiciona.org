@@ -22,7 +22,6 @@ export default function UsuariosPage() {
     const [showModal, setShowModal] = useState(false);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [role, setRole] = useState("USER");
     const [isSaving, setIsSaving] = useState(false);
 
@@ -60,7 +59,7 @@ export default function UsuariosPage() {
             const res = await fetch("/api/admin/users", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, email, password, role }),
+                body: JSON.stringify({ name, email, role }),
             });
             const data = await res.json();
             if (data.success) {
@@ -69,7 +68,6 @@ export default function UsuariosPage() {
                 // clean form
                 setName("");
                 setEmail("");
-                setPassword("");
                 setRole("USER");
             } else {
                 alert(data.message);
@@ -186,10 +184,6 @@ export default function UsuariosPage() {
                             <div>
                                 <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Correo Electrónico</label>
                                 <input type="email" required value={email} onChange={e => setEmail(e.target.value)} className="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-gray-900 focus:ring-2 focus:ring-navy-deep focus:border-transparent" placeholder="juan@posiciona.org" />
-                            </div>
-                            <div>
-                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Contraseña Inicial</label>
-                                <input type="text" required value={password} onChange={e => setPassword(e.target.value)} className="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-gray-900 focus:ring-2 focus:ring-navy-deep focus:border-transparent" placeholder="Min. 6 caracteres" />
                             </div>
                             <div>
                                 <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Rol de Permisos</label>
