@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { prisma } from '@/app/lib/prisma'; // Import Prisma global client
+import * as fs from 'fs';
+import * as path from 'path';
 
 export async function POST(request: Request) {
     try {
@@ -163,7 +165,19 @@ export async function POST(request: Request) {
 
         // B. RESPUESTA AUTOMÁTICA GLOBAL AL CLIENTE (Auto-Reply)
         if (clientEmail) {
-            await resend.emails.send({
+            let logoBase64 = '';
+            try {
+                // Leer el logo nativamente desde el disco para despacharlo como adjunto inline
+                const logoPath = path.join(process.cwd(), 'public', 'imagenes', 'Logo-Posiciona.webp');
+                if (fs.existsSync(logoPath)) {
+                    const logoBuffer = fs.readFileSync(logoPath);
+                    logoBase64 = logoBuffer.toString('base64');
+                }
+            } catch (error) {
+                console.error("Error al cargar el logo para el correo:", error);
+            }
+
+            const emailPayload: any = {
                 from: 'Posiciona <contacto@posiciona.org>',
                 to: [clientEmail],
                 subject: `Hemos recibido tu solicitud en Posiciona`,
@@ -174,7 +188,10 @@ export async function POST(request: Request) {
                         <table width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; border: 1px solid #eaeaea;">
                             <tr>
                                 <td style="padding: 40px 40px 20px 40px; text-align: center;">
-                                    <h1 style="margin: 0; font-family: 'Arial Black', Impact, sans-serif; font-size: 38px; color: #1e3a8a; letter-spacing: -1px; text-transform: uppercase;">Posiciona</h1>
+                                    ${logoBase64 ?
+                        '<img src="cid:logo-posiciona" alt="Posiciona Logo" width="180" style="display: block; margin: 0 auto; outline: none; border: none; text-decoration: none;" />' :
+                        '<h1 style="margin: 0; font-family: \'Arial Black\', Impact, sans-serif; font-size: 38px; color: #1e3a8a; letter-spacing: -1px; text-transform: uppercase;">Posiciona</h1>'
+                    }
                                 </td>
                             </tr>
                             <tr>
@@ -211,7 +228,20 @@ export async function POST(request: Request) {
                     </body>
                     </html>
                 `
-            });
+            };
+
+            // Adjuntar el archivo inline
+            if (logoBase64) {
+                emailPayload.attachments = [
+                    {
+                        filename: 'logo-posiciona.webp',
+                        content: logoBase64,
+                        content_id: 'logo-posiciona', // Se vincula al cid:logo-posiciona
+                    }
+                ];
+            }
+
+            await resend.emails.send(emailPayload);
         }
 
         return NextResponse.json({ success: true });
