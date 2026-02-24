@@ -17,5 +17,7 @@ model Lead {
   rut       String?
   company   String?
   role      String?
+  status    String   @default("NUEVO")
+  notes     String?  @db.Text
   createdAt DateTime @default(now())
 }
