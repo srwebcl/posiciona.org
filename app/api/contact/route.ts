@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { prisma } from '@/app/lib/prisma'; // Import Prisma global client
-import * as fs from 'fs';
-import * as path from 'path';
 
 export async function POST(request: Request) {
     try {
@@ -106,7 +104,8 @@ export async function POST(request: Request) {
                     <table width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #e0e0e0; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
                         <tr>
                             <td style="background-color: #0f172a; padding: 20px; text-align: center; border-bottom: 4px solid #f59e0b;">
-                                <h1 style="color: #ffffff; margin: 0; font-size: 20px; text-transform: uppercase; letter-spacing: 1px;">Nuevo Lead Recibido</h1>
+                                <h1 style="color: #ffffff; margin: 0; font-family: 'Arial Black', Impact, sans-serif; font-size: 24px; letter-spacing: -0.5px;">Posiciona</h1>
+                                <p style="color: #94a3b8; margin: 5px 0 0 0; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Nuevo Lead Recibido</p>
                             </td>
                         </tr>
                         <tr>
@@ -165,18 +164,6 @@ export async function POST(request: Request) {
 
         // B. RESPUESTA AUTOMÁTICA GLOBAL AL CLIENTE (Auto-Reply)
         if (clientEmail) {
-            let logoBase64 = '';
-            try {
-                // Leer el logo nativamente desde el disco para despacharlo como adjunto inline
-                const logoPath = path.join(process.cwd(), 'public', 'imagenes', 'Logo-Posiciona.webp');
-                if (fs.existsSync(logoPath)) {
-                    const logoBuffer = fs.readFileSync(logoPath);
-                    logoBase64 = logoBuffer.toString('base64');
-                }
-            } catch (error) {
-                console.error("Error al cargar el logo para el correo:", error);
-            }
-
             const emailPayload: any = {
                 from: 'Posiciona <contacto@posiciona.org>',
                 to: [clientEmail],
@@ -188,10 +175,7 @@ export async function POST(request: Request) {
                         <table width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; border: 1px solid #eaeaea;">
                             <tr>
                                 <td style="padding: 40px 40px 20px 40px; text-align: center;">
-                                    ${logoBase64 ?
-                        '<img src="cid:logo-posiciona" alt="Posiciona Logo" width="180" style="display: block; margin: 0 auto; outline: none; border: none; text-decoration: none;" />' :
-                        '<h1 style="margin: 0; font-family: \'Arial Black\', Impact, sans-serif; font-size: 38px; color: #1e3a8a; letter-spacing: -1px; text-transform: uppercase;">Posiciona</h1>'
-                    }
+                                    <h1 style="margin: 0; font-family: 'Arial Black', Impact, sans-serif; font-size: 38px; color: #1e3a8a; letter-spacing: -1px;">Posiciona</h1>
                                 </td>
                             </tr>
                             <tr>
@@ -226,20 +210,8 @@ export async function POST(request: Request) {
                             </tr>
                         </table>
                     </body>
-                    </html>
                 `
             };
-
-            // Adjuntar el archivo inline
-            if (logoBase64) {
-                emailPayload.attachments = [
-                    {
-                        filename: 'logo-posiciona.webp',
-                        content: logoBase64,
-                        content_id: 'logo-posiciona', // Se vincula al cid:logo-posiciona
-                    }
-                ];
-            }
 
             await resend.emails.send(emailPayload);
         }

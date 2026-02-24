@@ -80,7 +80,9 @@ export default function AdminLogin() {
                 <div className="relative z-10"></div>
 
                 <div className="relative z-10 max-w-md">
-                    <BrandLogo variant="white" className="w-32 h-auto opacity-80 mb-5" />
+                    <h2 className="text-xl font-black text-white mb-6 uppercase tracking-widest opacity-90">
+                        Posiciona
+                    </h2>
                     <h1 className="text-3xl font-bold text-white mb-4">
                         Sistema de Gestión Comercial y CRM
                     </h1>
