@@ -1,4 +1,5 @@
 import { BrandLogo } from "@/app/components/ui/brand-logo";
+import { AdminHeaderActions } from "./components/AdminHeaderActions";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
     return (
@@ -14,11 +15,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                             </span>
                         </div>
 
-                        <div className="flex items-center gap-3">
-                            <div className="w-7 h-7 rounded-full bg-amber-vial flex items-center justify-center border border-amber-vial/50 shadow-sm">
-                                <span className="text-navy-deep font-bold text-[10px]">AD</span>
-                            </div>
-                        </div>
+                        <AdminHeaderActions />
                     </div>
                 </div>
             </nav>

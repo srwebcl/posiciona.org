@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { Loader2, Search, Filter, Mail, Phone, Building, Briefcase, Calendar, CheckSquare, User, FileText, Download, Upload } from "lucide-react";
+import { Loader2, Search, Filter, Mail, Phone, Building, Briefcase, Calendar, CheckSquare, User, FileText, Download, Upload, LayoutDashboard } from "lucide-react";
+import Link from "next/link";
 import * as XLSX from "xlsx";
 
 interface Lead {
@@ -42,6 +43,7 @@ export default function AdminDashboard() {
     const [loading, setLoading] = useState(true);
     const [activeFilter, setActiveFilter] = useState("");
     const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
+    const [myRole, setMyRole] = useState<string | null>(null);
 
     // Modal forms states
     const [editStatus, setEditStatus] = useState("");
@@ -52,22 +54,26 @@ export default function AdminDashboard() {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const [isProcessingExcel, setIsProcessingExcel] = useState(false);
 
-    const fetchLeads = async (filter: string = "") => {
+    const fetchRoleAndLeads = async (filter: string = "") => {
         setLoading(true);
         try {
+            const roleRes = await fetch('/api/admin/auth/me');
+            const roleData = await roleRes.json();
+            setMyRole(roleData.role);
+
             const url = filter ? `/api/admin/leads?filter=${filter}` : '/api/admin/leads';
             const res = await fetch(url);
             const data = await res.json();
             if (data.success) setLeads(data.leads);
         } catch (error) {
-            console.error("Error fetching leads:", error);
+            console.error("Error fetching data:", error);
         } finally {
             setLoading(false);
         }
     };
 
     useEffect(() => {
-        fetchLeads(activeFilter);
+        fetchRoleAndLeads(activeFilter);
     }, [activeFilter]);
 
     const handleFilterChange = (val: string) => {
@@ -165,7 +171,7 @@ export default function AdminDashboard() {
 
                 if (apiResult.success) {
                     alert(`¡Éxito! Se procesaron ${apiResult.imported} leads exitosamente.`);
-                    fetchLeads(activeFilter);
+                    fetchRoleAndLeads(activeFilter);
                 } else {
                     alert("Error durante la importación: " + (apiResult.error || "Formato de columnas incorrecto. Asegúrate de usar la plantilla exportada."));
                 }
@@ -183,17 +189,23 @@ export default function AdminDashboard() {
 
     return (
         <div className="flex bg-gray-50 h-[calc(100vh-56px)] overflow-hidden">
-            {/* Sidebar Menu */}
             <aside className="w-full md:w-64 bg-navy-deep border-r border-navy-deep/80 p-4 overflow-y-auto hidden md:block shrink-0">
                 <div className="flex items-center gap-2 text-white/50 font-bold mb-6 text-xs uppercase tracking-wider">
                     <Briefcase className="w-4 h-4" /> Módulos
                 </div>
-                <ul className="space-y-2">
+                <ul className="space-y-3">
                     <li>
-                        <button className="w-full text-left px-4 py-3 rounded-xl text-sm transition-all font-medium border bg-white/10 text-white border-white/20 shadow-sm flex items-center gap-3">
-                            <User className="w-4 h-4" /> Gestión de Contactos
-                        </button>
+                        <Link href="/admin" className="w-full text-left px-4 py-3 rounded-xl text-sm transition-all font-medium border bg-white/10 text-white border-white/20 shadow-sm flex items-center gap-3">
+                            <LayoutDashboard className="w-4 h-4" /> Oficina Virtual
+                        </Link>
                     </li>
+                    {myRole === "ADMIN" && (
+                        <li>
+                            <Link href="/admin/usuarios" className="w-full text-left px-4 py-3 rounded-xl text-sm transition-all font-medium border border-transparent hover:bg-white/5 text-white/70 hover:text-white flex items-center gap-3">
+                                <User className="w-4 h-4" /> Gestión de Equipo
+                            </Link>
+                        </li>
+                    )}
                 </ul>
             </aside>
 

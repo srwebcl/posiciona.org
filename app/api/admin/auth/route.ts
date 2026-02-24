@@ -1,23 +1,41 @@
 import { NextResponse } from 'next/server';
+import { prisma } from '@/app/lib/prisma';
+import bcrypt from 'bcryptjs';
 
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        const { password } = body;
+        const { email, password } = body;
 
-        const adminPassword = process.env.ADMIN_PASSWORD || 'posiciona123'; // Falback si no está seteado
-
-        if (password !== adminPassword) {
-            return NextResponse.json({ success: false, message: "Contraseña incorrecta" }, { status: 401 });
+        if (!email || !password) {
+            return NextResponse.json({ success: false, message: "Faltan credenciales" }, { status: 400 });
         }
 
-        const response = NextResponse.json({ success: true });
+        // Buscar al usuario
+        const user = await prisma.user.findUnique({
+            where: { email }
+        });
 
-        // Seteamos una cookie simple para validación básica
-        // En un entorno de producción estricto, esto sería un JWT, pero para un CRM simple interno es funcional.
+        if (!user) {
+            return NextResponse.json({ success: false, message: "Credenciales incorrectas" }, { status: 401 });
+        }
+
+        // Comparar contraseñas
+        const isValid = await bcrypt.compare(password, user.password);
+
+        if (!isValid) {
+            return NextResponse.json({ success: false, message: "Credenciales incorrectas" }, { status: 401 });
+        }
+
+        const response = NextResponse.json({ success: true, role: user.role });
+
+        // Crear un payload simple codificado en Base64 para la cookie
+        const payload = JSON.stringify({ id: user.id, email: user.email, role: user.role, name: user.name });
+        const cookieValue = Buffer.from(payload).toString('base64');
+
         response.cookies.set({
             name: 'admin_session',
-            value: 'authenticated',
+            value: cookieValue,
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'lax',
