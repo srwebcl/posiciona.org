@@ -85,7 +85,7 @@ export async function POST(request: Request) {
 
         console.log(`--- PROCESANDO: ${formVariant} | Escuela: ${isEscuelaConductores} ---`);
 
-        // A. ENVÍO PRINCIPAL (Para Posiciona)
+        // A. ENVÍO PRINCIPAL A VENTAS POSICIONA (Anti-Spam Format)
         await resend.emails.send({
             from: 'Web Posiciona <contacto@posiciona.org>',
             to: ['posiciona@posiciona.org'],
@@ -94,49 +94,122 @@ export async function POST(request: Request) {
             replyTo: clientEmail,
             subject: `Nuevo Contacto Web: ${formVariant} - ${subjectInterest}`,
             html: `
-                <div style="font-family: sans-serif; padding: 20px; color: #333;">
-                    <h2 style="color: #0055ff;">Nueva Solicitud de Contacto</h2>
-                    <p><strong>Curso/Interés:</strong> ${subjectInterest}</p>
-                    <p><strong>Nombre:</strong> ${clientName}</p>
-                    <p><strong>Email:</strong> ${clientEmail}</p>
-                    <p><strong>Teléfono:</strong> ${clientPhone}</p>
-                    ${rut ? `<p><strong>RUT:</strong> ${rut}</p>` : ''}
-                    ${company ? `<p><strong>Empresa:</strong> ${company} (${role ? role : 'No especificado'})</p>` : ''}
-                    <p><strong>Mensaje:</strong><br/>${clientMessage}</p>
-                </div>
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="utf-8">
+                    <title>Nuevo Lead Posiciona</title>
+                </head>
+                <body style="font-family: Arial, sans-serif; background-color: #f4f6f8; padding: 20px; color: #333333; margin: 0;">
+                    <table width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #e0e0e0; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                        <tr>
+                            <td style="background-color: #0f172a; padding: 20px; text-align: center; border-bottom: 4px solid #f59e0b;">
+                                <h1 style="color: #ffffff; margin: 0; font-size: 20px; text-transform: uppercase; letter-spacing: 1px;">Nuevo Lead Recibido</h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 30px;">
+                                <table width="100%" cellpadding="10" cellspacing="0" style="border-collapse: collapse;">
+                                    <tr>
+                                        <td width="30%" style="border-bottom: 1px solid #eeeeee; font-weight: bold; color: #64748b; font-size: 13px; text-transform: uppercase;">Módulo Web</td>
+                                        <td width="70%" style="border-bottom: 1px solid #eeeeee; font-weight: bold; color: #0f172a; font-size: 15px;">${formVariant}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid #eeeeee; font-weight: bold; color: #64748b; font-size: 13px; text-transform: uppercase;">Asunto / Curso</td>
+                                        <td style="border-bottom: 1px solid #eeeeee; font-weight: bold; color: #f59e0b; font-size: 15px;">${subjectInterest}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid #eeeeee; font-weight: bold; color: #64748b; font-size: 13px; text-transform: uppercase;">Nombre</td>
+                                        <td style="border-bottom: 1px solid #eeeeee; color: #333333;">${clientName}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid #eeeeee; font-weight: bold; color: #64748b; font-size: 13px; text-transform: uppercase;">Correo</td>
+                                        <td style="border-bottom: 1px solid #eeeeee; color: #2563eb; text-decoration: none;">${clientEmail}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid #eeeeee; font-weight: bold; color: #64748b; font-size: 13px; text-transform: uppercase;">Teléfono</td>
+                                        <td style="border-bottom: 1px solid #eeeeee; color: #333333;">${clientPhone}</td>
+                                    </tr>
+                                    ${rut ? `
+                                    <tr>
+                                        <td style="border-bottom: 1px solid #eeeeee; font-weight: bold; color: #64748b; font-size: 13px; text-transform: uppercase;">RUT</td>
+                                        <td style="border-bottom: 1px solid #eeeeee; color: #333333;">${rut}</td>
+                                    </tr>` : ''}
+                                    ${company ? `
+                                    <tr>
+                                        <td style="border-bottom: 1px solid #eeeeee; font-weight: bold; color: #64748b; font-size: 13px; text-transform: uppercase;">Empresa / Cargo</td>
+                                        <td style="border-bottom: 1px solid #eeeeee; color: #333333;">${company} <span style="color: #94a3b8; font-size: 13px;">(${role ? role : 'No especificado'})</span></td>
+                                    </tr>` : ''}
+                                </table>
+
+                                <div style="margin-top: 25px; background-color: #f8fafc; padding: 20px; border-left: 4px solid #0f172a; border-radius: 4px;">
+                                    <h3 style="margin-top: 0; color: #0f172a; font-size: 14px; text-transform: uppercase;">Mensaje del Usuario:</h3>
+                                    <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #475569; font-style: italic;">
+                                        "${clientMessage.replace(/\n/g, '<br/>')}"
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color: #f8fafc; padding: 15px; text-align: center; color: #94a3b8; font-size: 12px; border-top: 1px solid #e2e8f0;">
+                                Enviado automáticamente desde el CRM Posiciona a las ${new Date().toLocaleTimeString('es-CL')}
+                            </td>
+                        </tr>
+                    </table>
+                </body>
+                </html>
             `
         });
 
-        // B. RESPUESTA AUTOMÁTICA (Solo para Escuela de Conductores)
-        if (isEscuelaConductores && clientEmail) {
+        // B. RESPUESTA AUTOMÁTICA GLOBAL AL CLIENTE (Auto-Reply)
+        if (clientEmail) {
             await resend.emails.send({
-                from: 'Escuela de Conductores Posiciona <contacto@posiciona.org>',
+                from: 'Posiciona <contacto@posiciona.org>',
                 to: [clientEmail],
-                subject: `Información y Cotización: Curso de Conducción ${subjectInterest}`,
+                subject: `Hemos recibido tu solicitud en Posiciona`,
                 html: `
-                    <div style="font-family: sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px;">
-                        <h2 style="color: #e11d48;">¡Hola ${clientName}!</h2>
-                        <p>Gracias por interesarte en nuestra <strong>Escuela de Conductores</strong>. Aquí tienes la información sobre el curso <strong>${subjectInterest}</strong>:</p>
-                        
-                        <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; margin: 20px 0;">
-                            <h3 style="margin-top:0;">Detalles del Curso:</h3>
-                            <ul>
-                                <li><strong>Modalidad:</strong> Teórica (Online/Presencial) y Práctica.</li>
-                                <li><strong>Incluye:</strong> Material de estudio, horas de simulación y examen práctico en vehículo institucional.</li>
-                                <li><strong>Requisitos:</strong> Cédula de identidad vigente y edad mínima según ley.</li>
-                            </ul>
-                        </div>
-
-                        <p>Un ejecutivo de nuestra sede se pondrá en contacto contigo al teléfono <strong>${clientPhone}</strong> para detallar los horarios disponibles y facilidades de pago.</p>
-                        
-                        <a href="https://posiciona.org/personas/escuela-conductores" 
-                           style="display: inline-block; background: #e11d48; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold;">
-                           Ver más detalles en la web
-                        </a>
-
-                        <hr style="margin: 30px 0; border: none; border-top: 1px solid #eee;" />
-                        <p style="font-size: 12px; color: #777;">Escuela de Conductores Posiciona - Av. Principal #1234, Chile.</p>
-                    </div>
+                    <!DOCTYPE html>
+                    <html>
+                    <body style="font-family: Arial, sans-serif; background-color: #fafafa; padding: 20px; color: #333333; margin: 0;">
+                        <table width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; border: 1px solid #eaeaea;">
+                            <tr>
+                                <td style="padding: 40px 40px 20px 40px; text-align: center;">
+                                    <img src="https://posiciona.org/logo-posiciona.webp" alt="Posiciona Logo" width="180" style="display: inline-block; outline: none; border: none; text-decoration: none;" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px 40px 40px 40px;">
+                                    <h2 style="color: #0f172a; font-size: 24px; margin-bottom: 20px; text-align: center;">¡Hola ${clientName}!</h2>
+                                    
+                                    <p style="font-size: 16px; line-height: 1.6; color: #475569; margin-bottom: 20px;">
+                                        Gracias por contactarte con el equipo de <strong>Posiciona</strong>. Te escribimos para confirmar que hemos recibido exitosamente tus datos y tu solicitud referente a:
+                                    </p>
+                                    
+                                    <div style="background-color: #fffbeb; border: 1px solid #fde68a; padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 30px;">
+                                        <strong style="color: #b45309; font-size: 16px;">${subjectInterest}</strong>
+                                    </div>
+                                    
+                                    <p style="font-size: 16px; line-height: 1.6; color: #475569; margin-bottom: 30px;">
+                                        Uno de nuestros ejecutivos especializados ya ha sido notificado y se pondrá en contacto contigo muy pronto para brindarte toda la información que necesitas.
+                                    </p>
+                                    
+                                    <div style="text-align: center;">
+                                        <a href="https://posiciona.org" style="background-color: #0f172a; color: #ffffff; text-decoration: none; padding: 14px 30px; border-radius: 8px; font-weight: bold; font-size: 15px; display: inline-block;">Visitar nuestro sitio web</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="background-color: #f8fafc; padding: 25px 40px; text-align: center; border-top: 1px solid #f1f5f9;">
+                                    <p style="margin: 0; color: #94a3b8; font-size: 12px; line-height: 1.5;">
+                                        O'Higgins 1186, Piso 8. Edificio Studio, Concepción.<br/>
+                                        Posiciona Capacitación y Certificación.<br/>
+                                        Este es un correo automático, por favor no respondas directamente a esta dirección.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </body>
+                    </html>
                 `
             });
         }

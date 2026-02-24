@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Button } from "@/app/components/ui/button";
 import { Send, Loader2 } from "lucide-react";
@@ -26,6 +26,7 @@ const EMPRESA_SERVICES = [
 
 export function ContactForm({ prefilledInterest, className, variant = "general", hideInterestDropdown = false, filterCategory, customDropdown, certificacionLayout = false }: ContactFormProps) {
     const searchParams = useSearchParams();
+    const router = useRouter();
     const [interest, setInterest] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -107,7 +108,8 @@ export function ContactForm({ prefilledInterest, className, variant = "general",
             const data = await res.json().catch(() => ({}));
 
             if (res.ok) {
-                setIsSubmitted(true);
+                router.push("/gracias");
+                return; // Redirección temprana, saltarse renderizado local
             } else {
                 console.error("Error submitting form", data);
                 setSubmitError(data.message || "Ocurrió un error al enviar el formulario. Por favor intente nuevamente.");
