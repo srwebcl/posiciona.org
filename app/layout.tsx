@@ -23,9 +23,6 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Posiciona.org | Ecosistema de Formación Técnica",
   description: "Liderando la formación industrial y digital desde Arica. Cursos SENCE, Escuela de Conductores Profesional y Bootcamps.",
-  icons: {
-    icon: "/imagenes/favicon.webp",
-  },
 };
 
 export default function RootLayout({
