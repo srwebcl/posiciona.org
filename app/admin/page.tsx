@@ -21,11 +21,11 @@ interface Lead {
 }
 
 const STATUS_COLORS: Record<string, string> = {
-    NUEVO: "bg-blue-500/10 text-blue-500 border-blue-500/20",
-    CONTACTADO: "bg-amber-vial/10 text-amber-500 border-amber-vial/20",
-    "EN NEGOCIACION": "bg-purple-500/10 text-purple-400 border-purple-500/20",
-    CERRADO: "bg-emerald-500/10 text-emerald-500 border-emerald-500/20",
-    DESCARTADO: "bg-red-500/10 text-red-400 border-red-500/20"
+    NUEVO: "bg-blue-100 text-blue-700 border-blue-200",
+    CONTACTADO: "bg-amber-100 text-amber-700 border-amber-200",
+    "EN NEGOCIACION": "bg-purple-100 text-purple-700 border-purple-200",
+    CERRADO: "bg-emerald-100 text-emerald-700 border-emerald-200",
+    DESCARTADO: "bg-red-100 text-red-700 border-red-200"
 };
 
 const FILTERS = [
@@ -92,7 +92,6 @@ export default function AdminDashboard() {
             const data = await res.json();
 
             if (data.success) {
-                // Actualizar interfaz optimísticamente
                 setLeads(leads.map(l => l.id === selectedLead.id ? { ...l, status: editStatus, notes: editNotes } : l));
                 setSelectedLead(null);
             }
@@ -108,7 +107,6 @@ export default function AdminDashboard() {
     const downloadExcel = () => {
         if (leads.length === 0) return alert("No hay datos para exportar.");
 
-        // Mapear los datos para que sean legibles en el Excel
         const exportData = leads.map(l => ({
             "ID Sistema": l.id,
             "Fecha Registro": new Date(l.createdAt).toLocaleString('es-CL'),
@@ -126,7 +124,6 @@ export default function AdminDashboard() {
         }));
 
         const worksheet = XLSX.utils.json_to_sheet(exportData);
-        // Auto-estirar el ancho de las columnas
         worksheet["!cols"] = [{ wch: 10 }, { wch: 20 }, { wch: 15 }, { wch: 30 }, { wch: 15 }, { wch: 35 }, { wch: 15 }, { wch: 20 }, { wch: 40 }, { wch: 25 }, { wch: 20 }, { wch: 50 }, { wch: 50 }];
 
         const workbook = XLSX.utils.book_new();
@@ -157,7 +154,6 @@ export default function AdminDashboard() {
                     return;
                 }
 
-                // Enviar el array de datos crudos a nuestra API de importación
                 const res = await fetch('/api/admin/leads/import', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -168,7 +164,6 @@ export default function AdminDashboard() {
 
                 if (apiResult.success) {
                     alert(`¡Éxito! Se procesaron ${apiResult.imported} leads exitosamente.`);
-                    // Refrescar la tabla virtual
                     fetchLeads(activeFilter);
                 } else {
                     alert("Error durante la importación: " + (apiResult.error || "Formato de columnas incorrecto. Asegúrate de usar la plantilla exportada."));
@@ -178,7 +173,7 @@ export default function AdminDashboard() {
                 alert("Ocurrió un error inesperado al leer el archivo Excel.");
             } finally {
                 setIsProcessingExcel(false);
-                if (fileInputRef.current) fileInputRef.current.value = ""; // reset input
+                if (fileInputRef.current) fileInputRef.current.value = "";
             }
         };
 
@@ -186,13 +181,13 @@ export default function AdminDashboard() {
     };
 
     return (
-        <div className="flex flex-col h-[calc(100vh-64px)] overflow-hidden bg-[#0A0F1C]">
+        <div className="flex flex-col h-[calc(100vh-56px)] overflow-hidden bg-gray-50">
 
             {/* Top Toolbar (Import/Export) */}
-            <div className="w-full bg-navy-deep border-b border-white/5 p-4 flex justify-between items-center z-20">
+            <div className="w-full bg-navy-deep border-b border-navy-deep/80 p-4 flex justify-between items-center z-20">
                 <div className="flex items-center gap-3">
-                    <h1 className="text-white font-bold text-lg hidden sm:block">Gestión de Leads</h1>
-                    <span className="bg-amber-vial/20 text-amber-vial text-xs px-2 py-1 rounded font-bold border border-amber-vial/30">
+                    <h1 className="text-white font-bold text-lg hidden sm:block">Módulo de Ventas</h1>
+                    <span className="bg-amber-vial text-navy-deep text-xs px-2 py-1 rounded font-bold shadow-sm">
                         {loading ? "..." : leads.length} Registros
                     </span>
                 </div>
@@ -209,7 +204,7 @@ export default function AdminDashboard() {
                     <button
                         onClick={() => fileInputRef.current?.click()}
                         disabled={isProcessingExcel}
-                        className="flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 px-4 py-2 rounded-lg text-sm font-semibold transition-all shadow-sm"
+                        className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-all shadow-sm"
                     >
                         {isProcessingExcel ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
                         <span className="hidden sm:inline">Importar Base</span>
@@ -217,7 +212,7 @@ export default function AdminDashboard() {
 
                     <button
                         onClick={downloadExcel}
-                        className="flex items-center gap-2 bg-amber-vial hover:bg-amber-500 text-navy-deep px-4 py-2 rounded-lg text-sm font-bold transition-all shadow-[0_0_15px_rgba(255,176,0,0.3)] hover:shadow-[0_0_20px_rgba(255,176,0,0.5)]"
+                        className="flex items-center gap-2 bg-amber-vial hover:bg-amber-400 text-navy-deep px-4 py-2 rounded-lg text-sm font-bold transition-all shadow-sm"
                     >
                         <Download className="w-4 h-4 stroke-[2.5]" />
                         <span className="hidden sm:inline">Exportar Excel</span>
@@ -226,36 +221,45 @@ export default function AdminDashboard() {
             </div>
 
             <div className="flex flex-1 overflow-hidden relative">
-                {/* Sidebar Filters */}
-                <aside className="w-full md:w-64 bg-navy-deep/50 border-r border-white/5 p-4 overflow-y-auto hidden md:block">
-                    <div className="flex items-center gap-2 text-white/50 font-bold mb-6 text-sm uppercase tracking-wider">
-                        <Filter className="w-4 h-4" /> Categorías de Origen
+                {/* Sidebar Menu */}
+                <aside className="w-full md:w-64 bg-navy-deep border-r border-navy-deep/80 p-4 overflow-y-auto hidden md:block">
+                    <div className="flex items-center gap-2 text-white/50 font-bold mb-6 text-xs uppercase tracking-wider">
+                        <Briefcase className="w-4 h-4" /> CRM Operativo
                     </div>
                     <ul className="space-y-2">
-                        {FILTERS.map(f => (
-                            <li key={f.label}>
-                                <button
-                                    onClick={() => handleFilterChange(f.value)}
-                                    className={`w-full text-left px-4 py-3 rounded-xl text-sm transition-all font-medium border
-                                        ${activeFilter === f.value
-                                            ? "bg-amber-vial/10 text-amber-vial border-amber-vial/30 shadow-[0_0_10px_rgba(255,176,0,0.1)]"
-                                            : "text-gray-400 hover:bg-white/5 hover:text-white border-transparent"
-                                        }`}
-                                >
-                                    {f.label}
-                                </button>
-                            </li>
-                        ))}
+                        <li>
+                            <button className="w-full text-left px-4 py-3 rounded-xl text-sm transition-all font-medium border bg-white/10 text-white border-white/20 shadow-sm flex items-center gap-3">
+                                <User className="w-4 h-4" /> Gestión de Contactos
+                            </button>
+                        </li>
                     </ul>
                 </aside>
 
                 {/* Main Content: Table & Details */}
-                <div className={`flex-1 overflow-auto p-4 md:p-6 bg-gradient-to-br from-navy-deep to-[#0A0F1C] ${selectedLead ? 'hidden lg:block lg:w-1/2 opacity-50 pointer-events-none transition-opacity' : 'w-full'}`}>
+                <div className={`flex-1 overflow-auto p-4 md:p-6 bg-gray-50 ${selectedLead ? 'hidden lg:block lg:w-1/2 opacity-50 pointer-events-none transition-opacity' : 'w-full'}`}>
+
+                    {/* Desktop Floating Filters */}
+                    <div className="hidden md:flex flex-wrap gap-2 mb-6">
+                        {FILTERS.map(f => (
+                            <button
+                                key={f.label}
+                                onClick={() => handleFilterChange(f.value)}
+                                className={`px-4 py-2 rounded-full text-sm transition-all font-medium border shadow-sm flex items-center gap-2
+                                    ${activeFilter === f.value
+                                        ? "bg-navy-deep text-white border-navy-deep"
+                                        : "bg-white text-gray-600 border-gray-200 hover:border-gray-300 hover:bg-gray-50"
+                                    }`}
+                            >
+                                {activeFilter === f.value && <div className="w-1.5 h-1.5 rounded-full bg-amber-vial" />}
+                                {f.label === "Todos" ? "Todas las Categorías" : f.label}
+                            </button>
+                        ))}
+                    </div>
 
                     {/* Mobile Filter Dropdown */}
-                    <div className="md:hidden mb-4">
+                    <div className="md:hidden mb-4 relative">
                         <select
-                            className="w-full bg-navy-deep border border-white/10 text-white rounded-xl p-3 text-sm focus:ring-amber-vial focus:border-amber-vial appearance-none font-medium"
+                            className="w-full bg-white border border-gray-200 text-gray-800 rounded-xl p-3 text-sm focus:ring-navy-deep focus:border-navy-deep appearance-none font-medium shadow-sm"
                             value={activeFilter}
                             onChange={(e) => handleFilterChange(e.target.value)}
                         >
@@ -263,51 +267,52 @@ export default function AdminDashboard() {
                                 <option key={f.label} value={f.value}>{f.label === "Todos" ? "Todas las Categorías" : f.label}</option>
                             ))}
                         </select>
+                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
                     </div>
 
-                    <div className="bg-navy-deep/40 rounded-2xl shadow-xl border border-white/5 overflow-hidden backdrop-blur-md">
+                    <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
                         {loading ? (
                             <div className="flex justify-center items-center h-64">
-                                <Loader2 className="w-8 h-8 animate-spin text-amber-vial" />
+                                <Loader2 className="w-8 h-8 animate-spin text-navy-deep" />
                             </div>
                         ) : leads.length === 0 ? (
                             <div className="text-center py-20 flex flex-col items-center">
-                                <div className="w-20 h-20 rounded-full bg-white/5 flex items-center justify-center mb-6">
-                                    <Search className="w-8 h-8 text-white/20" />
+                                <div className="w-20 h-20 rounded-full bg-gray-50 flex items-center justify-center mb-6">
+                                    <Search className="w-8 h-8 text-gray-300" />
                                 </div>
-                                <p className="text-xl font-bold text-white mb-2">Base de Datos Limpia</p>
-                                <p className="text-sm text-gray-400">No se encontraron prospectos en esta categoría.</p>
+                                <p className="text-xl font-bold text-gray-800 mb-2">Base de Datos Limpia</p>
+                                <p className="text-sm text-gray-500">No se encontraron prospectos en esta categoría.</p>
                             </div>
                         ) : (
-                            <ul className="divide-y divide-white/5 max-w-full">
+                            <ul className="divide-y divide-gray-100 max-w-full">
                                 {leads.map(lead => (
                                     <li
                                         key={lead.id}
                                         onClick={() => handleLeadSelect(lead)}
-                                        className={`p-5 hover:bg-white/5 cursor-pointer transition-colors relative
-                                            ${selectedLead?.id === lead.id ? 'bg-white/5' : ''}`}
+                                        className={`p-5 hover:bg-gray-50 cursor-pointer transition-colors relative
+                                            ${selectedLead?.id === lead.id ? 'bg-amber-50/50' : ''}`}
                                     >
                                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-3">
                                             <div className="flex items-center gap-3">
-                                                <div className="w-10 h-10 rounded-full bg-navy-deep border border-white/10 flex items-center justify-center shrink-0">
-                                                    <span className="text-white font-bold text-sm">{lead.name.charAt(0).toUpperCase()}</span>
+                                                <div className="w-10 h-10 rounded-full bg-navy-deep/5 border border-navy-deep/10 flex items-center justify-center shrink-0">
+                                                    <span className="text-navy-deep font-bold text-sm">{lead.name.charAt(0).toUpperCase()}</span>
                                                 </div>
                                                 <div>
-                                                    <h3 className="font-bold text-white text-[15px] group-hover:text-amber-vial transition-colors">{lead.name}</h3>
-                                                    <div className="text-xs text-gray-400 mt-0.5">
-                                                        <span className="text-white/70">{lead.variant}</span> / {lead.interest}
+                                                    <h3 className="font-bold text-gray-900 text-[15px] group-hover:text-amber-600 transition-colors">{lead.name}</h3>
+                                                    <div className="text-xs text-gray-500 mt-0.5">
+                                                        <span className="text-navy-deep/70 font-semibold">{lead.variant}</span> / {lead.interest}
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div className={`text-[10px] px-3 py-1.5 rounded-full font-bold uppercase tracking-wider self-start sm:self-auto border ${STATUS_COLORS[lead.status] || "bg-gray-800 text-gray-300 border-gray-700"}`}>
+                                            <div className={`text-[10px] px-3 py-1.5 rounded-full font-bold uppercase tracking-wider self-start sm:self-auto border ${STATUS_COLORS[lead.status] || "bg-gray-100 text-gray-700 border-gray-200"}`}>
                                                 {lead.status}
                                             </div>
                                         </div>
 
-                                        <div className="flex flex-col sm:flex-row text-xs text-gray-400 gap-y-2 gap-x-6 sm:pl-13 mt-4">
-                                            <span className="flex items-center gap-2"><Mail className="w-3.5 h-3.5 text-white/30" /> <span className="truncate">{lead.email}</span></span>
-                                            <span className="flex items-center gap-2"><Calendar className="w-3.5 h-3.5 text-white/30" /> {new Date(lead.createdAt).toLocaleDateString('es-CL', { day: '2-digit', month: 'short', year: 'numeric' })}</span>
+                                        <div className="flex flex-col sm:flex-row text-xs text-gray-500 gap-y-2 gap-x-6 sm:pl-13 mt-4">
+                                            <span className="flex items-center gap-2"><Mail className="w-3.5 h-3.5 text-gray-400" /> <span className="truncate">{lead.email}</span></span>
+                                            <span className="flex items-center gap-2"><Calendar className="w-3.5 h-3.5 text-gray-400" /> {new Date(lead.createdAt).toLocaleDateString('es-CL', { day: '2-digit', month: 'short', year: 'numeric' })}</span>
                                         </div>
                                     </li>
                                 ))}
@@ -321,19 +326,19 @@ export default function AdminDashboard() {
                     <>
                         {/* Mobile Overlay */}
                         <div
-                            className="lg:hidden fixed inset-0 bg-black/60 z-30"
+                            className="lg:hidden fixed inset-0 bg-navy-deep/60 backdrop-blur-sm z-30"
                             onClick={() => setSelectedLead(null)}
                         />
 
-                        <div className="fixed lg:relative inset-y-0 right-0 w-full md:w-[500px] lg:w-[600px] bg-navy-deep border-l border-white/10 shadow-2xl z-40 flex flex-col transform transition-transform duration-300">
+                        <div className="fixed lg:relative inset-y-0 right-0 w-full md:w-[500px] lg:w-[600px] bg-white border-l border-gray-200 shadow-2xl z-40 flex flex-col transform transition-transform duration-300">
 
                             {/* Header */}
-                            <div className="p-5 border-b border-white/5 flex justify-between items-center bg-black/20">
+                            <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-gray-50/80">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-2 h-6 bg-amber-vial rounded-full" />
-                                    <h2 className="text-lg font-bold text-white">Ficha de Prospecto</h2>
+                                    <div className="w-2 h-6 bg-navy-deep rounded-full" />
+                                    <h2 className="text-lg font-bold text-gray-900">Ficha de Prospecto</h2>
                                 </div>
-                                <button onClick={() => setSelectedLead(null)} className="p-2 hover:bg-white/10 rounded-full text-gray-400 transition-colors">
+                                <button onClick={() => setSelectedLead(null)} className="p-2 hover:bg-gray-200 rounded-full text-gray-500 transition-colors">
                                     <span className="sr-only">Cerrar</span>
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
                                 </button>
@@ -343,64 +348,64 @@ export default function AdminDashboard() {
 
                                 {/* Info Cards */}
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div className="bg-white/5 rounded-xl p-4 border border-white/5">
+                                    <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
                                         <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-1.5"><User className="w-3.5 h-3.5" /> Cliente</label>
-                                        <p className="mt-2 text-[15px] font-semibold text-white">{selectedLead.name}</p>
+                                        <p className="mt-2 text-[15px] font-semibold text-gray-900">{selectedLead.name}</p>
                                     </div>
 
                                     {selectedLead.rut && (
-                                        <div className="bg-white/5 rounded-xl p-4 border border-white/5">
+                                        <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
                                             <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-1.5"><FileText className="w-3.5 h-3.5" /> Documento (RUT)</label>
-                                            <p className="mt-2 text-[15px] font-mono text-white">{selectedLead.rut}</p>
+                                            <p className="mt-2 text-[15px] font-mono text-gray-900">{selectedLead.rut}</p>
                                         </div>
                                     )}
 
-                                    <div className="bg-white/5 rounded-xl p-4 border border-white/5">
+                                    <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
                                         <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-1.5"><Mail className="w-3.5 h-3.5" /> Correo</label>
-                                        <a href={`mailto:${selectedLead.email}`} className="mt-2 block text-[14px] font-medium text-amber-vial hover:underline truncate">{selectedLead.email}</a>
+                                        <a href={`mailto:${selectedLead.email}`} className="mt-2 block text-[14px] font-medium text-navy-deep hover:underline truncate">{selectedLead.email}</a>
                                     </div>
 
-                                    <div className="bg-white/5 rounded-xl p-4 border border-white/5">
+                                    <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
                                         <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-1.5"><Phone className="w-3.5 h-3.5" /> Celular</label>
-                                        <a href={`tel:${selectedLead.phone}`} className="mt-2 block text-[15px] font-mono text-amber-vial hover:text-white transition-colors">{selectedLead.phone}</a>
+                                        <a href={`tel:${selectedLead.phone}`} className="mt-2 block text-[15px] font-mono text-navy-deep hover:text-amber-600 transition-colors">{selectedLead.phone}</a>
                                     </div>
 
                                     {selectedLead.company && (
-                                        <div className="md:col-span-2 bg-white/5 rounded-xl p-4 border border-white/5">
+                                        <div className="md:col-span-2 bg-gray-50 rounded-xl p-4 border border-gray-100">
                                             <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-1.5"><Building className="w-3.5 h-3.5" /> Institución / Empresa</label>
-                                            <p className="mt-2 text-[15px] font-semibold text-white">{selectedLead.company} <span className="text-gray-400 font-normal ml-2">{selectedLead.role ? `— ${selectedLead.role}` : ''}</span></p>
+                                            <p className="mt-2 text-[15px] font-semibold text-gray-900">{selectedLead.company} <span className="text-gray-500 font-normal ml-2">{selectedLead.role ? `— ${selectedLead.role}` : ''}</span></p>
                                         </div>
                                     )}
                                 </div>
 
                                 {/* Context */}
-                                <div className="bg-gradient-to-br from-amber-vial/10 to-transparent p-5 rounded-2xl border border-amber-vial/20">
+                                <div className="bg-gradient-to-br from-navy-deep/5 to-transparent p-5 rounded-2xl border border-navy-deep/10">
                                     <div className="flex items-center gap-3 mb-4">
-                                        <span className="bg-amber-vial text-navy-deep text-[10px] font-black uppercase tracking-wider px-2 py-1 rounded">Origen: {selectedLead.variant}</span>
+                                        <span className="bg-navy-deep text-white text-[10px] font-black uppercase tracking-wider px-2 py-1 rounded shadow-sm">Origen: {selectedLead.variant}</span>
                                     </div>
 
-                                    <h4 className="text-sm font-bold text-white mb-2">{selectedLead.interest}</h4>
+                                    <h4 className="text-sm font-bold text-gray-900 mb-2">{selectedLead.interest}</h4>
 
                                     {selectedLead.message && (
-                                        <div className="mt-4 pt-4 border-t border-amber-vial/10">
-                                            <p className="text-[10px] font-bold text-amber-vial/60 uppercase tracking-widest mb-2">Mensaje del Usuario</p>
-                                            <p className="text-sm text-gray-300 leading-relaxed italic border-l-2 border-amber-vial/30 pl-3">"{selectedLead.message}"</p>
+                                        <div className="mt-4 pt-4 border-t border-gray-200">
+                                            <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Mensaje del Usuario</p>
+                                            <p className="text-sm text-gray-700 leading-relaxed italic border-l-2 border-navy-deep/20 pl-3">"{selectedLead.message}"</p>
                                         </div>
                                     )}
                                 </div>
 
                                 {/* Management Tools */}
                                 <div className="pt-2">
-                                    <h3 className="font-bold text-white mb-5 flex items-center gap-2 text-sm uppercase tracking-wider"><Briefcase className="w-4 h-4 text-amber-vial" /> Herramientas de Cierre</h3>
+                                    <h3 className="font-bold text-gray-900 mb-5 flex items-center gap-2 text-sm uppercase tracking-wider"><Briefcase className="w-4 h-4 text-navy-deep" /> Herramientas de Cierre</h3>
 
                                     <div className="space-y-5">
                                         <div>
-                                            <label className="block text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-2">Estado del Trato</label>
+                                            <label className="block text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-2">Estado del Trato</label>
                                             <div className="relative">
                                                 <select
                                                     value={editStatus}
                                                     onChange={(e) => setEditStatus(e.target.value)}
-                                                    className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 text-white font-medium focus:ring-2 focus:ring-amber-vial focus:border-amber-vial appearance-none cursor-pointer hover:bg-black/60 transition-colors"
+                                                    className="w-full bg-white border border-gray-200 shadow-sm rounded-xl py-3 px-4 text-gray-900 font-medium focus:ring-2 focus:ring-navy-deep focus:border-navy-deep appearance-none cursor-pointer hover:bg-gray-50 transition-colors"
                                                 >
                                                     <option value="NUEVO">🔵 NUEVO - Recién Ingresado</option>
                                                     <option value="CONTACTADO">🟡 CONTACTADO - En conversaciones</option>
@@ -408,18 +413,18 @@ export default function AdminDashboard() {
                                                     <option value="CERRADO">🟢 CERRADO - Venta Exitosa</option>
                                                     <option value="DESCARTADO">🔴 DESCARTADO - No califica</option>
                                                 </select>
-                                                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
+                                                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">▼</div>
                                             </div>
                                         </div>
 
                                         <div>
-                                            <label className="block text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-2">Bitácora Interna</label>
+                                            <label className="block text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-2">Bitácora Interna</label>
                                             <textarea
                                                 rows={5}
                                                 value={editNotes}
                                                 onChange={(e) => setEditNotes(e.target.value)}
                                                 placeholder="Registra las llamadas, acuerdos económicos o la razón de rechazo aquí..."
-                                                className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 text-white text-sm focus:ring-2 focus:ring-amber-vial focus:border-amber-vial resize-none custom-scrollbar placeholder:text-gray-600"
+                                                className="w-full bg-white border border-gray-200 shadow-sm rounded-xl py-3 px-4 text-gray-900 text-sm focus:ring-2 focus:ring-navy-deep focus:border-navy-deep resize-none custom-scrollbar placeholder:text-gray-400"
                                             />
                                         </div>
                                     </div>
@@ -427,19 +432,19 @@ export default function AdminDashboard() {
                             </div>
 
                             {/* Action Footer */}
-                            <div className="p-5 border-t border-white/5 bg-black/40 flex justify-end gap-3 mt-auto backdrop-blur-md">
+                            <div className="p-5 border-t border-gray-200 bg-gray-50 flex justify-end gap-3 mt-auto">
                                 <button
                                     onClick={() => setSelectedLead(null)}
-                                    className="px-5 py-2.5 text-sm font-bold text-gray-300 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-colors"
+                                    className="px-5 py-2.5 text-sm font-bold text-gray-600 bg-white border border-gray-300 shadow-sm rounded-xl hover:bg-gray-50 hover:text-gray-900 transition-colors"
                                 >
                                     Cerrar Ficha
                                 </button>
                                 <button
                                     disabled={isSaving || (editStatus === selectedLead.status && editNotes === (selectedLead.notes || ""))}
                                     onClick={handleSaveLead}
-                                    className="px-6 py-2.5 text-sm font-black text-navy-deep bg-amber-vial border border-transparent rounded-xl hover:bg-amber-400 focus:ring-2 focus:ring-offset-2 focus:ring-offset-navy-deep focus:ring-amber-vial transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-[0_4px_15px_rgba(255,176,0,0.3)] hover:shadow-[0_6px_20px_rgba(255,176,0,0.4)] disabled:shadow-none"
+                                    className="px-6 py-2.5 text-sm font-black text-white bg-navy-deep border border-transparent rounded-xl hover:bg-navy-900 focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-navy-deep transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-sm disabled:shadow-none"
                                 >
-                                    {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <CheckSquare className="w-5 h-5 stroke-[2.5]" />}
+                                    {isSaving ? <Loader2 className="w-4 h-4 animate-spin text-white" /> : <CheckSquare className="w-5 h-5 stroke-[2.5]" />}
                                     Sincronizar Datos
                                 </button>
                             </div>
