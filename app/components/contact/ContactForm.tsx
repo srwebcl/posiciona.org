@@ -432,8 +432,6 @@ export function ContactForm({ prefilledInterest, className, variant = "general",
             </Button>
 
             <p className="text-center text-xs text-gray-500 mt-4">
-                Sus datos son confidenciales. Al enviar, acepta nuestra política de privacidad.
-                <br /><br />
                 Sitio protegido por reCAPTCHA. Aplican la{' '}
                 <a href="https://policies.google.com/privacy" className="underline hover:text-white" target="_blank" rel="noopener noreferrer">Política de Privacidad</a>
                 {' '}y los{' '}
