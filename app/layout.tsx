@@ -6,6 +6,7 @@ import { Footer } from "@/app/components/layout/Footer";
 import { FloatingCTA } from "@/app/components/layout/FloatingCTA";
 import { WhatsAppButton } from "@/app/components/layout/WhatsAppButton";
 import { SchemaMarkup } from "@/app/components/seo/SchemaMarkup";
+import { ReCaptchaProvider } from "@/app/components/providers/ReCaptchaProvider";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -33,14 +34,16 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${montserrat.variable} ${jetbrainsMono.variable} antialiased bg-navy-deep text-white selection:bg-amber-vial selection:text-navy-deep relative overflow-x-hidden`}
       >
-        <Navbar />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <Footer />
-        <FloatingCTA />
-        <WhatsAppButton />
-        <SchemaMarkup />
+        <ReCaptchaProvider>
+          <Navbar />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <Footer />
+          <FloatingCTA />
+          <WhatsAppButton />
+          <SchemaMarkup />
+        </ReCaptchaProvider>
       </body>
     </html>
   );

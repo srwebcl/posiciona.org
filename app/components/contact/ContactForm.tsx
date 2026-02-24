@@ -6,6 +6,7 @@ import { Button } from "@/app/components/ui/button";
 import { Send, Loader2 } from "lucide-react";
 import { cn } from "@/app/lib/utils";
 import { COURSES } from "@/app/data/courses"; // Import courses for dropdown
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 interface ContactFormProps {
     prefilledInterest?: string;
@@ -28,6 +29,7 @@ export function ContactForm({ prefilledInterest, className, variant = "general",
     const [interest, setInterest] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const { executeRecaptcha } = useGoogleReCaptcha();
 
     // Dynamic fields state
     const [formData, setFormData] = useState({
@@ -60,11 +62,21 @@ export function ContactForm({ prefilledInterest, className, variant = "general",
         e.preventDefault();
         setIsLoading(true);
 
+        let recaptchaToken = "";
+        if (executeRecaptcha) {
+            try {
+                recaptchaToken = await executeRecaptcha("contact_form");
+            } catch (error) {
+                console.error("Error generating reCAPTCHA token:", error);
+            }
+        }
+
         const payload = {
             ...formData,
             interest,
             variant,
-            timestamp: new Date().toISOString()
+            timestamp: new Date().toISOString(),
+            recaptchaToken
         };
 
         try {
@@ -384,6 +396,12 @@ export function ContactForm({ prefilledInterest, className, variant = "general",
 
             <p className="text-center text-xs text-gray-500 mt-4">
                 Sus datos son confidenciales. Al enviar, acepta nuestra política de privacidad.
+                <br /><br />
+                Sitio protegido por reCAPTCHA. Aplican la{' '}
+                <a href="https://policies.google.com/privacy" className="underline hover:text-white" target="_blank" rel="noopener noreferrer">Política de Privacidad</a>
+                {' '}y los{' '}
+                <a href="https://policies.google.com/terms" className="underline hover:text-white" target="_blank" rel="noopener noreferrer">Términos de Servicio</a>
+                {' '}de Google.
             </p>
         </form>
     );

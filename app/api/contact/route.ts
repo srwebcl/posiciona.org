@@ -10,8 +10,24 @@ export async function POST(request: Request) {
         const {
             name, nombre, email, phone, telefono,
             interest, message, mensaje, variant,
-            company, role, rut
+            company, role, rut, recaptchaToken
         } = data;
+
+        // 1.5. Validación de reCAPTCHA
+        if (!recaptchaToken) {
+            return NextResponse.json({ success: false, message: "Token de seguridad faltante" }, { status: 400 });
+        }
+
+        const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+        const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${recaptchaToken}`;
+
+        const recaptchaRes = await fetch(verifyUrl, { method: 'POST' });
+        const recaptchaData = await recaptchaRes.json();
+
+        if (!recaptchaData.success || recaptchaData.score < 0.5) {
+            console.error("reCAPTCHA validation failed:", recaptchaData);
+            return NextResponse.json({ success: false, message: "Actividad bloqueada por seguridad" }, { status: 403 });
+        }
 
         const clientName = nombre || name || "Cliente";
         const clientEmail = email;
