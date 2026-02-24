@@ -8,6 +8,8 @@ import { WhatsAppButton } from "@/app/components/layout/WhatsAppButton";
 import { SchemaMarkup } from "@/app/components/seo/SchemaMarkup";
 import { ReCaptchaProvider } from "@/app/components/providers/ReCaptchaProvider";
 
+import { ClientConditionalWrapper } from "@/app/components/layout/ClientConditionalWrapper";
+
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
@@ -35,14 +37,20 @@ export default function RootLayout({
         className={`${montserrat.variable} ${jetbrainsMono.variable} antialiased bg-navy-deep text-white selection:bg-amber-vial selection:text-navy-deep relative overflow-x-hidden`}
       >
         <ReCaptchaProvider>
-          <Navbar />
+          <ClientConditionalWrapper>
+            <Navbar />
+          </ClientConditionalWrapper>
+
           <main className="min-h-screen">
             {children}
           </main>
-          <Footer />
-          <FloatingCTA />
-          <WhatsAppButton />
-          <SchemaMarkup />
+
+          <ClientConditionalWrapper>
+            <Footer />
+            <FloatingCTA />
+            <WhatsAppButton />
+            <SchemaMarkup />
+          </ClientConditionalWrapper>
         </ReCaptchaProvider>
       </body>
     </html>
