@@ -10,6 +10,10 @@ export default function AdminLogin() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+
+    const [isRecovering, setIsRecovering] = useState(false);
+    const [recoverMessage, setRecoverMessage] = useState("");
+
     const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -32,6 +36,32 @@ export default function AdminLogin() {
                 setError(data.message || "Credenciales incorrectas");
             }
         } catch (err) {
+            setError("Error de conexión con el servidor");
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleRecoverSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsLoading(true);
+        setError("");
+        setRecoverMessage("");
+
+        try {
+            const res = await fetch("/api/admin/auth/recover", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email })
+            });
+            const data = await res.json();
+
+            if (res.ok) {
+                setRecoverMessage(data.message);
+            } else {
+                setError(data.message || "Error procesando solicitud");
+            }
+        } catch {
             setError("Error de conexión con el servidor");
         } finally {
             setIsLoading(false);
@@ -79,91 +109,163 @@ export default function AdminLogin() {
                 <div className="mx-auto w-full max-w-sm lg:w-96">
                     <div>
                         <h2 className="mt-6 text-3xl font-extrabold text-gray-900 tracking-tight">
-                            Iniciar Sesión
+                            {isRecovering ? "Recuperar Acceso" : "Iniciar Sesión"}
                         </h2>
                         <p className="mt-2 text-sm text-gray-500 font-medium">
-                            Por favor ingrese sus credenciales corporativas
+                            {isRecovering
+                                ? "Te enviaremos una clave provisoria al correo ingresado."
+                                : "Por favor ingrese sus credenciales corporativas"}
                         </p>
                     </div>
 
                     <div className="mt-8">
-                        <form className="space-y-5" onSubmit={handleSubmit}>
-                            <div>
-                                <label htmlFor="email" className="block text-sm font-bold text-gray-700">
-                                    Correo Electrónico
-                                </label>
-                                <div className="mt-1 relative rounded-xl shadow-sm">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <Mail className="h-5 w-5 text-gray-400" />
-                                    </div>
-                                    <input
-                                        id="email"
-                                        name="email"
-                                        type="email"
-                                        autoComplete="email"
-                                        required
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-navy-deep focus:border-transparent sm:text-sm font-medium transition-all bg-gray-50 hover:bg-white"
-                                        placeholder="admin@posiciona.org"
-                                    />
-                                </div>
-                            </div>
-
-                            <div>
-                                <label htmlFor="password" className="block text-sm font-bold text-gray-700">
-                                    Contraseña
-                                </label>
-                                <div className="mt-1 relative rounded-xl shadow-sm">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <Lock className="h-5 w-5 text-gray-400" />
-                                    </div>
-                                    <input
-                                        id="password"
-                                        name="password"
-                                        type="password"
-                                        autoComplete="current-password"
-                                        required
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-navy-deep focus:border-transparent sm:text-sm font-medium transition-all bg-gray-50 hover:bg-white"
-                                        placeholder="••••••••"
-                                    />
-                                </div>
-                            </div>
-
-                            {error && (
-                                <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
-                                    <div className="flex">
-                                        <div className="flex-shrink-0">
-                                            <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                                            </svg>
+                        {isRecovering ? (
+                            <form className="space-y-5" onSubmit={handleRecoverSubmit}>
+                                <div>
+                                    <label htmlFor="email" className="block text-sm font-bold text-gray-700">
+                                        Correo Electrónico
+                                    </label>
+                                    <div className="mt-1 relative rounded-xl shadow-sm">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <Mail className="h-5 w-5 text-gray-400" />
                                         </div>
-                                        <div className="ml-3">
-                                            <p className="text-sm font-medium text-red-800">{error}</p>
-                                        </div>
+                                        <input
+                                            id="email"
+                                            name="email"
+                                            type="email"
+                                            autoComplete="email"
+                                            required
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-navy-deep focus:border-transparent sm:text-sm font-medium transition-all bg-gray-50 hover:bg-white [&:-webkit-autofill]:shadow-[inset_0_0_0px_1000px_#f9fafb] [&:-webkit-autofill]:[-webkit-text-fill-color:#111827]"
+                                            placeholder="admin@posiciona.org"
+                                        />
                                     </div>
                                 </div>
-                            )}
 
-                            <div className="pt-2">
-                                <button
-                                    type="submit"
-                                    disabled={isLoading}
-                                    className="w-full flex justify-center items-center gap-2 py-3 px-4 border border-transparent rounded-xl shadow-lg shadow-navy-deep/20 text-sm font-bold text-white bg-navy-deep hover:bg-navy-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-navy-deep disabled:opacity-70 disabled:cursor-not-allowed transition-all"
-                                >
-                                    {isLoading ? (
-                                        <>
-                                            <Loader2 className="w-5 h-5 animate-spin text-amber-vial" />
-                                            <span>Autenticando...</span>
-                                        </>
-                                    ) : (
-                                        "Acceder al Sistema"
-                                    )}
-                                </button>
-                            </div>
-                        </form>
+                                {error && (
+                                    <div className="bg-red-50 border border-red-100 text-red-800 p-4 rounded-xl text-sm font-medium">
+                                        {error}
+                                    </div>
+                                )}
+
+                                {recoverMessage && (
+                                    <div className="bg-emerald-50 border border-emerald-100 text-emerald-800 p-4 rounded-xl text-sm font-medium flex items-start gap-2">
+                                        <ShieldCheck className="w-5 h-5 shrink-0" />
+                                        {recoverMessage}
+                                    </div>
+                                )}
+
+                                <div className="pt-2 space-y-3">
+                                    <button
+                                        type="submit"
+                                        disabled={isLoading || !!recoverMessage}
+                                        className="w-full flex justify-center items-center gap-2 py-3 px-4 border border-transparent rounded-xl shadow-lg shadow-navy-deep/20 text-sm font-bold text-white bg-navy-deep hover:bg-navy-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-navy-deep disabled:opacity-70 disabled:cursor-not-allowed transition-all"
+                                    >
+                                        {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Enviar Instrucciones"}
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            setIsRecovering(false);
+                                            setError("");
+                                            setRecoverMessage("");
+                                        }}
+                                        className="w-full py-3 px-4 rounded-xl text-sm font-bold text-gray-600 border border-gray-200 hover:bg-gray-50 transition-colors"
+                                    >
+                                        Volver al Login
+                                    </button>
+                                </div>
+                            </form>
+                        ) : (
+                            <form className="space-y-5" onSubmit={handleSubmit}>
+                                <div>
+                                    <label htmlFor="email" className="block text-sm font-bold text-gray-700">
+                                        Correo Electrónico
+                                    </label>
+                                    <div className="mt-1 relative rounded-xl shadow-sm">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <Mail className="h-5 w-5 text-gray-400" />
+                                        </div>
+                                        <input
+                                            id="email"
+                                            name="email"
+                                            type="email"
+                                            autoComplete="email"
+                                            required
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-navy-deep focus:border-transparent sm:text-sm font-medium transition-all bg-gray-50 hover:bg-white [&:-webkit-autofill]:shadow-[inset_0_0_0px_1000px_#f9fafb] [&:-webkit-autofill]:[-webkit-text-fill-color:#111827]"
+                                            placeholder="admin@posiciona.org"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label htmlFor="password" className="block text-sm font-bold text-gray-700">
+                                        Contraseña
+                                    </label>
+                                    <div className="mt-1 relative rounded-xl shadow-sm">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <Lock className="h-5 w-5 text-gray-400" />
+                                        </div>
+                                        <input
+                                            id="password"
+                                            name="password"
+                                            type="password"
+                                            autoComplete="current-password"
+                                            required
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-navy-deep focus:border-transparent sm:text-sm font-medium transition-all bg-gray-50 hover:bg-white [&:-webkit-autofill]:shadow-[inset_0_0_0px_1000px_#f9fafb] [&:-webkit-autofill]:[-webkit-text-fill-color:#111827]"
+                                            placeholder="••••••••"
+                                        />
+                                    </div>
+                                </div>
+
+                                {error && (
+                                    <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
+                                        <div className="flex">
+                                            <div className="flex-shrink-0">
+                                                <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                                                </svg>
+                                            </div>
+                                            <div className="ml-3">
+                                                <p className="text-sm font-medium text-red-800">{error}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+
+                                <div className="flex justify-end pt-1">
+                                    <button
+                                        type="button"
+                                        onClick={() => setIsRecovering(true)}
+                                        className="text-sm font-bold text-navy-deep hover:text-amber-600 transition-colors bg-transparent border-none appearance-none cursor-pointer p-0"
+                                    >
+                                        ¿Olvidaste tu contraseña?
+                                    </button>
+                                </div>
+
+                                <div className="pt-4">
+                                    <button
+                                        type="submit"
+                                        disabled={isLoading}
+                                        className="w-full flex justify-center items-center gap-2 py-3 px-4 border border-transparent rounded-xl shadow-lg shadow-navy-deep/20 text-sm font-bold text-white bg-navy-deep hover:bg-navy-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-navy-deep disabled:opacity-70 disabled:cursor-not-allowed transition-all"
+                                    >
+                                        {isLoading ? (
+                                            <>
+                                                <Loader2 className="w-5 h-5 animate-spin text-amber-vial" />
+                                                <span>Autenticando...</span>
+                                            </>
+                                        ) : (
+                                            "Acceder al Sistema"
+                                        )}
+                                    </button>
+                                </div>
+                            </form>
+                        )}
                     </div>
                 </div>
             </div>

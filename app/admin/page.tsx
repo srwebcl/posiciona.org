@@ -199,10 +199,15 @@ export default function AdminDashboard() {
                             <LayoutDashboard className="w-4 h-4" /> Oficina Virtual
                         </Link>
                     </li>
+                    <li>
+                        <Link href="/admin/perfil" className="w-full text-left px-4 py-3 rounded-xl text-sm transition-all font-medium border border-transparent hover:bg-white/5 text-white/70 hover:text-white flex items-center gap-3">
+                            <User className="w-4 h-4" /> Mi Perfil
+                        </Link>
+                    </li>
                     {myRole === "ADMIN" && (
                         <li>
                             <Link href="/admin/usuarios" className="w-full text-left px-4 py-3 rounded-xl text-sm transition-all font-medium border border-transparent hover:bg-white/5 text-white/70 hover:text-white flex items-center gap-3">
-                                <User className="w-4 h-4" /> Gestión de Equipo
+                                <Search className="w-4 h-4" /> Gestión de Equipo
                             </Link>
                         </li>
                     )}
