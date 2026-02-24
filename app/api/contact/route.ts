@@ -152,7 +152,7 @@ export async function POST(request: Request) {
                         </tr>
                         <tr>
                             <td style="background-color: #f8fafc; padding: 15px; text-align: center; color: #94a3b8; font-size: 12px; border-top: 1px solid #e2e8f0;">
-                                Enviado automáticamente desde el CRM Posiciona a las ${new Date().toLocaleTimeString('es-CL')}
+                                Enviado automáticamente desde el CRM Posiciona a las ${new Date().toLocaleTimeString('es-CL', { timeZone: 'America/Santiago' })} horas.
                             </td>
                         </tr>
                     </table>
@@ -174,7 +174,7 @@ export async function POST(request: Request) {
                         <table width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; border: 1px solid #eaeaea;">
                             <tr>
                                 <td style="padding: 40px 40px 20px 40px; text-align: center;">
-                                    <img src="https://posiciona.org/logo-posiciona.webp" alt="Posiciona Logo" width="180" style="display: inline-block; outline: none; border: none; text-decoration: none;" />
+                                    <h1 style="margin: 0; font-family: 'Arial Black', Impact, sans-serif; font-size: 38px; color: #1e3a8a; letter-spacing: -1px; text-transform: uppercase;">Posiciona</h1>
                                 </td>
                             </tr>
                             <tr>
@@ -201,7 +201,7 @@ export async function POST(request: Request) {
                             <tr>
                                 <td style="background-color: #f8fafc; padding: 25px 40px; text-align: center; border-top: 1px solid #f1f5f9;">
                                     <p style="margin: 0; color: #94a3b8; font-size: 12px; line-height: 1.5;">
-                                        O'Higgins 1186, Piso 8. Edificio Studio, Concepción.<br/>
+                                        Alameda Libertador Bernardo Ohiggins 252 Ofic. 21, Santiago.<br/>
                                         Posiciona Capacitación y Certificación.<br/>
                                         Este es un correo automático, por favor no respondas directamente a esta dirección.
                                     </p>

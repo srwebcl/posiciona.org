@@ -108,8 +108,12 @@ export function ContactForm({ prefilledInterest, className, variant = "general",
             const data = await res.json().catch(() => ({}));
 
             if (res.ok) {
-                router.push("/gracias");
-                return; // Redirección temprana, saltarse renderizado local
+                setIsSubmitted(true);
+                // Retrasar redirección para que el usuario alcance a leer el globo de éxito
+                setTimeout(() => {
+                    window.scrollTo(0, 0);
+                    router.push("/gracias");
+                }, 1800);
             } else {
                 console.error("Error submitting form", data);
                 setSubmitError(data.message || "Ocurrió un error al enviar el formulario. Por favor intente nuevamente.");
