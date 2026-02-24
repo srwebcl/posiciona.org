@@ -23,6 +23,7 @@ interface Lead {
 const STATUS_COLORS: Record<string, string> = {
     NUEVO: "bg-blue-100 text-blue-700 border-blue-200",
     CONTACTADO: "bg-amber-100 text-amber-700 border-amber-200",
+    "EN PROCESO": "bg-purple-100 text-purple-700 border-purple-200",
     "EN NEGOCIACION": "bg-purple-100 text-purple-700 border-purple-200",
     CERRADO: "bg-emerald-100 text-emerald-700 border-emerald-200",
     DESCARTADO: "bg-red-100 text-red-700 border-red-200"
@@ -186,7 +187,7 @@ export default function AdminDashboard() {
             {/* Top Toolbar (Import/Export) */}
             <div className="w-full bg-navy-deep border-b border-navy-deep/80 p-4 flex justify-between items-center z-20">
                 <div className="flex items-center gap-3">
-                    <h1 className="text-white font-bold text-lg hidden sm:block">Módulo de Ventas</h1>
+                    <h1 className="text-white font-bold text-lg hidden sm:block">Oficina Virtual</h1>
                     <span className="bg-amber-vial text-navy-deep text-xs px-2 py-1 rounded font-bold shadow-sm">
                         {loading ? "..." : leads.length} Registros
                     </span>
@@ -224,7 +225,7 @@ export default function AdminDashboard() {
                 {/* Sidebar Menu */}
                 <aside className="w-full md:w-64 bg-navy-deep border-r border-navy-deep/80 p-4 overflow-y-auto hidden md:block">
                     <div className="flex items-center gap-2 text-white/50 font-bold mb-6 text-xs uppercase tracking-wider">
-                        <Briefcase className="w-4 h-4" /> CRM Operativo
+                        <Briefcase className="w-4 h-4" /> Módulos
                     </div>
                     <ul className="space-y-2">
                         <li>
@@ -400,25 +401,25 @@ export default function AdminDashboard() {
 
                                     <div className="space-y-5">
                                         <div>
-                                            <label className="block text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-2">Estado del Trato</label>
+                                            <label className="block text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-2">Estado</label>
                                             <div className="relative">
                                                 <select
                                                     value={editStatus}
                                                     onChange={(e) => setEditStatus(e.target.value)}
                                                     className="w-full bg-white border border-gray-200 shadow-sm rounded-xl py-3 px-4 text-gray-900 font-medium focus:ring-2 focus:ring-navy-deep focus:border-navy-deep appearance-none cursor-pointer hover:bg-gray-50 transition-colors"
                                                 >
-                                                    <option value="NUEVO">🔵 NUEVO - Recién Ingresado</option>
-                                                    <option value="CONTACTADO">🟡 CONTACTADO - En conversaciones</option>
-                                                    <option value="EN NEGOCIACION">🟣 EN NEGOCIACIÓN - Cotización enviada</option>
-                                                    <option value="CERRADO">🟢 CERRADO - Venta Exitosa</option>
-                                                    <option value="DESCARTADO">🔴 DESCARTADO - No califica</option>
+                                                    <option value="NUEVO">🔵 NUEVO</option>
+                                                    <option value="CONTACTADO">🟡 CONTACTADO</option>
+                                                    <option value="EN PROCESO">🟣 EN PROCESO</option>
+                                                    <option value="CERRADO">🟢 CERRADO</option>
+                                                    <option value="DESCARTADO">🔴 DESCARTADO</option>
                                                 </select>
                                                 <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">▼</div>
                                             </div>
                                         </div>
 
                                         <div>
-                                            <label className="block text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-2">Bitácora Interna</label>
+                                            <label className="block text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-2">Notas</label>
                                             <textarea
                                                 rows={5}
                                                 value={editNotes}
