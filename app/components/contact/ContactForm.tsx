@@ -29,6 +29,7 @@ export function ContactForm({ prefilledInterest, className, variant = "general",
     const [interest, setInterest] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [submitError, setSubmitError] = useState("");
     const { executeRecaptcha } = useGoogleReCaptcha();
 
     // Dynamic fields state
@@ -61,11 +62,13 @@ export function ContactForm({ prefilledInterest, className, variant = "general",
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
+        setSubmitError("");
 
         let recaptchaToken = "";
 
         if (!executeRecaptcha) {
             console.error("reCAPTCHA not ready");
+            setSubmitError("El sistema de seguridad reCAPTCHA aún no está listo. Recargue la página o espere unos segundos.");
             setIsLoading(false);
             return; // Prevent submission if reCAPTCHA isn't ready
         }
@@ -75,8 +78,15 @@ export function ContactForm({ prefilledInterest, className, variant = "general",
             recaptchaToken = await executeRecaptcha("contact_form");
         } catch (error) {
             console.error("Error generating reCAPTCHA token:", error);
+            setSubmitError("Falló la validación de seguridad de Google. Desactive bloqueadores de anuncios (AdBlock) si es necesario e intente de nuevo.");
             setIsLoading(false);
             return; // Stop if we can't get the token
+        }
+
+        if (!recaptchaToken) {
+            setSubmitError("No se pudo generar el token de seguridad antispam.");
+            setIsLoading(false);
+            return;
         }
 
         const payload = {
@@ -94,13 +104,17 @@ export function ContactForm({ prefilledInterest, className, variant = "general",
                 body: JSON.stringify(payload),
             });
 
+            const data = await res.json().catch(() => ({}));
+
             if (res.ok) {
                 setIsSubmitted(true);
             } else {
-                console.error("Error submitting form");
+                console.error("Error submitting form", data);
+                setSubmitError(data.message || "Ocurrió un error al enviar el formulario. Por favor intente nuevamente.");
             }
         } catch (error) {
             console.error("Error submitting form", error);
+            setSubmitError("Error de conexión. Revise su internet y vuelva a intentarlo.");
         } finally {
             setIsLoading(false);
         }
@@ -396,6 +410,15 @@ export function ContactForm({ prefilledInterest, className, variant = "general",
                     placeholder="Dudas específicas..."
                 />
             </div>
+
+            {submitError && (
+                <div className="bg-red-500/10 border border-red-500/30 text-red-500 text-sm font-medium p-3 rounded-lg flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                    </svg>
+                    <p>{submitError}</p>
+                </div>
+            )}
 
             <Button type="submit" className="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-black uppercase tracking-wider text-base py-5 rounded-xl shadow-lg shadow-orange-500/20 transition-all transform hover:scale-[1.02]" disabled={isLoading}>
                 {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}

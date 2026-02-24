@@ -15,18 +15,32 @@ export async function POST(request: Request) {
 
         // 1.5. Validación de reCAPTCHA
         if (!recaptchaToken) {
-            return NextResponse.json({ success: false, message: "Token de seguridad faltante" }, { status: 400 });
+            return NextResponse.json({ success: false, message: "Falta el token de seguridad reCAPTCHA." }, { status: 400 });
         }
 
-        const secretKey = process.env.RECAPTCHA_SECRET_KEY;
-        const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${recaptchaToken}`;
+        const secretKey = process.env.RECAPTCHA_SECRET_KEY || "";
+        const verifyBody = new URLSearchParams({
+            secret: secretKey,
+            response: recaptchaToken
+        });
 
-        const recaptchaRes = await fetch(verifyUrl, { method: 'POST' });
+        const recaptchaRes = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: verifyBody.toString()
+        });
+
         const recaptchaData = await recaptchaRes.json();
 
         if (!recaptchaData.success || recaptchaData.score < 0.5) {
             console.error("reCAPTCHA validation failed:", recaptchaData);
-            return NextResponse.json({ success: false, message: "Actividad bloqueada por seguridad" }, { status: 403 });
+
+            // Detailed message for the client
+            const errorCode = recaptchaData['error-codes'] ? recaptchaData['error-codes'].join(', ') : "Bajo puntaje de confianza (" + recaptchaData.score + ")";
+            return NextResponse.json({
+                success: false,
+                message: "Validación antispam fallida. Google devolvió: " + errorCode
+            }, { status: 403 });
         }
 
         const clientName = nombre || name || "Cliente";
