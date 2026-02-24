@@ -29,11 +29,10 @@ const STATUS_COLORS: Record<string, string> = {
 
 const FILTERS = [
     { label: "Todos", value: "" },
-    { label: "General", value: "GENERAL" },
     { label: "Personas", value: "PERSONA" },
     { label: "Empresas", value: "EMPRESA" },
     { label: "Escuela Conductores", value: "ESCUELA" },
-    { label: "Oficina Virtual", value: "OFICINA" }
+    { label: "Oficina Virtual", value: "GENERAL" }
 ];
 
 export default function AdminDashboard() {
