@@ -32,7 +32,7 @@ const FEATURED_COURSES = [
         title: "Soldadura Calificada (MIG/TIG)",
         image: "/imagenes/posiciona-11.jpeg",
         icon: Wrench,
-        link: "/oficios",
+        link: "/personas/cursos?categoria=oficios",
         color: "cyan"
     },
     {
