@@ -182,62 +182,62 @@ export default function AdminDashboard() {
     };
 
     return (
-        <div className="flex flex-col h-[calc(100vh-56px)] overflow-hidden bg-gray-50">
-
-            {/* Top Toolbar (Import/Export) */}
-            <div className="w-full bg-navy-deep border-b border-navy-deep/80 p-4 flex justify-between items-center z-20">
-                <div className="flex items-center gap-3">
-                    <h1 className="text-white font-bold text-lg hidden sm:block">Oficina Virtual</h1>
-                    <span className="bg-amber-vial text-navy-deep text-xs px-2 py-1 rounded font-bold shadow-sm">
-                        {loading ? "..." : leads.length} Registros
-                    </span>
+        <div className="flex bg-gray-50 h-[calc(100vh-56px)] overflow-hidden">
+            {/* Sidebar Menu */}
+            <aside className="w-full md:w-64 bg-navy-deep border-r border-navy-deep/80 p-4 overflow-y-auto hidden md:block shrink-0">
+                <div className="flex items-center gap-2 text-white/50 font-bold mb-6 text-xs uppercase tracking-wider">
+                    <Briefcase className="w-4 h-4" /> Módulos
                 </div>
+                <ul className="space-y-2">
+                    <li>
+                        <button className="w-full text-left px-4 py-3 rounded-xl text-sm transition-all font-medium border bg-white/10 text-white border-white/20 shadow-sm flex items-center gap-3">
+                            <User className="w-4 h-4" /> Gestión de Contactos
+                        </button>
+                    </li>
+                </ul>
+            </aside>
 
-                <div className="flex gap-3">
-                    <input
-                        type="file"
-                        ref={fileInputRef}
-                        onChange={handleExcelUpload}
-                        accept=".xlsx, .xls, .csv"
-                        className="hidden"
-                    />
-
-                    <button
-                        onClick={() => fileInputRef.current?.click()}
-                        disabled={isProcessingExcel}
-                        className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-all shadow-sm"
-                    >
-                        {isProcessingExcel ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
-                        <span className="hidden sm:inline">Importar Base</span>
-                    </button>
-
-                    <button
-                        onClick={downloadExcel}
-                        className="flex items-center gap-2 bg-amber-vial hover:bg-amber-400 text-navy-deep px-4 py-2 rounded-lg text-sm font-bold transition-all shadow-sm"
-                    >
-                        <Download className="w-4 h-4 stroke-[2.5]" />
-                        <span className="hidden sm:inline">Exportar Excel</span>
-                    </button>
-                </div>
-            </div>
-
-            <div className="flex flex-1 overflow-hidden relative">
-                {/* Sidebar Menu */}
-                <aside className="w-full md:w-64 bg-navy-deep border-r border-navy-deep/80 p-4 overflow-y-auto hidden md:block">
-                    <div className="flex items-center gap-2 text-white/50 font-bold mb-6 text-xs uppercase tracking-wider">
-                        <Briefcase className="w-4 h-4" /> Módulos
+            {/* Main Content Area */}
+            <div className="flex-1 flex flex-col overflow-hidden bg-gray-50">
+                {/* Top Toolbar (Import/Export) - Now in the light theme area */}
+                <div className="w-full bg-white border-b border-gray-200 p-4 md:px-6 flex justify-between items-center z-20 shrink-0">
+                    <div className="flex items-center gap-3">
+                        <h1 className="text-gray-900 font-bold text-xl hidden sm:block">Oficina Virtual</h1>
+                        <span className="bg-amber-100 text-amber-700 text-xs px-2.5 py-1 rounded-full font-bold border border-amber-200 shadow-sm">
+                            {loading ? "Cargando..." : `${leads.length} Registros`}
+                        </span>
                     </div>
-                    <ul className="space-y-2">
-                        <li>
-                            <button className="w-full text-left px-4 py-3 rounded-xl text-sm transition-all font-medium border bg-white/10 text-white border-white/20 shadow-sm flex items-center gap-3">
-                                <User className="w-4 h-4" /> Gestión de Contactos
-                            </button>
-                        </li>
-                    </ul>
-                </aside>
+
+                    <div className="flex gap-3">
+                        <input
+                            type="file"
+                            ref={fileInputRef}
+                            onChange={handleExcelUpload}
+                            accept=".xlsx, .xls, .csv"
+                            className="hidden"
+                        />
+
+                        <button
+                            onClick={() => fileInputRef.current?.click()}
+                            disabled={isProcessingExcel}
+                            className="flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-700 border border-gray-300 px-4 py-2 rounded-lg text-sm font-semibold transition-all shadow-sm"
+                        >
+                            {isProcessingExcel ? <Loader2 className="w-4 h-4 animate-spin text-navy-deep" /> : <Upload className="w-4 h-4 text-gray-400" />}
+                            <span className="hidden sm:inline">Importar Base</span>
+                        </button>
+
+                        <button
+                            onClick={downloadExcel}
+                            className="flex items-center gap-2 bg-amber-vial hover:bg-amber-400 text-navy-deep px-4 py-2 rounded-lg text-sm font-bold transition-all shadow-sm border border-amber-500/20"
+                        >
+                            <Download className="w-4 h-4 stroke-[2.5]" />
+                            <span className="hidden sm:inline">Exportar Excel</span>
+                        </button>
+                    </div>
+                </div>
 
                 {/* Main Content: Table & Details */}
-                <div className={`flex-1 overflow-auto p-4 md:p-6 bg-gray-50 ${selectedLead ? 'hidden lg:block lg:w-1/2 opacity-50 pointer-events-none transition-opacity' : 'w-full'}`}>
+                <div className={`flex-1 overflow-auto p-4 md:p-6 ${selectedLead ? 'hidden lg:block lg:w-1/2 opacity-50 pointer-events-none transition-opacity' : 'w-full'}`}>
 
                     {/* Desktop Floating Filters */}
                     <div className="hidden md:flex flex-wrap gap-2 mb-6">
