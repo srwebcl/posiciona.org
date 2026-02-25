@@ -2,12 +2,15 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, Mail, Lock, ShieldCheck } from "lucide-react";
+import { Loader2, Mail, Lock, ShieldCheck, Eye, EyeOff } from "lucide-react"; // Importamos Eye y EyeOff
 import { BrandLogo } from "@/app/components/ui/brand-logo";
 
 export default function AdminLogin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    // Nuevo estado para controlar la visibilidad
+    const [showPassword, setShowPassword] = useState(false);
+
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
@@ -17,6 +20,7 @@ export default function AdminLogin() {
     const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent) => {
+        // ... (Tu lógica de submit se mantiene igual)
         e.preventDefault();
         setIsLoading(true);
         setError("");
@@ -43,6 +47,7 @@ export default function AdminLogin() {
     };
 
     const handleRecoverSubmit = async (e: React.FormEvent) => {
+        // ... (Tu lógica de recover se mantiene igual)
         e.preventDefault();
         setIsLoading(true);
         setError("");
@@ -70,10 +75,9 @@ export default function AdminLogin() {
 
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row">
-            {/* Left side: Branding / Info */}
+            {/* Left side: Branding / Info (Sin cambios) */}
             <div className="hidden md:flex flex-1 bg-navy-deep relative overflow-hidden flex-col justify-between p-12">
-
-                {/* Decorative background elements */}
+                {/* ... (Contenido del lado izquierdo igual) ... */}
                 <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-96 h-96 bg-amber-vial/10 rounded-full blur-3xl shadow-2xl"></div>
                 <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-96 h-96 bg-white/5 rounded-full blur-3xl shadow-2xl"></div>
 
@@ -102,7 +106,6 @@ export default function AdminLogin() {
             {/* Right side: Login Form */}
             <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-20 xl:px-24 bg-white relative">
 
-                {/* Mobile logo */}
                 <div className="md:hidden flex justify-center mb-8">
                     <BrandLogo variant="default" className="w-40 h-auto" />
                 </div>
@@ -121,6 +124,7 @@ export default function AdminLogin() {
 
                     <div className="mt-8">
                         {isRecovering ? (
+                            // ... (Formulario de recuperar sin cambios, salvo el text-gray-900 que ya pusiste)
                             <form className="space-y-5" onSubmit={handleRecoverSubmit}>
                                 <div>
                                     <label htmlFor="email" className="block text-sm font-bold text-gray-700">
@@ -138,12 +142,12 @@ export default function AdminLogin() {
                                             required
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
-                                            className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-navy-deep focus:border-transparent sm:text-sm font-medium transition-all bg-gray-50 hover:bg-white [&:-webkit-autofill]:shadow-[inset_0_0_0px_1000px_#f9fafb] [&:-webkit-autofill]:[-webkit-text-fill-color:#111827]"
+                                            className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-navy-deep focus:border-transparent sm:text-sm font-medium transition-all bg-gray-50 hover:bg-white text-gray-900 [&:-webkit-autofill]:shadow-[inset_0_0_0px_1000px_#f9fafb] [&:-webkit-autofill]:[-webkit-text-fill-color:#111827]"
                                             placeholder="admin@posiciona.org"
                                         />
                                     </div>
                                 </div>
-
+                                {/* ... Resto del form recover ... */}
                                 {error && (
                                     <div className="bg-red-50 border border-red-100 text-red-800 p-4 rounded-xl text-sm font-medium">
                                         {error}
@@ -196,7 +200,7 @@ export default function AdminLogin() {
                                             required
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
-                                            className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-navy-deep focus:border-transparent sm:text-sm font-medium transition-all bg-gray-50 hover:bg-white [&:-webkit-autofill]:shadow-[inset_0_0_0px_1000px_#f9fafb] [&:-webkit-autofill]:[-webkit-text-fill-color:#111827]"
+                                            className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-navy-deep focus:border-transparent sm:text-sm font-medium transition-all bg-gray-50 hover:bg-white text-gray-900 [&:-webkit-autofill]:shadow-[inset_0_0_0px_1000px_#f9fafb] [&:-webkit-autofill]:[-webkit-text-fill-color:#111827]"
                                             placeholder="admin@posiciona.org"
                                         />
                                     </div>
@@ -213,14 +217,28 @@ export default function AdminLogin() {
                                         <input
                                             id="password"
                                             name="password"
-                                            type="password"
+                                            // Aquí cambiamos el tipo dinámicamente
+                                            type={showPassword ? "text" : "password"}
                                             autoComplete="current-password"
                                             required
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
-                                            className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-navy-deep focus:border-transparent sm:text-sm font-medium transition-all bg-gray-50 hover:bg-white [&:-webkit-autofill]:shadow-[inset_0_0_0px_1000px_#f9fafb] [&:-webkit-autofill]:[-webkit-text-fill-color:#111827]"
+                                            // Agregamos padding derecho extra (pr-10) para que el texto no se monte sobre el ojo
+                                            className="appearance-none block w-full pl-10 pr-10 py-3 border border-gray-200 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-navy-deep focus:border-transparent sm:text-sm font-medium transition-all bg-gray-50 hover:bg-white text-gray-900 [&:-webkit-autofill]:shadow-[inset_0_0_0px_1000px_#f9fafb] [&:-webkit-autofill]:[-webkit-text-fill-color:#111827]"
                                             placeholder="••••••••"
                                         />
+                                        {/* Botón del ojo posicionado absolutamente a la derecha */}
+                                        <button
+                                            type="button"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                            className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer text-gray-400 hover:text-gray-600 transition-colors focus:outline-none"
+                                        >
+                                            {showPassword ? (
+                                                <EyeOff className="h-5 w-5" />
+                                            ) : (
+                                                <Eye className="h-5 w-5" />
+                                            )}
+                                        </button>
                                     </div>
                                 </div>
 
